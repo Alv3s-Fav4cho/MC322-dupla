@@ -4,6 +4,7 @@ public class Heroi{
 	private String nome;
 	private int qtde_flechas;
 	private int score;
+	private boolean vivo;
 	
 	public Heroi(String nome){
 		this.nome = nome;
@@ -28,6 +29,14 @@ public class Heroi{
 
 	public String getNome() {
 		return nome;
+	}
+
+	public boolean isVivo() {
+		return vivo;
+	}
+
+	public void setVivo(boolean vivo) {
+		this.vivo = vivo;
 	}
 	
 }
