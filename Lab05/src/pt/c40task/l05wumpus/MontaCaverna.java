@@ -40,9 +40,10 @@ public class MontaCaverna{
 	}
 		
 	public void imprime() {
+		char estado[][] = estadoAtual();
 		for(int i = 0; i < 4; i++ ) {
 			for(int j = 0; j < 4; j++ ) {
-				System.out.print(cav[i][j]);
+				System.out.print(estado[i][j]);
 			}
 			System.out.println();
 		}

@@ -44,6 +44,12 @@ public class AppWumpus {
     	  cav.incluiFedorBrisas();
     	  cav.incluiVazios();
     	  cav.imprimeCaverna();
+    	  
+    	  MontaCaverna mc = new MontaCaverna();
+    	  Heroi h = new Heroi("jorge");
+    	  mc.conectaHeroi(h);
+    	  mc.conectaCaverna(cav);
+    	  mc.imprime();
       
     	  String movements = tk.retrieveMovements();
     	  System.out.println("=== Movimentos");
