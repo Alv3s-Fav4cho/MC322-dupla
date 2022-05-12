@@ -9,69 +9,42 @@ public class Caverna {
 	
 	public Caverna() {
 		s = new Sala[4][4];
-	}
-	//teste
-	public boolean cavernaValida(String entrada[]) {
-		for(int i = 0; i < entrada.length; i++) {
-			if(entrada[i].substring(6).compareTo("P") == 0) {
-				this.nHeroi++;
-			}
-			if(entrada[i].substring(6).compareTo("W") == 0) {
-				this.nWumpus++;
-			}
-			if(entrada[i].substring(6).compareTo("B")  == 0) {
-				this.nBuracos++;
-			}
-			if(entrada[i].substring(6).compareTo("O") == 0) {
-				this.nOuro++;
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				s[i][j] = new Sala(null);
 			}
 		}
-		if(this.nHeroi == 1 && this.nOuro == 1 && this.nWumpus == 1 && this.nBuracos >=2 && this.nBuracos <=3){
-			return true;
-		}
-		return false;
 	}
 	
-	public void insereSala(int linha, int coluna, String situacao){
+	
+	
+	//teste
+	
+	
+	public void insereSala(int linha, int coluna, Componente comp){
 		linha--;
 		coluna--;
-		switch (situacao) {
-		case "P":{
-			this.s[linha][coluna] = new Sala(situacao);
-			this.s[linha][coluna].setHeroi_na_sala(true);
-			this.s[linha][coluna].setVisitada(true);
-			break;
-		}
-		case "W":{
-			this.s[linha][coluna] = new Wumpus(situacao);
-			break;
-		}
-		case "B":{
-			this.s[linha][coluna] = new Buraco(situacao);
-			break;
-		}
-		case "O":{
-			this.s[linha][coluna] = new Ouro(situacao);
-			break;
-		}
-		}
+		
+		this.s[linha][coluna] = new Sala(comp);
+		this.s[linha][coluna].setVisitada(true);
+		
 	}
 	
-	public void insereSala(String entrada) {
+	/*public void insereSala(String entrada) {
 		insereSala(Integer.parseInt(entrada.substring(0, 1)),
 				   Integer.parseInt(entrada.substring(2, 3)),
 			 						   entrada.substring(4));
-	}
+	}*/
 	
-	public void insereSala(String entrada[]) {
+	/*public void insereSala(String entrada[]) {
 		for(int i = 0; i < entrada.length; i++) {
 			insereSala(Integer.parseInt(entrada[i].substring(0, 1)),
 					Integer.parseInt(entrada[i].substring(3, 4)),
 					entrada[i].substring(6));			
 		}
-	}
+	}*/
 	
-	public void incluiFedorBrisas() {
+	/*public void incluiFedorBrisas() {
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0 ; j < 4; j++) {
 				if(this.s[i][j] != null) {
@@ -98,9 +71,9 @@ public class Caverna {
 				}
 			}
 		}
-	}
+	}*/
 	
-	public void incluiVazios() {
+	/*public void incluiVazios() {
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0 ; j < 4; j++) {
 				if(this.s[i][j] == null) {
@@ -108,7 +81,7 @@ public class Caverna {
 				}
 			}
 		}
-	}
+	}*/
 	
 	
 	public void imprimeCaverna() {

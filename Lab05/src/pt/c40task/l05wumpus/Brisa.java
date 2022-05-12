@@ -1,8 +1,5 @@
 package pt.c40task.l05wumpus;
 
-public class Brisa extends Buraco {
+public class Brisa extends Componente  {
 
-	public Brisa(String situacao) {
-		super(situacao);
-	}
 }

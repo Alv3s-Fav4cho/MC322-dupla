@@ -1,13 +1,13 @@
 package pt.c40task.l05wumpus;
 
-public class Heroi{
+public class Heroi extends Componente{
 	private String nome;
 	private int qtde_flechas;
 	private int score;
 	private boolean vivo;
 	
-	public Heroi(String nome){
-		this.nome = nome;
+	public Heroi(){
+		this.nome = "";
 		this.score = 0;
 	}
 

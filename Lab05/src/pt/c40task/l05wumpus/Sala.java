@@ -1,15 +1,17 @@
 package pt.c40task.l05wumpus;
 
 public class Sala {
-
+	Componente comp;
 	private String situacao;
 	private boolean visitada;
-	private boolean heroi_na_sala;
 	
-	public Sala(String situacao){
-		this.situacao = situacao;
+	public Sala(Componente comp){
+		this.comp = comp;
 		this.visitada = false;
-		this.heroi_na_sala = false;
+	}
+
+	public void conecta(Componente comp) {
+		this.comp = comp;
 	}
 	
 	public String getSituacao() {
@@ -26,13 +28,5 @@ public class Sala {
 
 	public void setVisitada(boolean visitada) {
 		this.visitada = visitada;
-	}
-
-	public boolean isHeroi_na_sala() {
-		return heroi_na_sala;
-	}
-
-	public void setHeroi_na_sala(boolean heroi_na_sala) {
-		this.heroi_na_sala = heroi_na_sala;
 	}
 }

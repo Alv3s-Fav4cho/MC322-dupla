@@ -24,7 +24,7 @@ public class AppWumpus {
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       String entrada[];
-      Caverna cav = new Caverna();
+      
       
       
       String cave[][] = tk.retrieveCave();
@@ -39,17 +39,20 @@ public class AppWumpus {
          System.out.println();
       }
       
-      if(cav.cavernaValida(entrada)) {
-    	  cav.insereSala(entrada);
+      Montador mont = new Montador(entrada);
+      Caverna cav = new Caverna();
+      
+      if(mont.cavernaValida(entrada)) {
+    	  /*cav.insereSala();
     	  cav.incluiFedorBrisas();
-    	  cav.incluiVazios();
+    	  cav.incluiVazios();*/
     	  cav.imprimeCaverna();
     	  
-    	  MontaCaverna mc = new MontaCaverna();
+    	  /*Montador mc = new Montador();
     	  Heroi h = new Heroi("jorge");
     	  mc.conectaHeroi(h);
     	  mc.conectaCaverna(cav);
-    	  mc.imprime();
+    	  mc.imprime();*/
       
     	  String movements = tk.retrieveMovements();
     	  System.out.println("=== Movimentos");
