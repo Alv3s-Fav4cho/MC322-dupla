@@ -10,7 +10,7 @@ public class Caverna {
 	public Caverna() {
 		s = new Sala[4][4];
 	}
-	
+	//teste
 	public boolean cavernaValida(String entrada[]) {
 		for(int i = 0; i < entrada.length; i++) {
 			if(entrada[i].substring(6).compareTo("P") == 0) {
