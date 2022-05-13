@@ -8,6 +8,7 @@ public class Heroi extends Componente{
 	
 	public Heroi(){
 		this.nome = "";
+		this.vivo = true;
 		this.score = 0;
 	}
 
@@ -29,6 +30,10 @@ public class Heroi extends Componente{
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public boolean isVivo() {

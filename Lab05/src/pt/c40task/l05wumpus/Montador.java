@@ -3,36 +3,52 @@ package pt.c40task.l05wumpus;
 public class Montador{
 	Caverna caverna;
 	Componente componente;
-	Heroi heroi;
 	private int nHeroi = 0;
 	private int nWumpus = 0;
 	private int nBuracos = 0;
 	private int nOuro = 0;
 	private char cav[][];
 	
-	public void Montar(String entrada){
+	public Montador(String entrada[]){
+		for(int i = 0; i < entrada.length; i++) {
+			this.Montar(Integer.parseInt(entrada[i].substring(0,1)),
+						Integer.parseInt(entrada[i].substring(3,4)),
+										 entrada[i].substring(6));			
+		}
+	}
+	
+	public void Montar(int linha, int coluna, String entrada){
+		linha--;
+		coluna--;
 		switch (entrada) {
 		case "P":{
 			this.componente = new Heroi();
+			this.componente.setLinha(linha);
+			this.componente.setColuna(coluna);
+			caverna.insereSala(linha, coluna, componente);
 			break;
 		}
 		case "W":{
 			this.componente = new Wumpus();
+			this.componente.setLinha(linha);
+			this.componente.setColuna(coluna);
+			this.caverna.insereSala(linha, coluna, componente);
 			break;
 		}
 		case "B":{
 			this.componente = new Buraco();
+			this.componente.setLinha(linha);
+			this.componente.setColuna(coluna);
+			this.caverna.insereSala(linha, coluna, componente);
 			break;
 		}
 		case "O":{
 			this.componente  = new Ouro();
+			this.componente.setLinha(linha);
+			this.componente.setColuna(coluna);
+			this.caverna.insereSala(linha, coluna, componente);
 			break;
 		}
-		}
-	}
-	public Montador(String entrada[]){
-		for(int i = 0; i < entrada.length; i++) {
-			this.Montar(entrada[i].substring(6));			
 		}
 	}
 	
@@ -43,6 +59,8 @@ public class Montador{
 	public void conectaComponente(Componente comp) {
 		this.componente = comp;
 	}
+	
+	
 	
 	public boolean cavernaValida(String entrada[]) {
 		for(int i = 0; i < entrada.length; i++) {
@@ -90,12 +108,12 @@ public class Montador{
 			}
 			System.out.println();
 		}
-		System.out.println("Nome: " + heroi.getNome());
+		/*System.out.println("Nome: " + componente.getNome());
 		System.out.println("Score: " + heroi.getScore());
 		System.out.println("Flechas: " + heroi.getQtde_flechas());
 		if(!heroi.isVivo()) {
 			System.out.println("Voce perdeu :(...");
-		}
+		}*/
 		
 	}
 }

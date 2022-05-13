@@ -15,18 +15,16 @@ public class Caverna {
 			}
 		}
 	}
-	
-	
-	
 	//teste
 	
-	
-	public void insereSala(int linha, int coluna, Componente comp){
-		linha--;
-		coluna--;
-		
-		this.s[linha][coluna] = new Sala(comp);
-		this.s[linha][coluna].setVisitada(true);
+	public void insereSala(int linha, int coluna, Componente comp){		
+		if(comp == new Heroi()) {
+			this.s[linha][coluna] = new Sala(comp);
+			this.s[linha][coluna].setVisitada(true);			
+		}
+		else {
+			this.s[linha][coluna] = new Sala(comp);
+		}
 		
 	}
 	

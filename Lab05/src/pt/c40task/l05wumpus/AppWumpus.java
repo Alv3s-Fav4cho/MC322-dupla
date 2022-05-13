@@ -1,5 +1,7 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Scanner;
+
 public class AppWumpus {
 
    public static void main(String[] args) {
@@ -25,8 +27,6 @@ public class AppWumpus {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       String entrada[];
       
-      
-      
       String cave[][] = tk.retrieveCave();
       System.out.println("=== Caverna");
       entrada = new String[cave.length];
@@ -38,21 +38,30 @@ public class AppWumpus {
          }
          System.out.println();
       }
-      
+        
       Montador mont = new Montador(entrada);
       Caverna cav = new Caverna();
+      Componente comp = new Componente();
       
-      if(mont.cavernaValida(entrada)) {
+      mont.conectaComponente(comp);
+      mont.conectaCaverna(cav);
+      comp.conectaCaverna(cav);
+      
+      System.out.println(comp);
+      
+      /*if(mont.cavernaValida(entrada)) {
+    	  Scanner in = new Scanner(System.in);
+    	  
     	  /*cav.insereSala();
     	  cav.incluiFedorBrisas();
     	  cav.incluiVazios();*/
-    	  cav.imprimeCaverna();
+    	  //cav.imprimeCaverna();
     	  
     	  /*Montador mc = new Montador();
     	  Heroi h = new Heroi("jorge");
     	  mc.conectaHeroi(h);
     	  mc.conectaCaverna(cav);
-    	  mc.imprime();*/
+    	  mc.imprime();
       
     	  String movements = tk.retrieveMovements();
     	  System.out.println("=== Movimentos");
@@ -85,7 +94,7 @@ public class AppWumpus {
       }
       else {
     	  System.out.println("Caverna invalida");
-      }
+      }*/
    }
 
 }

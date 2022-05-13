@@ -3,6 +3,10 @@ package pt.c40task.l05wumpus;
 public class Ouro extends Componente{
 	boolean capturado;
 
+	public Ouro() {
+		this.capturado = false;
+	}
+	
 	public boolean isCapturado() {
 		return capturado;
 	}

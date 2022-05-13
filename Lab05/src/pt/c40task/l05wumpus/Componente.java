@@ -5,7 +5,28 @@ public class Componente {
 	private int coluna;
 	Caverna caverna;
 	
-	public void conecta(Caverna cav) {
+	public void conectaCaverna(Caverna cav) {
 		this.caverna = cav;
 	}
+	
+	public int getLinha() {
+		return linha;
+	}
+
+	public void setLinha(int linha) {
+		this.linha = linha;
+	}
+
+	public int getColuna() {
+		return coluna;
+	}
+
+	public void setColuna(int coluna) {
+		this.coluna = coluna;
+	}
+	
+	public String toString() {
+		return linha +" "+coluna;
+	}
+
 }
