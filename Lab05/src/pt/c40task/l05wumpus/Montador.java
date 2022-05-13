@@ -1,13 +1,13 @@
 package pt.c40task.l05wumpus;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.CharacterAction;
-
 public class Montador{
 	Caverna caverna;
 	Heroi h;
 	Wumpus w;
 	Ouro o;
 	Buraco B;
+	Brisa b;
+	Fedor f;
 	private int nHeroi = 0;
 	private int nWumpus = 0;
 	private int nBuracos = 0;
@@ -57,6 +57,10 @@ public class Montador{
 		}
 	}
 	
+	public void Conexao(Sala s){
+		s.conectaBrisa(null);
+	}
+	
 	public void conectaCaverna(Caverna cav) {
 		this.caverna = cav;
 	}
@@ -80,6 +84,30 @@ public class Montador{
 			return true;
 		}
 		return false;
+	}
+	
+	public void conectaHeroi(Heroi h) {
+		this.h = h;
+	}
+	
+	public void conectaWumpus(Wumpus w) {
+		this.w = w;
+	}
+	
+	public void conectaBuraco(Buraco B) {
+		this.B = B;
+	}
+	
+	public void conectaOuro(Ouro o) {
+		this.o = o;
+	}
+	
+	public void conectaBrisa(Brisa b) {
+		this.b = b;
+	}
+	
+	public void conectaFedor(Fedor f) {
+		this.f = f;
 	}
 	
 	public char[][] estadoAtual(){

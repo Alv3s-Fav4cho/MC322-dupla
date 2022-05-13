@@ -15,8 +15,7 @@ public class Caverna {
 			}
 		}*/
 	}
-	//teste
-	
+
 	public void insereSala(int linha, int coluna, Heroi h){		
 		this.s[linha][coluna].h = h;
 		this.s[linha][coluna].setVisitada(true);			

@@ -42,15 +42,16 @@ public class AppWumpus {
       Montador mont = new Montador();
       Caverna cav = new Caverna();
       Sala sala = new Sala();
-      Heroi h = null;
+      /*Heroi h = null;
       Wumpus w = null;
       Ouro o = null;
       Buraco B = null;
       Brisa b = null;
-      Fedor f = null;
+      Fedor f = null;*/
       
       for(int i = 0; i < 4; i++) {
     	  for(int j = 0; j < 4; j++) {
+    		  cav.s[i][j] = new Sala();
     		  cav.s[i][j].conectaHeroi(h);
     		  cav.s[i][j].conectaWumpus(w);
     		  cav.s[i][j].conectaOuro(o);
