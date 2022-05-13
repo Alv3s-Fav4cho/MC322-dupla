@@ -9,23 +9,38 @@ public class Caverna {
 	
 	public Caverna() {
 		s = new Sala[4][4];
-		for(int i = 0; i < 4; i++) {
+		/*for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				s[i][j] = new Sala(null);
+				s[i][j] = new Sala(' ');
 			}
-		}
+		}*/
 	}
 	//teste
 	
-	public void insereSala(int linha, int coluna, Componente comp){		
-		if(comp == new Heroi()) {
-			this.s[linha][coluna] = new Sala(comp);
-			this.s[linha][coluna].setVisitada(true);			
-		}
-		else {
-			this.s[linha][coluna] = new Sala(comp);
-		}
+	public void insereSala(int linha, int coluna, Heroi h){		
+		this.s[linha][coluna].h = h;
+		this.s[linha][coluna].setVisitada(true);			
 		
+	}
+	
+	public void insereSala(int linha, int coluna, Wumpus w){		
+		this.s[linha][coluna].w = w; 
+	}
+	
+	public void insereSala(int linha, int coluna, Buraco B){		
+		this.s[linha][coluna].B = B; 
+	}
+	
+	public void insereSala(int linha, int coluna, Ouro o){		
+		this.s[linha][coluna].o = o; 
+	}
+	
+	public void insereSala(int linha, int coluna, Brisa b){		
+		this.s[linha][coluna].b = b; 
+	}
+	
+	public void insereSala(int linha, int coluna, Fedor f){		
+		this.s[linha][coluna].f = f; 
 	}
 	
 	/*public void insereSala(String entrada) {

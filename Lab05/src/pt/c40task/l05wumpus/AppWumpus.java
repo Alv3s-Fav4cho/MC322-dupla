@@ -39,15 +39,35 @@ public class AppWumpus {
          System.out.println();
       }
         
-      Montador mont = new Montador(entrada);
+      Montador mont = new Montador();
       Caverna cav = new Caverna();
-      Componente comp = new Componente();
+      Sala sala = new Sala();
+      Heroi h = null;
+      Wumpus w = null;
+      Ouro o = null;
+      Buraco B = null;
+      Brisa b = null;
+      Fedor f = null;
       
-      mont.conectaComponente(comp);
+      for(int i = 0; i < 4; i++) {
+    	  for(int j = 0; j < 4; j++) {
+    		  cav.s[i][j].conectaHeroi(h);
+    		  cav.s[i][j].conectaWumpus(w);
+    		  cav.s[i][j].conectaOuro(o);
+    		  cav.s[i][j].conectaBuraco(B);
+    		  cav.s[i][j].conectaBrisa(b);
+    		  cav.s[i][j].conectaFedor(f);
+    	  }
+      }
+      
+      //mont.conectaComponente(comp);
       mont.conectaCaverna(cav);
-      comp.conectaCaverna(cav);
+      //comp.conectaCaverna(cav);
       
-      System.out.println(comp);
+      mont.Montar(entrada);
+      
+      System.out.println(cav.s[0][0].h.getNome());
+      
       
       /*if(mont.cavernaValida(entrada)) {
     	  Scanner in = new Scanner(System.in);

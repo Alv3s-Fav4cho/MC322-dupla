@@ -1,17 +1,65 @@
 package pt.c40task.l05wumpus;
 
 public class Sala {
-	Componente comp;
+	Heroi h;
+	Wumpus w;
+	Ouro o;
+	Buraco B;
+	Brisa b;
+	Fedor f;
+	
 	private String situacao;
 	private boolean visitada;
 	
-	public Sala(Componente comp){
-		this.comp = comp;
+	public Sala() {
+		this.h = null;
+		this.w = null;
+	}
+	
+	public void sala(char comp){
+		switch (comp) {
+		case 'P':{
+			this.h = new Heroi();
+				break;
+		}
+		case 'W':{
+			this.w = new Wumpus();
+			break;
+		}
+		case 'B':{
+			this.B = new Buraco();
+			break;
+		}
+		case 'O':{
+			this.o = new Ouro();
+			break;
+		}
+		}
 		this.visitada = false;
 	}
 
-	public void conecta(Componente comp) {
-		this.comp = comp;
+	public void conectaHeroi(Heroi h) {
+		this.h = h;
+	}
+	
+	public void conectaWumpus(Wumpus w) {
+		this.w = w;
+	}
+	
+	public void conectaBuraco(Buraco B) {
+		this.B = B;
+	}
+	
+	public void conectaOuro(Ouro o) {
+		this.o = o;
+	}
+	
+	public void conectaBrisa(Brisa b) {
+		this.b = b;
+	}
+	
+	public void conectaFedor(Fedor f) {
+		this.f = f;
 	}
 	
 	public String getSituacao() {

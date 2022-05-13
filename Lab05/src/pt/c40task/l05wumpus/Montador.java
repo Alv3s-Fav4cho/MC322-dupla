@@ -1,52 +1,57 @@
 package pt.c40task.l05wumpus;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.CharacterAction;
+
 public class Montador{
 	Caverna caverna;
-	Componente componente;
+	Heroi h;
+	Wumpus w;
+	Ouro o;
+	Buraco B;
 	private int nHeroi = 0;
 	private int nWumpus = 0;
 	private int nBuracos = 0;
 	private int nOuro = 0;
 	private char cav[][];
 	
-	public Montador(String entrada[]){
+	public void Montar(String entrada[]){
 		for(int i = 0; i < entrada.length; i++) {
 			this.Montar(Integer.parseInt(entrada[i].substring(0,1)),
 						Integer.parseInt(entrada[i].substring(3,4)),
-										 entrada[i].substring(6));			
+										  entrada[i].charAt(6));			
 		}
 	}
 	
-	public void Montar(int linha, int coluna, String entrada){
+	public void Montar(int linha, int coluna, char entrada){
 		linha--;
 		coluna--;
 		switch (entrada) {
-		case "P":{
-			this.componente = new Heroi();
-			this.componente.setLinha(linha);
-			this.componente.setColuna(coluna);
-			caverna.insereSala(linha, coluna, componente);
+		case 'P':{
+			h = new Heroi();
+			h.setLinha(linha);
+			h.setColuna(coluna);
+			caverna.insereSala(linha, coluna, h);
 			break;
 		}
-		case "W":{
-			this.componente = new Wumpus();
-			this.componente.setLinha(linha);
-			this.componente.setColuna(coluna);
-			this.caverna.insereSala(linha, coluna, componente);
+		case 'W':{
+			w = new Wumpus();
+			w.setLinha(linha);
+			w.setColuna(coluna);
+			caverna.insereSala(linha, coluna, w);
 			break;
 		}
-		case "B":{
-			this.componente = new Buraco();
-			this.componente.setLinha(linha);
-			this.componente.setColuna(coluna);
-			this.caverna.insereSala(linha, coluna, componente);
+		case 'B':{
+			B = new Buraco();
+			B.setLinha(linha);
+			B.setColuna(coluna);
+			this.caverna.insereSala(linha, coluna, B);
 			break;
 		}
-		case "O":{
-			this.componente  = new Ouro();
-			this.componente.setLinha(linha);
-			this.componente.setColuna(coluna);
-			this.caverna.insereSala(linha, coluna, componente);
+		case 'O':{
+			o  = new Ouro();
+			o.setLinha(linha);
+			o.setColuna(coluna);
+			this.caverna.insereSala(linha, coluna, o);
 			break;
 		}
 		}
@@ -55,12 +60,6 @@ public class Montador{
 	public void conectaCaverna(Caverna cav) {
 		this.caverna = cav;
 	}
-	
-	public void conectaComponente(Componente comp) {
-		this.componente = comp;
-	}
-	
-	
 	
 	public boolean cavernaValida(String entrada[]) {
 		for(int i = 0; i < entrada.length; i++) {
