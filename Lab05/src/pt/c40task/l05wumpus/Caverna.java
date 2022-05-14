@@ -2,18 +2,14 @@ package pt.c40task.l05wumpus;
 
 public class Caverna {
 	Sala s[][];
-	private int nBuracos;
-	private int nWumpus;
-	private int nOuro;
-	private int nHeroi;
 	
 	public Caverna() {
 		s = new Sala[4][4];
-		/*for(int i = 0; i < 4; i++) {
+		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				s[i][j] = new Sala(' ');
+				s[i][j] = new Sala();
 			}
-		}*/
+		}
 	}
 
 	public void insereSala(int linha, int coluna, Heroi h){		

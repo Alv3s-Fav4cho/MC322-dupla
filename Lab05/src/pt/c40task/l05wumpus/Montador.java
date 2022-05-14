@@ -48,7 +48,7 @@ public class Montador{
 			break;
 		}
 		case 'O':{
-			o  = new Ouro();
+			o = new Ouro();
 			o.setLinha(linha);
 			o.setColuna(coluna);
 			this.caverna.insereSala(linha, coluna, o);
@@ -63,6 +63,17 @@ public class Montador{
 	
 	public void conectaCaverna(Caverna cav) {
 		this.caverna = cav;
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0; j < 4; j++) {
+				//cav.s[i][j] = new Sala();
+				caverna.s[i][j].conectaHeroi(h);
+				caverna.s[i][j].conectaWumpus(w);
+				caverna.s[i][j].conectaOuro(o);
+				caverna.s[i][j].conectaBuraco(B);
+				caverna.s[i][j].conectaBrisa(b);
+				caverna.s[i][j].conectaFedor(f);
+			}
+		}
 	}
 	
 	public boolean cavernaValida(String entrada[]) {

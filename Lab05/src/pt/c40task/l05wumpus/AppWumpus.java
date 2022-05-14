@@ -4,25 +4,21 @@ import java.util.Scanner;
 
 public class AppWumpus {
 
-   public static void main(String[] args) {
-	   AppWumpus.executaJogo(
-            (args.length > 0) ? args[0] : null,
-            (args.length > 1) ? args[1] : null,
-            (args.length > 2) ? args[2] : null);
-	   
-	   /*String lista[] = {"1, 1, P","1, 4, B","3, 1, B","4, 4, B", "2, 3, W","3, 3, O"};
-	   Caverna mc = new Caverna();
-	   
-	   for(int i = 0; i < lista.length; i++) {
-		   mc.insereSala(lista[i]);
-	   }
-	   mc.incluiFedorBrisas();
-	   mc.incluiVazios();
-	   mc.imprimeCaverna();*/
+	public static void main(String[] args) {
+		AppWumpus.executaJogo((args.length > 0) ? args[0] : null, (args.length > 1) ? args[1] : null,
+				(args.length > 2) ? args[2] : null);
 
-   }
-   
-   public static void executaJogo(String arquivoCaverna, String arquivoSaida,
+		/*
+		 * String lista[] = {"1, 1, P","1, 4, B","3, 1, B","4, 4, B",
+		 * "2, 3, W","3, 3, O"}; Caverna mc = new Caverna();
+		 * 
+		 * for(int i = 0; i < lista.length; i++) { mc.insereSala(lista[i]); }
+		 * mc.incluiFedorBrisas(); mc.incluiVazios(); mc.imprimeCaverna();
+		 */
+
+	}
+
+	public static void executaJogo(String arquivoCaverna, String arquivoSaida,
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       String entrada[];
@@ -41,7 +37,8 @@ public class AppWumpus {
         
       Montador mont = new Montador();
       Caverna cav = new Caverna();
-      Sala sala = new Sala();
+      mont.conectaCaverna(cav);
+      //Sala sala = new Sala();
       /*Heroi h = null;
       Wumpus w = null;
       Ouro o = null;
@@ -49,27 +46,50 @@ public class AppWumpus {
       Brisa b = null;
       Fedor f = null;*/
       
-      for(int i = 0; i < 4; i++) {
+      /*for(int i = 0; i < 4; i++) {
     	  for(int j = 0; j < 4; j++) {
-    		  cav.s[i][j] = new Sala();
-    		  cav.s[i][j].conectaHeroi(h);
-    		  cav.s[i][j].conectaWumpus(w);
-    		  cav.s[i][j].conectaOuro(o);
-    		  cav.s[i][j].conectaBuraco(B);
-    		  cav.s[i][j].conectaBrisa(b);
-    		  cav.s[i][j].conectaFedor(f);
+    		  //cav.s[i][j] = new Sala();
+    		  cav.s[i][j].conectaHeroi(mont.h);
+    		  cav.s[i][j].conectaWumpus(mont.w);
+    		  cav.s[i][j].conectaOuro(mont.o);
+    		  cav.s[i][j].conectaBuraco(mont.B);
+    		  cav.s[i][j].conectaBrisa(mont.b);
+    		  cav.s[i][j].conectaFedor(mont.f);
     	  }
-      }
+      }*/
       
       //mont.conectaComponente(comp);
-      mont.conectaCaverna(cav);
+      
       //comp.conectaCaverna(cav);
       
       mont.Montar(entrada);
       
+      cav.s[0][0].h.setNome("leo");
       System.out.println(cav.s[0][0].h.getNome());
       
-      
+      for(int i = 0; i < 4; i++) {
+    	  for(int j = 0; j < 4; j++) {
+    		  if (cav.s[i][j].f != null) {
+    			  System.out.print("f ");
+    		  }
+    		  else if (cav.s[i][j].b != null) {
+    			  System.out.print("b ");
+    		  }
+    		  else if (cav.s[i][j].f != null) {
+    			  System.out.print("f ");
+    		  }
+    		  else if (cav.s[i][j].o != null) {
+    			  System.out.print("o ");
+    		  }
+    		  else if (cav.s[i][j].B != null) {
+    			  System.out.print("B ");
+    		  }
+    		  else {
+    			  System.out.print("W ");
+    		  }
+    	  }
+    	  System.out.println();
+      }
       /*if(mont.cavernaValida(entrada)) {
     	  Scanner in = new Scanner(System.in);
     	  

@@ -8,13 +8,13 @@ public class Sala {
 	Brisa b;
 	Fedor f;
 	
-	private String situacao;
+	//private String situacao;
 	private boolean visitada;
 	
-	public Sala() {
+	/*public Sala() {
 		this.h = null;
 		this.w = null;
-	}
+	}*/
 	
 	public void sala(char comp){
 		switch (comp) {
