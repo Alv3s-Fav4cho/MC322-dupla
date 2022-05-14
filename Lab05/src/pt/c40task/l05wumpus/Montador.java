@@ -121,7 +121,7 @@ public class Montador{
 		this.f = f;
 	}
 	
-	public char[][] estadoAtual(){
+	/*public char[][] estadoAtual(){
 		for(int i = 0; i < 4; i++ ) {
 			for(int j = 0; j < 4; j++ ) {
 				if(caverna.s[i][j].isVisitada()) {
@@ -136,22 +136,22 @@ public class Montador{
 			}
 		}
 		return cav;
-	}
+	}*/
 		
-	public void imprime() {
+	/*public void imprime() {
 		char estado[][] = estadoAtual();
 		for(int i = 0; i < 4; i++ ) {
 			for(int j = 0; j < 4; j++ ) {
 				System.out.print(estado[i][j]);
 			}
 			System.out.println();
-		}
+		}*/
 		/*System.out.println("Nome: " + componente.getNome());
 		System.out.println("Score: " + heroi.getScore());
 		System.out.println("Flechas: " + heroi.getQtde_flechas());
 		if(!heroi.isVivo()) {
 			System.out.println("Voce perdeu :(...");
-		}*/
+		}
 		
-	}
+	}*/
 }

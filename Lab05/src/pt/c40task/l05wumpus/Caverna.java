@@ -38,6 +38,50 @@ public class Caverna {
 		this.s[linha][coluna].f = f; 
 	}
 	
+	public void incluiFedorBrisas() {
+		for(int i = 0; i < 4; i++) {
+			for(int j = 0 ; j < 4; j++) {
+				if(this.s[i][j] != null) {
+					if(this.s[i][j].B != null) {
+						if(i-1 >= 0 && this.s[i - 1][j].b == null)
+							insereSala(i-1, j, new Brisa());
+						if(i+1 < 4 && this.s[i + 1][j].b == null)
+							insereSala(i+1, j, new Brisa()); 
+						if(j-1 >= 0 && this.s[i][j - 1].b == null)
+							insereSala(i, j-1, new Brisa()); 
+						if(j+1 < 4 && this.s[i][j + 1].b == null)
+							insereSala(i, j+1, new Brisa());
+					}
+					if(this.s[i][j].w != null) {
+						if(i-1 >= 0 && this.s[i - 1][j].f == null)
+							insereSala(i-1, j, new Fedor());
+						if(i+1 < 4 && this.s[i + 1][j].f == null)
+							insereSala(i+1, j, new Fedor()); 
+						if(j-1 >= 0 && this.s[i][j - 1].f == null)
+							insereSala(i, j-1, new Fedor()); 
+						if(j+1 < 4 && this.s[i][j + 1].f == null)
+							insereSala(i, j+1, new Fedor());
+					}
+				}
+			}
+		}
+	}
+	
+	public boolean movimentoValido(int linha_atual, int coluna_atual,  int nova_linha, int nova_coluna) {
+		if(nova_linha >= 0 && nova_linha < 4 && nova_coluna >= 0 && nova_coluna < 4) {
+			alteraCaverna(linha_atual, coluna_atual, nova_linha, nova_coluna);
+			return true;
+		}
+		return false;
+	}
+	
+	public void alteraCaverna(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna){
+			Heroi h = s[linha_atual][coluna_atual].h;
+			s[linha_atual][coluna_atual].h = null;
+			s[nova_linha][nova_coluna].h = h;
+			h = null;
+	}
+	
 	/*public void insereSala(String entrada) {
 		insereSala(Integer.parseInt(entrada.substring(0, 1)),
 				   Integer.parseInt(entrada.substring(2, 3)),
@@ -91,13 +135,52 @@ public class Caverna {
 		}
 	}*/
 	
+	public char[][] montaSaida(){
+		char[][] saida = new char[4][4]; 
+		for(int i = 0; i < 4; i++) {
+	    	  for(int j = 0; j < 4; j++) {
+	    		  if (s[i][j].o != null) {
+	    			  saida[i][j] = 'o'; 
+	    		  }
+	    		  else if (s[i][j].B != null) {
+	    			  saida[i][j] = 'B';
+	    		  }
+	    		  else if (s[i][j].w != null){
+	    			  saida[i][j] = 'w';
+	    		  }
+	    		  else if (s[i][j].h != null) {
+	    			  saida[i][j] = 'h';
+	    		  }
+	    		  else if (s[i][j].f != null) {
+	    			  saida[i][j] = 'f';
+	    		  }
+	    		  else if (s[i][j].b != null) {
+	    			  saida[i][j] = 'b';
+	    		  }
+	    		  else {
+	    			  saida[i][j] = '-';
+	    		  }
+	    	  }
+	      }
+		return saida;
+	}
+	
+	public void imprimeCaverna(char[][] saida) {
+		for(int i = 0; i < 4;i++) {
+	    	  for(int j = 0; j < 4;j++) {
+	    		  System.out.print(saida[i][j] + " ");
+	    	  }
+	    	  System.out.println();
+		}
+	}
 	
 	public void imprimeCaverna() {
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				System.out.print(s[i][j].getSituacao());
-			}
-			System.out.println("");
-		}
+		for(int i = 0; i < 4;i++) {
+	    	  for(int j = 0; j < 4;j++) {
+	    		  //System.out.print("sala["+i+"]["+j+"]:");
+	    		  s[i][j].componentesNaSala();
+	    	  }
+	    	  System.out.println();
+	      }
 	}
 }

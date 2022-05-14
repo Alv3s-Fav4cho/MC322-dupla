@@ -22,6 +22,8 @@ public class AppWumpus {
                                   String arquivoMovimentos) {
       Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
       String entrada[];
+      Scanner in = new Scanner(System.in);
+      char comando;
       
       String cave[][] = tk.retrieveCave();
       System.out.println("=== Caverna");
@@ -37,6 +39,7 @@ public class AppWumpus {
         
       Montador mont = new Montador();
       Caverna cav = new Caverna();
+      ControleJogo cj = new ControleJogo();
       mont.conectaCaverna(cav);
       //Sala sala = new Sala();
       /*Heroi h = null;
@@ -63,14 +66,26 @@ public class AppWumpus {
       //comp.conectaCaverna(cav);
       
       mont.Montar(entrada);
+      cj.conectaHeroi(cav.s[0][0].h);
+      cav.s[0][0].h.conectaCaverna(cav);
+      cav.incluiFedorBrisas();
       
       cav.s[0][0].h.setNome("leo");
       System.out.println(cav.s[0][0].h.getNome());
       
-      for(int i = 0; i < 4; i++) {
+      cav.imprimeCaverna(cav.montaSaida());
+      comando = in.nextLine().charAt(0);
+      while(comando != 'q') {
+    	  cj.comando(comando);
+    	  cav.imprimeCaverna(cav.montaSaida());    
+    	  System.out.println(cj.heroi.getLinha() +" "+cj.heroi.getColuna()); 
+    	  comando = in.nextLine().charAt(0);
+      }
+      
+      /*for(int i = 0; i < 4; i++) {
     	  for(int j = 0; j < 4; j++) {
-    		  if (cav.s[i][j].f != null) {
-    			  System.out.print("f ");
+    		  if (cav.s[i][j].h != null) {
+    			  System.out.print("h ");
     		  }
     		  else if (cav.s[i][j].b != null) {
     			  System.out.print("b ");
@@ -84,12 +99,15 @@ public class AppWumpus {
     		  else if (cav.s[i][j].B != null) {
     			  System.out.print("B ");
     		  }
-    		  else {
+    		  else if (cav.s[i][j].w != null){
     			  System.out.print("W ");
+    		  }
+    		  else {
+    			  System.out.print("- ");
     		  }
     	  }
     	  System.out.println();
-      }
+      }*/
       /*if(mont.cavernaValida(entrada)) {
     	  Scanner in = new Scanner(System.in);
     	  

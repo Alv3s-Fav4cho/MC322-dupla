@@ -62,13 +62,6 @@ public class Sala {
 		this.f = f;
 	}
 	
-	public String getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(String situacao) {
-		this.situacao = situacao;
-	}
 	
 	public boolean isVisitada() {
 		return visitada;
@@ -76,5 +69,32 @@ public class Sala {
 
 	public void setVisitada(boolean visitada) {
 		this.visitada = visitada;
+	}
+	
+	public void componentesNaSala() {
+		String comp = "";
+		if(h != null) {
+			comp += "H";
+		}
+		if(w != null) {
+			comp += "W";
+		}
+		if(o != null) {
+			comp += "O";
+		}
+		if(B != null) {
+			comp += "B";
+		}
+		if(b != null) {
+			comp += "b";
+		}
+		if(f != null) {
+			comp += "f";
+		}
+		if(comp == "") {
+			comp += "-";
+		}
+		comp += " ";
+		System.out.print(comp);
 	}
 }

@@ -5,6 +5,7 @@ public class Heroi extends Componente{
 	private int qtde_flechas;
 	private int score;
 	private boolean vivo;
+	Caverna cav;
 	
 	public Heroi(){
 		this.nome = "";
@@ -43,5 +44,14 @@ public class Heroi extends Componente{
 	public void setVivo(boolean vivo) {
 		this.vivo = vivo;
 	}
+	public void conectaCaverna(Caverna cav) {
+		this.cav = cav;
+	}
 	
+	public boolean heroiSeMove(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
+		if(cav.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna)) {
+			return true;
+		}
+		return false;
+	}
 }
