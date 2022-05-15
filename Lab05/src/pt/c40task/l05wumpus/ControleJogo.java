@@ -27,10 +27,12 @@ public class ControleJogo {
 				if (heroi.mataWumpus()) {
 					heroi.cav.s[heroi.getLinha()][heroi.getColuna()].w = null;
 					heroi.setScore(heroi.getScore() + 500);
+					heroi.setFlecha_equipada(false);
 				}
 				else {
 					heroi.setVivo(false);
 					heroi.setScore(heroi.getScore() - 1000);
+					heroi.setFlecha_equipada(false);
 				}							
 			}
 		}
@@ -93,7 +95,7 @@ public class ControleJogo {
 				
 			}
 			else {
-				System.out.println("Ouro não está na sala");
+				System.out.println("Ouro nï¿½o estï¿½ na sala");
 			}
 		}
 	}

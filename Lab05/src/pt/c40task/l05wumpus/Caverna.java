@@ -182,6 +182,7 @@ public class Caverna {
 	    	  }
 	    	  System.out.println();
 		}
+		
 	}
 	
 	public void imprimeCaverna() {

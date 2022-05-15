@@ -21,8 +21,6 @@ public class AppWumpus {
 	public static void executaJogo(String arquivoCaverna, String arquivoSaida, String arquivoMovimentos) {
 		Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
 		String entrada[];
-		Scanner in = new Scanner(System.in);
-		char comando;
 		
 		String cave[][] = tk.retrieveCave();
 		System.out.println("=== Caverna");
@@ -36,47 +34,71 @@ public class AppWumpus {
 			System.out.println();
 		}
 		
+		Scanner in = new Scanner(System.in);
 		Montador mont = new Montador();
 		Caverna cav = new Caverna();
 		ControleJogo cj = new ControleJogo();
-		mont.conectaSala_componentes(cav);
-		
+		mont.conectaSala_componentes(cav);		
 		mont.Montar(entrada);
-		cj.conectaHeroi(cav.s[0][0].h);
 		
-		cav.s[0][0].h.setNome("leo");
-		System.out.println(cav.s[0][0].h.getNome());
+		Heroi h;
+		h = cav.s[0][0].h;
+		cj.conectaHeroi(h);
 		
+		System.out.print("Nome do heroi: ");
+		h.setNome(in.nextLine());
 		
+		char comando;
+		String alerta = "";
+		char status = 'P';
+		String aviso = "";
 		cav.imprimeCaverna(cav.montaSaida());
 		comando = in.nextLine().charAt(0);
 		while(comando != 'q') {
 			if (comando != 'q') {
 				cj.comando(comando);
-				cav.imprimeCaverna(cav.montaSaida());    
+				cav.imprimeCaverna(cav.montaSaida());
+				System.out.println("Player: " + h.getNome());
+				System.out.println("Score: " + h.getScore());
+				if(cav.s[h.getLinha()][h.getColuna()].b != null) {
+					alerta += "Brisa ";
+				}
+				if(cav.s[h.getLinha()][h.getColuna()].f != null) {
+					alerta += "Fedor";
+				}
+				if(alerta != "") {
+					System.out.println("Alerta: " + alerta);
+					alerta = "";
+				}
+				if(cav.s[h.getLinha()][h.getColuna()].o != null) {
+					aviso = "Ouro encontrado!!!";
+				}
+				if(aviso != "") {
+					System.out.println("Aviso: " + aviso );
+				}
 				System.out.println(cj.heroi.getLinha() +" "+ cj.heroi.getColuna()); 
 				if (cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && cj.heroi.getOuro_capturado() || !cj.heroi.isVivo()) {
+					if(cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && cj.heroi.getOuro_capturado())
+						status = 'W';
+					else
+						status = 'L';
 					comando = 'q';
 				}
 				else {
 					comando = in.nextLine().charAt(0);
 				}
 			}
-		}
+		}	
+		if(status == 'W') 
+			System.out.println("Voce ganhou =D !!!");
+		else if(status == 'L') 
+			System.out.println("Voce perdeu =(...");
+		else
+			System.out.println("Volte sempre !");
 		
+			
+			
 		/*if(mont.cavernaValida(entrada)) {
-    	  Scanner in = new Scanner(System.in);
-    	  
-    	  /*cav.insereSala();
-    	  cav.incluiFedorBrisas();
-    	  cav.incluiVazios();*/
-		//cav.imprimeCaverna();
-		
-		/*Montador mc = new Montador();
-    	  Heroi h = new Heroi("jorge");
-    	  mc.conectaHeroi(h);
-    	  mc.conectaCaverna(cav);
-    	  mc.imprime();
       
     	  String movements = tk.retrieveMovements();
     	  System.out.println("=== Movimentos");
