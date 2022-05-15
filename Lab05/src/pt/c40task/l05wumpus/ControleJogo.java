@@ -9,6 +9,13 @@ public class ControleJogo {
 		this.heroi = h;
 	}
 	
+	public boolean comandoValido(char c) {
+		if(c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'k' || c == 'c') {
+			return true;
+		}
+		return false;
+	}
+	
 	public void comando(char c) {
 		if(c == 'w' || c == 'a' || c == 's' || c == 'd') {
 			this.movimento = c;
@@ -23,11 +30,11 @@ public class ControleJogo {
 	public void flecha_wumpus() {
 		if (heroi.getFlecha_equipada()) {
 			heroi.setScore(heroi.getScore() - 100);
+			heroi.setFlecha_equipada(false);
 			if (heroi.encontraWumpus(heroi.getLinha(), heroi.getColuna())) {
 				if (heroi.mataWumpus()) {
 					heroi.cav.s[heroi.getLinha()][heroi.getColuna()].w = null;
 					heroi.setScore(heroi.getScore() + 500);
-					heroi.setFlecha_equipada(false);
 				}
 				else {
 					heroi.setVivo(false);
