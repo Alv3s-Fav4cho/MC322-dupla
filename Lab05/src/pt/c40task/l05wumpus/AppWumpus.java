@@ -47,6 +47,7 @@ public class AppWumpus {
 		cav.s[0][0].h.setNome("leo");
 		System.out.println(cav.s[0][0].h.getNome());
 		
+		
 		cav.imprimeCaverna(cav.montaSaida());
 		comando = in.nextLine().charAt(0);
 		while(comando != 'q') {

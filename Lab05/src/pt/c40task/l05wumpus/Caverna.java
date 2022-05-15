@@ -69,8 +69,9 @@ public class Caverna {
 	}
 	
 	public void alteraCaverna(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna){
-			s[linha_atual][coluna_atual].setVisitada(true);
 			s[nova_linha][nova_coluna].h = s[linha_atual][coluna_atual].h;
+			s[nova_linha][nova_coluna].setVisitada(true);
+			
 			s[linha_atual][coluna_atual].h = null;
 	}
 	
@@ -153,27 +154,22 @@ public class Caverna {
 		char[][] saida = new char[4][4]; 
 		for(int i = 0; i < 4; i++) {
 	    	  for(int j = 0; j < 4; j++) {
-	    		  if (s[i][j].o != null) {
-	    			  saida[i][j] = 'o'; 
-	    		  }
-	    		  else if (s[i][j].B != null) {
+	    		  if (s[i][j].o != null && s[i][j].isVisitada()) 
+	    			  saida[i][j] = 'o'; 	    					    		 
+	    		  else if (s[i][j].B != null && s[i][j].isVisitada()) 
 	    			  saida[i][j] = 'B';
-	    		  }
-	    		  else if (s[i][j].w != null){
+	    		  else if (s[i][j].w != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'w';
-	    		  }
-	    		  else if (s[i][j].h != null) {
-	    			  saida[i][j] = 'h';
-	    		  }
-	    		  else if (s[i][j].f != null) {
+	    		  else if (s[i][j].h != null && s[i][j].isVisitada())
+	    			  saida[i][j] = 'p';
+	    		  else if (s[i][j].f != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'f';
-	    		  }
-	    		  else if (s[i][j].b != null) {
+	    		  else if (s[i][j].b != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'b';
-	    		  }
-	    		  else {
+	    		  else if(s[i][j].isVisitada())
+	    			  saida[i][j] = '#';
+	    		  else
 	    			  saida[i][j] = '-';
-	    		  }
 	    	  }
 	      }
 		return saida;
