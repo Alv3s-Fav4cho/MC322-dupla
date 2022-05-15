@@ -62,11 +62,10 @@ public class Sala {
 		this.f = f;
 	}
 	
-	
 	public boolean isVisitada() {
 		return visitada;
 	}
-
+	
 	public void setVisitada(boolean visitada) {
 		this.visitada = visitada;
 	}

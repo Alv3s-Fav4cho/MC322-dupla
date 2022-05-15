@@ -12,7 +12,6 @@ public class Montador{
 	private int nWumpus = 0;
 	private int nBuracos = 0;
 	private int nOuro = 0;
-	private char cav[][];
 	
 	public void Montar(String entrada[]){
 		for(int i = 0; i < entrada.length; i++) {
@@ -30,6 +29,7 @@ public class Montador{
 			h = new Heroi();
 			h.setLinha(linha);
 			h.setColuna(coluna);
+			h.conectaCaverna(caverna);
 			caverna.insereSala(linha, coluna, h);
 			break;
 		}
@@ -37,6 +37,8 @@ public class Montador{
 			w = new Wumpus();
 			w.setLinha(linha);
 			w.setColuna(coluna);
+			w.conectaCaverna(caverna);
+			w.solicitaFedor();
 			caverna.insereSala(linha, coluna, w);
 			break;
 		}
@@ -44,6 +46,8 @@ public class Montador{
 			B = new Buraco();
 			B.setLinha(linha);
 			B.setColuna(coluna);
+			B.conectaCaverna(caverna);
+			B.solicitaBrisas();
 			this.caverna.insereSala(linha, coluna, B);
 			break;
 		}
@@ -51,6 +55,7 @@ public class Montador{
 			o = new Ouro();
 			o.setLinha(linha);
 			o.setColuna(coluna);
+			o.conectaCaverna(caverna);
 			this.caverna.insereSala(linha, coluna, o);
 			break;
 		}
@@ -61,11 +66,10 @@ public class Montador{
 		s.conectaBrisa(null);
 	}
 	
-	public void conectaCaverna(Caverna cav) {
+	public void conectaSala_componentes(Caverna cav) {
 		this.caverna = cav;
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				//cav.s[i][j] = new Sala();
 				caverna.s[i][j].conectaHeroi(h);
 				caverna.s[i][j].conectaWumpus(w);
 				caverna.s[i][j].conectaOuro(o);

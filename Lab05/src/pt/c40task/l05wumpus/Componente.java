@@ -3,10 +3,10 @@ package pt.c40task.l05wumpus;
 public class Componente {
 	private int linha;
 	private int coluna;
-	Caverna caverna;
+	Caverna cav;
 	
 	public void conectaCaverna(Caverna cav) {
-		this.caverna = cav;
+		this.cav = cav;
 	}
 	
 	public int getLinha() {

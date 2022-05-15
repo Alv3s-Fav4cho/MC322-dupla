@@ -13,4 +13,8 @@ public class Wumpus extends Componente{
 	public void setVivo(Boolean vivo) {
 		this.vivo = vivo;
 	}
+	
+	public void solicitaFedor() {
+		cav.incluiFedor(getLinha(), getColuna());
+	}
 }
