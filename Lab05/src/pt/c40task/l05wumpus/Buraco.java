@@ -17,5 +17,6 @@ public class Buraco extends Componente {
 		if(getColuna()+1 < 4)
 			c4 = cav.s[getLinha()][getColuna()+1].componentes;
 		cav.incluiBrisas(getLinha(), getColuna(), c1, c2, c3, c4);
+		
 	}
 }

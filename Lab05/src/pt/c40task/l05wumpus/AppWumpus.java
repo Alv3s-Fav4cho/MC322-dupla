@@ -37,7 +37,8 @@ public class AppWumpus {
 		Montador mont = new Montador();
 		Caverna cav = new Caverna();
 		ControleJogo cj = new ControleJogo();
-		mont.conectaSala_componentes(cav);		
+		mont.conectaCaverna(cav);
+		//mont.conectaSala_componentes(cav);		
 		mont.Montar(entrada);
 		
 //		((Heroi) comps[0]).setNome("Leo");
@@ -106,7 +107,7 @@ public class AppWumpus {
 			
 			String movements = tk.retrieveMovements();
 			
-			movements = "";
+			//movements = "";
 			
 			if(movements == "") {
 	    		  
