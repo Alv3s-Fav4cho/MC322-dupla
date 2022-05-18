@@ -2,12 +2,13 @@ package pt.c40task.l05wumpus;
 
 public class Montador{
 	Caverna caverna;
-	Heroi h;
+	Componente comps[] = new Componente[6];
+	/*Heroi h;
 	Wumpus w;
 	Ouro o;
 	Buraco B;
 	Brisa b;
-	Fedor f;
+	Fedor f;*/
 	private int nHeroi = 0;
 	private int nWumpus = 0;
 	private int nBuracos = 0;
@@ -22,60 +23,92 @@ public class Montador{
 	}
 	
 	public void Montar(int linha, int coluna, char entrada){
+		int i = 0;
 		linha--;
 		coluna--;
+		comps = caverna.s[linha][coluna].componentes;
+		
 		switch (entrada) {
 		case 'P':{
-			h = new Heroi();
-			h.setLinha(linha);
-			h.setColuna(coluna);
-			h.conectaCaverna(caverna);
-			caverna.insereSala(linha, coluna, h);
+			comps[i] = new Heroi();
+			comps[i].conectaCaverna(caverna);
+			caverna.s[linha][coluna].setVisitada(true);
+//			h = new Heroi();
+//			h.setLinha(linha);
+//			h.setColuna(coluna);
+//			h.conectaCaverna(caverna);
+//			caverna.insereSala(linha, coluna, h);
 			break;
 		}
 		case 'W':{
-			w = new Wumpus();
-			w.setLinha(linha);
-			w.setColuna(coluna);
-			w.conectaCaverna(caverna);
-			w.solicitaFedor();
-			caverna.insereSala(linha, coluna, w);
+			i = 1;
+			comps[i] = new Wumpus();
+			comps[i].conectaCaverna(caverna);
+			//((Wumpus)comps[i]).solicitaFedor();
+//			w = new Wumpus();
+//			w.setLinha(linha);
+//			w.setColuna(coluna);
+//			w.conectaCaverna(caverna);
+//			w.solicitaFedor();
+//			caverna.insereSala(linha, coluna, w);
 			break;
 		}
 		case 'B':{
-			B = new Buraco();
-			B.setLinha(linha);
-			B.setColuna(coluna);
-			B.conectaCaverna(caverna);
-			B.solicitaBrisas();
-			this.caverna.insereSala(linha, coluna, B);
+			i = 2;
+			comps[i] = new Buraco();
+			comps[i].conectaCaverna(caverna);
+			//((Buraco)comps[i]).solicitaBrisas();
+//			B = new Buraco();
+//			B.setLinha(linha);
+//			B.setColuna(coluna);
+//			B.conectaCaverna(caverna);
+//			B.solicitaBrisas();
+//			this.caverna.insereSala(linha, coluna, B);
 			break;
 		}
 		case 'O':{
-			o = new Ouro();
-			o.setLinha(linha);
-			o.setColuna(coluna);
-			o.conectaCaverna(caverna);
-			this.caverna.insereSala(linha, coluna, o);
-			break;
+			i = 3;
+			comps[i] = new Ouro();
+			comps[i].conectaCaverna(caverna);
+			
+//			o = new Ouro();
+//			o.setLinha(linha);
+//			o.setColuna(coluna);
+//			o.conectaCaverna(caverna);
+//			this.caverna.insereSala(linha, coluna, o);
+//			break;
 		}
 		}
+		comps[i].setLinha(linha);
+		comps[i].setColuna(coluna);
+		caverna.insereSala(linha, coluna, comps);
+		
+		if (i == 2) {
+			((Buraco)comps[i]).solicitaBrisas();
+		}
+			
+		else if (i == 1)
+			((Wumpus)comps[i]).solicitaFedor();
+		
+		caverna.imprimeCaverna();
+		System.out.println();
 	}
 	
-	public void Conexao(Sala s){
+	/*public void Conexao(Sala s){
 		s.conectaBrisa(null);
-	}
+	}*/
 	
 	public void conectaSala_componentes(Caverna cav) {
 		this.caverna = cav;
 		for(int i = 0; i < 4; i++) {
 			for(int j = 0; j < 4; j++) {
-				caverna.s[i][j].conectaHeroi(h);
-				caverna.s[i][j].conectaWumpus(w);
-				caverna.s[i][j].conectaOuro(o);
-				caverna.s[i][j].conectaBuraco(B);
-				caverna.s[i][j].conectaBrisa(b);
-				caverna.s[i][j].conectaFedor(f);
+				caverna.s[i][j].conectaComponente(comps);
+//				caverna.s[i][j].conectaHeroi(h);
+//				caverna.s[i][j].conectaWumpus(w);
+//				caverna.s[i][j].conectaOuro(o);
+//				caverna.s[i][j].conectaBuraco(B);
+//				caverna.s[i][j].conectaBrisa(b);
+//				caverna.s[i][j].conectaFedor(f);
 			}
 		}
 	}
@@ -101,7 +134,7 @@ public class Montador{
 		return false;
 	}
 	
-	public void conectaHeroi(Heroi h) {
+	/*public void conectaHeroi(Heroi h) {
 		this.h = h;
 	}
 	
@@ -123,7 +156,7 @@ public class Montador{
 	
 	public void conectaFedor(Fedor f) {
 		this.f = f;
-	}
+	}*/
 	
 	/*public char[][] estadoAtual(){
 		for(int i = 0; i < 4; i++ ) {

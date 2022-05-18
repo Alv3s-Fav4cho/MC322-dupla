@@ -1,12 +1,13 @@
 package pt.c40task.l05wumpus;
 
 public class Sala {
-	Heroi h;
+	Componente componentes[] = new Componente[6];
+	/*Heroi h;
 	Wumpus w;
 	Ouro o;
 	Buraco B;
 	Brisa b;
-	Fedor f;
+	Fedor f;*/
 	
 	//private String situacao;
 	private boolean visitada;
@@ -16,7 +17,7 @@ public class Sala {
 		this.w = null;
 	}*/
 	
-	public void sala(char comp){
+	/*public void sala(char comp){
 		switch (comp) {
 		case 'P':{
 			this.h = new Heroi();
@@ -36,58 +37,63 @@ public class Sala {
 		}
 		}
 		this.visitada = false;
+	}*/
+	
+	public void conectaComponente(Componente comps[]) {
+		this.componentes = comps;
 	}
 
-	public void conectaHeroi(Heroi h) {
-		this.h = h;
-	}
-	
-	public void conectaWumpus(Wumpus w) {
-		this.w = w;
-	}
-	
-	public void conectaBuraco(Buraco B) {
-		this.B = B;
-	}
-	
-	public void conectaOuro(Ouro o) {
-		this.o = o;
-	}
-	
-	public void conectaBrisa(Brisa b) {
-		this.b = b;
-	}
-	
-	public void conectaFedor(Fedor f) {
-		this.f = f;
-	}
+//	public void conectaHeroi(Heroi h) {
+//		this.h = h;
+//	}
+//	
+//	public void conectaWumpus(Wumpus w) {
+//		this.w = w;
+//	}
+//	
+//	public void conectaBuraco(Buraco B) {
+//		this.B = B;
+//	}
+//	
+//	public void conectaOuro(Ouro o) {
+//		this.o = o;
+//	}
+//	
+//	public void conectaBrisa(Brisa b) {
+//		this.b = b;
+//	}
+//	
+//	public void conectaFedor(Fedor f) {
+//		this.f = f;
+//	}
 	
 	public boolean isVisitada() {
 		return visitada;
 	}
 	
+
 	public void setVisitada(boolean visitada) {
 		this.visitada = visitada;
 	}
 	
 	public void componentesNaSala() {
 		String comp = "";
-		if(h != null) {
+		if(componentes[0] != null) {
 			comp += "H";
 		}
-		if(w != null) {
+		if(componentes[1] != null) {
 			comp += "W";
 		}
-		if(o != null) {
+		if(componentes[3] != null) {
 			comp += "O";
 		}
-		if(B != null) {
+		if(componentes[2] != null) {
 			comp += "B";
 		}
-		if(b != null) {
+		if(componentes[4] != null) {
 			comp += "b";
 		}
-		if(f != null) {
+		if(componentes[5] != null) {
 			comp += "f";
 		}
 		if(comp == "") {

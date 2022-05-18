@@ -11,6 +11,10 @@ public class Caverna {
 			}
 		}
 	}
+	
+	/*public void insereSala(int linha, int coluna, Brisa b){		
+		this.s[linha][coluna].b = b; 
+	}
 
 	public void insereSala(int linha, int coluna, Heroi h){		
 		this.s[linha][coluna].h = h;
@@ -30,34 +34,62 @@ public class Caverna {
 		this.s[linha][coluna].o = o; 
 	}
 	
-	public void insereSala(int linha, int coluna, Brisa b){		
-		this.s[linha][coluna].b = b; 
-	}
-	
 	public void insereSala(int linha, int coluna, Fedor f){		
 		this.s[linha][coluna].f = f; 
+	}*/
+	
+	public void insereSala(int linha, int coluna, Componente comps[]){		
+		this.s[linha][coluna].componentes = comps;		
 	}
 	
-	public void incluiBrisas(int linha, int coluna) {
-		if(linha-1 >= 0 && this.s[linha - 1][coluna].b == null)
-			insereSala(linha-1, coluna, new Brisa());
-		if(linha+1 < 4 && this.s[linha + 1][coluna].b == null)
-			insereSala(linha+1, coluna, new Brisa()); 
-		if(coluna-1 >= 0 && this.s[linha][coluna - 1].b == null)
-			insereSala(linha, coluna-1, new Brisa()); 
-		if(coluna+1 < 4 && this.s[linha][coluna + 1].b == null)
-			insereSala(linha, coluna+1, new Brisa());
+	public void incluiBrisas(int linha, int coluna, Componente c1[], Componente c2[], Componente c3[], Componente c4[]) {
+		if(linha-1 >= 0) {
+			c1[4] = new Brisa();
+			c1[4].setLinha(linha-1);
+			c1[4].setColuna(coluna);
+			insereSala(linha-1, coluna, c1);
+			//this.s[linha-1][coluna].componentes[4] = new Brisa();
+			//insereSala(linha-1, coluna, new Brisa());
+		}
+		if(linha+1 < 4) {
+			c2[4] = new Brisa();
+			c2[4].setLinha(linha+1);
+			c2[4].setColuna(coluna);
+			insereSala(linha+1, coluna, c2);
+			//this.s[linha+1][coluna].componentes[4] = new Brisa();
+			//insereSala(linha+1, coluna, new Brisa()); 
+		}
+		if(coluna-1 >= 0) {
+			c3[4] = new Brisa();
+			c3[4].setLinha(linha);
+			c3[4].setColuna(coluna-1);
+			insereSala(linha, coluna-1, c3);
+			//this.s[linha][coluna-1].componentes[4] = new Brisa();
+			//insereSala(linha, coluna-1, new Brisa()); 
+		}
+		if(coluna+1 < 4) {
+			c4[4] = new Brisa();
+			c4[4].setLinha(linha);
+			c4[4].setColuna(coluna+1);
+			insereSala(linha, coluna+1, c4);
+			//this.s[linha][coluna+1].componentes[4] = new Brisa();
+			//insereSala(linha, coluna+1, new Brisa());
+		}
 	}
 	
 	public void incluiFedor(int linha, int coluna) {
-		if(linha-1 >= 0 && this.s[linha - 1][coluna].f == null)
-			insereSala(linha-1, coluna, new Fedor());
-		if(linha+1 < 4 && this.s[linha + 1][coluna].f == null)
-			insereSala(linha+1, coluna, new Fedor()); 
-		if(coluna-1 >= 0 && this.s[linha][coluna - 1].f == null)
-			insereSala(linha, coluna-1, new Fedor()); 
-		if(coluna+1 < 4 && this.s[linha][coluna + 1].f == null)
-			insereSala(linha, coluna+1, new Fedor());
+		if(linha-1 >= 0)
+			s[linha-1][coluna].componentes[5] = new Fedor();
+			//insereSala(linha-1, coluna, new Fedor());
+		if(linha+1 < 4)
+			s[linha+1][coluna].componentes[5] = new Fedor();
+			//insereSala(linha+1, coluna, new Fedor()); 
+		if(coluna-1 >= 0)
+			s[linha][coluna-1].componentes[5] = new Fedor();
+			//insereSala(linha, coluna-1, new Fedor()); 
+		if(coluna+1 < 4)
+			s[linha][coluna+1].componentes[5] = new Fedor();
+			//insereSala(linha, coluna+1, new Fedor());
 	}
 	
 	public boolean movimentoValido(int linha_atual, int coluna_atual,  int nova_linha, int nova_coluna) {
@@ -69,29 +101,29 @@ public class Caverna {
 	}
 	
 	public void alteraCaverna(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna){
-			s[nova_linha][nova_coluna].h = s[linha_atual][coluna_atual].h;
+			s[nova_linha][nova_coluna].componentes[0] = s[linha_atual][coluna_atual].componentes[0];
 			s[nova_linha][nova_coluna].setVisitada(true);
 			
-			s[linha_atual][coluna_atual].h = null;
+			s[linha_atual][coluna_atual].componentes[0] = null;
 	}
 	
 	public boolean existeOuro(int linha_atual, int coluna_atual) {
-		if (s[linha_atual][coluna_atual].o != null) {
-			s[linha_atual][coluna_atual].o = null;
+		if (s[linha_atual][coluna_atual].componentes[3] != null) {
+			s[linha_atual][coluna_atual].componentes[3] = null;
 			return true;
 		}
 		return false;
 	}
 
 	public boolean existeWumpus(int linha_atual, int coluna_atual) {
-		if (s[linha_atual][coluna_atual].w != null) {
+		if (s[linha_atual][coluna_atual].componentes[1] != null) {
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean existeBuraco(int linha_atual, int coluna_atual) {
-		if (s[linha_atual][coluna_atual].B != null) {
+		if (s[linha_atual][coluna_atual].componentes[2] != null) {
 			return true;
 		}
 		return false;
@@ -154,17 +186,17 @@ public class Caverna {
 		char[][] saida = new char[4][4]; 
 		for(int i = 0; i < 4; i++) {
 	    	  for(int j = 0; j < 4; j++) {
-	    		  if (s[i][j].o != null && s[i][j].isVisitada()) 
+	    		  if (s[i][j].componentes[3] != null && s[i][j].isVisitada()) 
 	    			  saida[i][j] = 'o'; 	    					    		 
-	    		  else if (s[i][j].B != null && s[i][j].isVisitada()) 
+	    		  else if (s[i][j].componentes[2] != null && s[i][j].isVisitada()) 
 	    			  saida[i][j] = 'B';
-	    		  else if (s[i][j].w != null && s[i][j].isVisitada())
+	    		  else if (s[i][j].componentes[1] != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'w';
-	    		  else if (s[i][j].h != null && s[i][j].isVisitada())
+	    		  else if (s[i][j].componentes[0] != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'p';
-	    		  else if (s[i][j].f != null && s[i][j].isVisitada())
+	    		  else if (s[i][j].componentes[5] != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'f';
-	    		  else if (s[i][j].b != null && s[i][j].isVisitada())
+	    		  else if (s[i][j].componentes[4] != null && s[i][j].isVisitada())
 	    			  saida[i][j] = 'b';
 	    		  else if(s[i][j].isVisitada())
 	    			  saida[i][j] = '#';

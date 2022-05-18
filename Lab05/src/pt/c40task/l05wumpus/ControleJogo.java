@@ -1,11 +1,11 @@
 package pt.c40task.l05wumpus;
 
 public class ControleJogo {
-	Heroi heroi;
+	Componente heroi;
 	private char movimento;
 	private char acao;
 	
-	public void conectaHeroi(Heroi h) {
+	public void conectaHeroi(Componente h) {
 		this.heroi = h;
 	}
 	
@@ -28,58 +28,58 @@ public class ControleJogo {
 	}
 	
 	public void flecha_wumpus() {
-		if (heroi.getFlecha_equipada()) {
-			heroi.setScore(heroi.getScore() - 100);
-			heroi.setFlecha_equipada(false);
-			if (heroi.encontraWumpus(heroi.getLinha(), heroi.getColuna())) {
-				if (heroi.mataWumpus()) {
-					heroi.cav.s[heroi.getLinha()][heroi.getColuna()].w = null;
-					heroi.setScore(heroi.getScore() + 500);
+		if (((Heroi)heroi).getFlecha_equipada()) {
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 100);
+			((Heroi)heroi).setFlecha_equipada(false);
+			if (((Heroi)heroi).encontraWumpus(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna())) {
+				if (((Heroi)heroi).mataWumpus()) {
+					((Heroi)heroi).cav.s[((Heroi)heroi).getLinha()][((Heroi)heroi).getColuna()].componentes[1] = null;
+					((Heroi)heroi).setScore(((Heroi)heroi).getScore() + 500);
 				}
 				else {
-					heroi.setVivo(false);
-					heroi.setScore(heroi.getScore() - 1000);
-					heroi.setFlecha_equipada(false);
+					((Heroi)heroi).setVivo(false);
+					((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 1000);
+					((Heroi)heroi).setFlecha_equipada(false);
 				}							
 			}
 		}
 		else {
-			if (heroi.encontraWumpus(heroi.getLinha(), heroi.getColuna())) {
-				heroi.setVivo(false);
-				heroi.setScore(heroi.getScore() - 1000);
+			if (((Heroi)heroi).encontraWumpus(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna())) {
+				((Heroi)heroi).setVivo(false);
+				((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 1000);
 			}
 		}
 	}
 	
 	public void caiBuraco() {
-		if (heroi.encontraBuraco(heroi.getLinha(), heroi.getColuna())) {
-			heroi.setVivo(false);
-			heroi.setScore(heroi.getScore() - 1000);
+		if (((Heroi)heroi).encontraBuraco(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna())) {
+			((Heroi)heroi).setVivo(false);
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 1000);
 		}
 	}
 	
 	private void executaMovimeto(char movimento) {
-		if (movimento == 'w' && heroi.heroiSeMove(heroi.getLinha(), heroi.getColuna(), heroi.getLinha() - 1, heroi.getColuna())) {
-			heroi.setLinha(heroi.getLinha() - 1);
-			heroi.setScore(heroi.getScore() - 15);
+		if (movimento == 'w' && ((Heroi)heroi).heroiSeMove(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna(), ((Heroi)heroi).getLinha() - 1, ((Heroi)heroi).getColuna())) {
+			((Heroi)heroi).setLinha(((Heroi)heroi).getLinha() - 1);
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 15);
 			flecha_wumpus();
 			caiBuraco();
 		}
-		else if (movimento == 's' && heroi.heroiSeMove(heroi.getLinha(), heroi.getColuna(), heroi.getLinha() + 1, heroi.getColuna())) {
-			heroi.setLinha(heroi.getLinha() + 1);
-			heroi.setScore(heroi.getScore() - 15);
+		else if (movimento == 's' && ((Heroi)heroi).heroiSeMove(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna(), ((Heroi)heroi).getLinha() + 1, ((Heroi)heroi).getColuna())) {
+			((Heroi)heroi).setLinha(((Heroi)heroi).getLinha() + 1);
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 15);
 			flecha_wumpus();
 			caiBuraco();
 		}
-		else if (movimento == 'a' && heroi.heroiSeMove(heroi.getLinha(), heroi.getColuna(), heroi.getLinha(), heroi.getColuna() - 1)) {
-			heroi.setColuna(heroi.getColuna() - 1);
-			heroi.setScore(heroi.getScore() - 15);
+		else if (movimento == 'a' && ((Heroi)heroi).heroiSeMove(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna(), ((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna() - 1)) {
+			((Heroi)heroi).setColuna(((Heroi)heroi).getColuna() - 1);
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 15);
 			flecha_wumpus();
 			caiBuraco();
 		}
-		else if (movimento == 'd' && heroi.heroiSeMove(heroi.getLinha(), heroi.getColuna(), heroi.getLinha() , heroi.getColuna() + 1)) {
-			heroi.setColuna(heroi.getColuna() + 1);
-			heroi.setScore(heroi.getScore() - 15);
+		else if (movimento == 'd' && ((Heroi)heroi).heroiSeMove(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna(), ((Heroi)heroi).getLinha() , ((Heroi)heroi).getColuna() + 1)) {
+			((Heroi)heroi).setColuna(((Heroi)heroi).getColuna() + 1);
+			((Heroi)heroi).setScore(((Heroi)heroi).getScore() - 15);
 			flecha_wumpus();
 			caiBuraco();
 		}
@@ -90,19 +90,19 @@ public class ControleJogo {
 	
 	private void executaAcao(char acao) {
 		if (acao == 'k') {
-			if (heroi.getQtde_flechas() > 0) {
-				heroi.setFlecha_equipada(true);
-				heroi.setQtde_flechas(0);
+			if (((Heroi)heroi).getQtde_flechas() > 0) {
+				((Heroi)heroi).setFlecha_equipada(true);
+				((Heroi)heroi).setQtde_flechas(0);
 			}
 		}
 		else {
-			if (heroi.capturaOuro(heroi.getLinha(), heroi.getColuna())) {
-				heroi.setOuro_capturado(true);
-				heroi.setScore(heroi.getScore() + 1000);
+			if (((Heroi)heroi).capturaOuro(((Heroi)heroi).getLinha(), ((Heroi)heroi).getColuna())) {
+				((Heroi)heroi).setOuro_capturado(true);
+				((Heroi)heroi).setScore(((Heroi)heroi).getScore() + 1000);
 				
 			}
 			else {
-				System.out.println("Ouro n�o est� na sala");
+				System.out.println("Ouro nao estao na sala");
 			}
 		}
 	}

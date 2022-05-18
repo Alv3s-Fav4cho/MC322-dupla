@@ -5,6 +5,7 @@ public class Wumpus extends Componente{
 
 	public Wumpus() {
 		this.vivo = true;
+		//cav.incluiFedor(getLinha(), getColuna());
 	}
 	public Boolean getVivo() {
 		return vivo;
