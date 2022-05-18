@@ -2,7 +2,7 @@ package pt.c40task.l05wumpus;
 
 public class Montador{
 	Caverna caverna;
-	Componente comps[] = new Componente[6];
+	Componente comps[]; //= new Componente[6];
 	/*Heroi h;
 	Wumpus w;
 	Ouro o;
@@ -26,6 +26,7 @@ public class Montador{
 		int i = 0;
 		linha--;
 		coluna--;
+		comps = new Componente[6];
 		comps = caverna.s[linha][coluna].componentes;
 		
 		switch (entrada) {
