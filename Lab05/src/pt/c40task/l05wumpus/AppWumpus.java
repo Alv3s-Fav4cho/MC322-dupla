@@ -113,7 +113,7 @@ public class AppWumpus {
 				tk.writeBoard(cav.montaSaida(), ((Heroi)cj.heroi).getScore(), status);
 				comando = movements.charAt(0);
 				int cont = 0;
-				while(comando != 'q') {
+ 				while(comando != 'q' && cont < movements.length()) {
 					cont++;
 					if (comando != 'q' && cj.comandoValido(comando)) {
 						cj.comando(comando);

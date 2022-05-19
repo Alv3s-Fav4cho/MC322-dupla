@@ -27,7 +27,7 @@ score: -30
 status: P
 =====
 ##b-
---o-
+--p-
 ----
 ----
 score: -145
@@ -37,33 +37,40 @@ status: P
 --p-
 ----
 ----
-score: 855
+score: -145
 status: P
 =====
 ##p-
 --#-
 ----
 ----
-score: 840
+score: -160
 status: P
 =====
 #pb-
 --#-
 ----
 ----
-score: 825
+score: -175
+status: P
+=====
+#pb-
+--#-
+----
+----
+score: -175
 status: P
 =====
 p#b-
 --#-
 ----
 ----
-score: 810
+score: -190
 status: P
 =====
 p#b-
 --#-
 ----
 ----
-score: 810
-status: W
+score: -190
+status: P
