@@ -79,30 +79,26 @@ public class Heroi extends Componente{
 	}
 	
 	public boolean heroiSeMove(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
-		if(cav.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna)) {
+		if(cav.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna))
 			return true;
-		}
 		return false;
 	}
 	
 	public boolean capturaOuro(int linha, int coluna) {
-		if (cav.existeOuro(linha, coluna)) {
+		if (cav.existeOuro(linha, coluna))
 			return true;
-		}
 		return false;
 	}
 	
 	public boolean encontraWumpus(int linha, int coluna) {
-		if (cav.existeWumpus(linha, coluna)) {
+		if (cav.existeWumpus(linha, coluna))
 			return true;
-		}
 		return false;
 	}
 	
 	public boolean encontraBuraco(int linha, int coluna) {
-		if (cav.existeBuraco(linha, coluna)) {
+		if (cav.existeBuraco(linha, coluna))
 			return true;
-		}
 		return false;
 	}
 }

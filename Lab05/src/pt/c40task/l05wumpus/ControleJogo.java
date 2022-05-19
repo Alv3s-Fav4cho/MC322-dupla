@@ -10,9 +10,8 @@ public class ControleJogo {
 	}
 	
 	public boolean comandoValido(char c) {
-		if(c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'k' || c == 'c') {
+		if(c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'k' || c == 'c')
 			return true;
-		}
 		return false;
 	}
 	
@@ -83,9 +82,8 @@ public class ControleJogo {
 			flecha_wumpus();
 			caiBuraco();
 		}
-		else {
+		else
 			System.out.println("Movimento "+movimento+" invalido");
-		}
 	}
 	
 	private void executaAcao(char acao) {
@@ -101,9 +99,8 @@ public class ControleJogo {
 				((Heroi)heroi).setScore(((Heroi)heroi).getScore() + 1000);
 				
 			}
-			else {
+			else
 				System.out.println("Ouro nao estao na sala");
-			}
 		}
 	}
 }
