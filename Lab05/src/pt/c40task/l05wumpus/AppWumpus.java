@@ -30,8 +30,7 @@ public class AppWumpus {
 		Montador mont = new Montador();
 		Caverna cav = new Caverna();
 		ControleJogo cj = new ControleJogo();
-		mont.conectaCaverna(cav);
-		mont.conectaSala_componentes(cav);		
+		mont.conectaCaverna(cav);		
 		mont.Montar(entrada);
 		
 		char comando;
@@ -76,7 +75,6 @@ public class AppWumpus {
 						if(aviso != "")
 							System.out.println("Aviso: " + aviso );
 						
-						System.out.println(cj.heroi.getLinha() +" "+ cj.heroi.getColuna()); 
 						if (cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && ((Heroi)cj.heroi).getOuro_capturado() || !((Heroi)cj.heroi).isVivo()) {
 							if(cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && ((Heroi)cj.heroi).getOuro_capturado())
 								status = 'W';
@@ -135,7 +133,6 @@ public class AppWumpus {
 							aviso = "Ouro encontrado!!!";
 						if(aviso != "")
 							System.out.println("Aviso: " + aviso );
-						System.out.println(cj.heroi.getLinha() +" "+ cj.heroi.getColuna()); 
 						if (cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && ((Heroi)cj.heroi).getOuro_capturado() || !((Heroi)cj.heroi).isVivo()) {
 							if(cj.heroi.getLinha() == 0 && cj.heroi.getColuna() == 0 && ((Heroi)cj.heroi).getOuro_capturado())
 								status = 'W';

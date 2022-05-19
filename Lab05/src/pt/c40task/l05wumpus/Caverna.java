@@ -20,26 +20,56 @@ public class Caverna {
 		this.s[linha][coluna].componentes = comps;		
 	}
 	
-	public void incluiBrisas(int linha, int coluna) {
-		if(linha-1 >= 0)
-			this.s[linha-1][coluna].componentes[4] = new Brisa();
-		if(linha+1 < 4)
-			this.s[linha+1][coluna].componentes[4] = new Brisa();
-		if(coluna-1 >= 0)
-			this.s[linha][coluna-1].componentes[4] = new Brisa();
-		if(coluna+1 < 4)
-			this.s[linha][coluna+1].componentes[4] = new Brisa();
+	public void incluiBrisas(int linha, int coluna, Brisa brisa) {
+		if(linha-1 >= 0) {
+			brisa.setLinha(linha-1);
+			brisa.setColuna(coluna);
+			s[linha-1][coluna].componentes[4] = brisa;
+		}
+		if(linha+1 < 4) {
+			brisa.setLinha(linha+1);
+			brisa.setColuna(coluna);
+			s[linha+1][coluna].componentes[4] = brisa;
+		}
+		if(coluna-1 >= 0) {
+			brisa.setLinha(linha);
+			brisa.setColuna(coluna-1);
+			s[linha][coluna-1].componentes[4] = brisa;
+		}
+		if(coluna+1 < 4) {
+			brisa.setLinha(linha);
+			brisa.setColuna(coluna+1);
+			s[linha][coluna+1].componentes[4] = brisa;
+		}
 	}
 	
-	public void incluiFedor(int linha, int coluna) {
-		if(linha-1 >= 0)
-			s[linha-1][coluna].componentes[5] = new Fedor();
-		if(linha+1 < 4)
-			s[linha+1][coluna].componentes[5] = new Fedor();
-		if(coluna-1 >= 0)
-			s[linha][coluna-1].componentes[5] = new Fedor();
-		if(coluna+1 < 4)
-			s[linha][coluna+1].componentes[5] = new Fedor();
+	public void incluiFedor(int linha, int coluna, Fedor fedor) {
+		if(linha-1 >= 0) {
+			fedor.setLinha(linha-1);
+			fedor.setColuna(coluna);
+			s[linha-1][coluna].componentes[5] = fedor;
+		}
+		if(linha+1 < 4) {
+			fedor.setLinha(linha+1);
+			fedor.setColuna(coluna);
+			s[linha+1][coluna].componentes[5] = fedor;
+		}
+		if(coluna-1 >= 0) {
+			fedor.setLinha(linha);
+			fedor.setColuna(coluna-1);
+			s[linha][coluna-1].componentes[5] = fedor;
+		}
+		if(coluna+1 < 4) {
+			fedor.setLinha(linha);
+			fedor.setColuna(coluna+1);
+			s[linha][coluna+1].componentes[5] = fedor;
+		}
+	}
+	
+	public boolean verifica_consistencia(int linha, int coluna, char c) {
+		if (s[linha][coluna].consistencia(c))
+			return true;
+		return false;
 	}
 	
 	public boolean movimentoValido(int linha_atual, int coluna_atual,  int nova_linha, int nova_coluna) {

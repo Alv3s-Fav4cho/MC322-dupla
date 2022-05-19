@@ -4,9 +4,8 @@ public class Sala {
 	Componente componentes[];
 	private boolean visitada;
 	
-	public void conectaComponente(Componente comps[]) {
-		comps = new Componente[6];
-		this.componentes = comps;
+	public Sala() {
+		componentes = new Componente[6];
 	}
 	
 	public boolean isVisitada() {
@@ -16,5 +15,15 @@ public class Sala {
 
 	public void setVisitada(boolean visitada) {
 		this.visitada = visitada;
+	}
+	
+	public boolean consistencia(char c) {
+		if (c == 'W' && componentes[2] == null && componentes[3] == null)
+			return true;
+		if (c == 'B' && componentes[1] == null && componentes[3] == null)
+			return true;
+		if (c == 'O' && componentes[1] == null && componentes[2] == null)
+			return true;
+		return false;
 	}
 }

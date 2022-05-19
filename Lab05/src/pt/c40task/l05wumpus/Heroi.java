@@ -12,7 +12,7 @@ public class Heroi extends Componente{
 	public boolean mataWumpus() {
 		int n;
 		Random rand = new Random();
-		n = rand.nextInt(100);
+		n = rand.nextInt(101);
 		if (n > 50)
 			return true;
 		return false;

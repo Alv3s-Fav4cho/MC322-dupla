@@ -8,6 +8,10 @@ public class Montador{
 	private int nBuracos = 0;
 	private int nOuro = 0;
 	
+	public void conectaCaverna(Caverna cav) {
+		this.caverna = cav;
+	}
+	
 	public void Montar(String entrada[]){
 		for(int i = 0; i < entrada.length; i++) {
 			this.Montar(Integer.parseInt(entrada[i].substring(0,1)),
@@ -18,63 +22,68 @@ public class Montador{
 	
 	public void Montar(int linha, int coluna, char entrada){
 		int i = 0;
-		Sala s;
 		linha--;
 		coluna--;
-		s = caverna.procura_sala(linha, coluna);
 		Componente comps[] = new Componente[6];
-		comps = s.componentes;
+		//comps = caverna.procura_sala(linha, coluna).componentes;
 		
 		switch (entrada) {
 		case 'P':{
 			comps[i] = new Heroi();
 			comps[i].conectaCaverna(caverna);
-			s.setVisitada(true);
+			comps[i].setLinha(linha);
+			comps[i].setColuna(coluna);
+			caverna.insereSala(linha, coluna, comps);
+			caverna.procura_sala(linha, coluna).setVisitada(true);
 			break;
 		}
 		case 'W':{
 			i = 1;
-			s.componentes[i] = new Wumpus();
-			s.componentes[i].conectaCaverna(caverna);
+			if(caverna.verifica_consistencia(linha, coluna, entrada)) {
+				comps[i] = new Wumpus();
+				comps[i].conectaCaverna(caverna);
+				comps[i].setLinha(linha);
+				comps[i].setColuna(coluna);
+				caverna.insereSala(linha, coluna, comps);
+				((Wumpus)caverna.procura_sala(linha, coluna).componentes[i]).solicitaFedor();
+			}
+			else {
+				System.out.println("Erro: o Wumpus nao pode ser inserido nessa sala");
+				System.exit(0);
+			}
 			break;
 		}
 		case 'B':{
 			i = 2;
-			s.componentes[i] = new Buraco();
-			s.componentes[i].conectaCaverna(caverna);
+			if(caverna.verifica_consistencia(linha, coluna, entrada)) {
+				comps[i] = new Buraco();
+				comps[i].conectaCaverna(caverna);
+				comps[i].setLinha(linha);
+				comps[i].setColuna(coluna);
+				caverna.insereSala(linha, coluna, comps);
+				((Buraco)caverna.procura_sala(linha, coluna).componentes[i]).solicitaBrisas();
+			}
+			else {
+				System.out.println("Erro: o buraco nao pode ser inserido nessa sala");
+				System.exit(0);
+			}
 			break;
 		}
 		case 'O':{
 			i = 3;
-			s.componentes[i] = new Ouro();
-			s.componentes[i].conectaCaverna(caverna);
-		}
-		}
-		comps[i].setLinha(linha);
-		comps[i].setColuna(coluna);
-		caverna.insereSala(linha, coluna, comps);
-		
-		if (i == 2) 
-			((Buraco)s.componentes[i]).solicitaBrisas();
-		else if (i == 1)
-			((Wumpus)s.componentes[i]).solicitaFedor();
-	}
-	
-	public void conectaCaverna(Caverna cav) {
-		this.caverna = cav;
-	}
-	
-	public void conectaSala_componentes(Caverna cav) {
-		Sala s;
-		this.caverna = cav;
-		
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				comps = new Componente[6];
-				s = caverna.procura_sala(i, j);
-				s.conectaComponente(comps);
+			if(caverna.verifica_consistencia(linha, coluna, entrada)) {
+				comps[i] = new Ouro();
+				comps[i].conectaCaverna(caverna);
+				comps[i].setLinha(linha);
+				comps[i].setColuna(coluna);
+				caverna.insereSala(linha, coluna, comps);
+			}
+			else {
+				System.out.println("Erro: o ouro nao pode ser inserido nessa sala");
+				System.exit(0);
 			}
 		}
+		}	
 	}
 	
 	public boolean cavernaValida(String entrada[]) {
