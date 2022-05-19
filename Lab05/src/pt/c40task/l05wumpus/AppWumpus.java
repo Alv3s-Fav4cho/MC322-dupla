@@ -170,6 +170,4 @@ public class AppWumpus {
 			System.out.println("Caverna invalida");
 		in.close();
 	}
-	
 }
-

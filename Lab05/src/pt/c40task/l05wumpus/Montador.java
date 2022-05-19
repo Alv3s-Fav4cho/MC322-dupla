@@ -25,7 +25,6 @@ public class Montador{
 		linha--;
 		coluna--;
 		Componente comps[] = new Componente[6];
-		//comps = caverna.procura_sala(linha, coluna).componentes;
 		
 		switch (entrada) {
 		case 'P':{
