@@ -1,5 +1,5 @@
 package pacote;
 
-public class Porta {
+public class Porta extends Ator{
 
 }

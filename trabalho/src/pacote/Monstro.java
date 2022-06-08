@@ -1,5 +1,5 @@
 package pacote;
 
-public class Monstro {
+public class Monstro extends Ator{
 
 }

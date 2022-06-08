@@ -1,5 +1,5 @@
 package pacote;
 
-public class PessoaPerdida {
+public class PessoaPerdida extends Ator{
 
 }

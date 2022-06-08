@@ -1,6 +1,6 @@
 package pacote;
 
-public class Protagonista {
+public class Protagonista extends Ator{
 	private String nome;
 	private int vida;
 	private int municao;

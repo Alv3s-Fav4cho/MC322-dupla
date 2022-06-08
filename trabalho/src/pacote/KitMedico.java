@@ -1,5 +1,5 @@
 package pacote;
 
-public class KitMedico {
+public class KitMedico extends Ator {
 
 }

@@ -1,5 +1,5 @@
 package pacote;
 
-public class Municao {
+public class Municao extends Ator{
 
 }
