@@ -3,7 +3,7 @@ package pacote;
 public class Ator {
 	private int linha;
 	private int coluna;
-	// Nether neth;
+	Nether neth;
 
 	public int getLinha() {
 		return linha;

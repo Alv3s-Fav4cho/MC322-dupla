@@ -1,21 +1,19 @@
 package pacote;
 
-import pt.c40task.l05wumpus.Sala;
-
 public class Nether {
 	Sala s[][];
-
+	
 	public Nether() {
-		s = new Sala[4][4];
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
+		s = new Sala[5][5];
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
 				s[i][j] = new Sala();
 			}
 		}
 	}
 
-	public void insereSala(int linha, int coluna, Ator atores[]) {
-
+	public void insereSala(int linha, int coluna, Ator ator) {
+		this.s[linha][coluna].atores.add(ator);		
 	}
 
 	public void MovimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {

@@ -3,11 +3,13 @@ package pacote;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Sala {
-	 ArrayList<Ator> atores;
+public class Sala {	
+	ArrayList<Ator> atores;
+	int lista[] ;
 	
 	public Sala() {
 		atores = new ArrayList<Ator>();
+		lista = new int[6];
 		int x, y, z;
 		Random rand = new Random();
 		
