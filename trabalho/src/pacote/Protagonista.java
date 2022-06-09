@@ -8,6 +8,15 @@ public class Protagonista extends Ator{
 	private int kitMedico;
 	private boolean pessoaPerdida;
 	
+	public Protagonista() {
+		this.nome = "";
+		this.vida = 10;
+		this.municao = 7;
+		this.sanidade = 5;
+		this.kitMedico = 0;
+		this.pessoaPerdida = false;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

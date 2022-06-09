@@ -41,6 +41,9 @@ public class Montador {
 					linha = x / n;
 					coluna = x % n - 1;
 				}
+				prot.setLinha(linha);
+				prot.setColuna(coluna);
+				prot.setType("prot");
 				this.neth.insereSala(linha, coluna, prot);
 				
 			} else if (i == 1) {
@@ -57,6 +60,9 @@ public class Montador {
 					linha = x / n;
 					coluna = x % n - 1;
 				}
+				pessoap.setLinha(linha);
+				pessoap.setColuna(coluna);
+				pessoap.setType("pessoap");
 				this.neth.insereSala(linha, coluna, pessoap);
 				
 			} else {
@@ -73,6 +79,9 @@ public class Montador {
 					linha = x / n;
 					coluna = x % n - 1;
 				}
+				porta.setLinha(linha);
+				porta.setColuna(coluna);
+				porta.setType("porta");
 				this.neth.insereSala(linha, coluna, porta);			
 			}
 		}

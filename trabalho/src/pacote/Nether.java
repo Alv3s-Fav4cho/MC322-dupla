@@ -1,5 +1,7 @@
 package pacote;
 
+import java.util.ArrayList;
+
 public class Nether {
 	Sala s[][];
 	
@@ -7,7 +9,7 @@ public class Nether {
 		s = new Sala[5][5];
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
-				s[i][j] = new Sala();
+				s[i][j] = new Sala(i,j);
 			}
 		}
 	}
@@ -55,9 +57,24 @@ public class Nether {
 	}
 	 */
 
-	/*
-	 * imprimeCaverna(char[][] saida){
-	 * 
-	 * }
-	 */
+	
+	public void imprimeNether(){
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				if(s[i][j].atores.size() > 0) {
+					for(int k = 0; k < s[i][j].atores.size(); k++) {
+						System.out.print("["+i+"]["+j+"]: ");
+						System.out.print(s[i][j].atores.get(k).getType()+" ");
+						System.out.println();
+					}					
+				}
+				else {
+					System.out.print("["+i+"]["+j+"]: ");
+					System.out.print("Posicao vazia ");
+					System.out.println();
+				}
+			}
+		}
+	}
+	 
 }

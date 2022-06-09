@@ -5,8 +5,16 @@ public class ControleJogo {
 	private char movimento;
 	private char acao;
 
-	public void conectaProtagonista(Protagonista p) {
-		this.prot = prot;
+	public void conectaProtagonista(Sala s[][]) {
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				for(int k = 0; k < s[i][j].atores.size(); k++) {
+					if(s[i][j].atores.get(k).getType() == "prot") {
+						this.prot = (Protagonista)s[i][j].atores.get(k);						
+					}					
+				}
+			}
+		}
 	}
 
 	/*
