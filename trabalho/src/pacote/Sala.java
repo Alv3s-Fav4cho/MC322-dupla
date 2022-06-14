@@ -39,7 +39,28 @@ public class Sala {
 		}
 	}
 
-	public void atoresNaSala() {
-		
+	public String atoresNaSala() {
+		String saida = "";
+		if(atores.size() !=0) {
+			for(int i = 0; i < atores.size(); i++) {
+				if(atores.get(i).getType() == "prot")
+					saida += "p"; //p protagonista
+				else if(atores.get(i).getType() == "pessoap")
+					saida += "l"; //l: lost
+				else if(atores.get(i).getType() == "porta")
+					saida += "d"; //d: door
+				else if(atores.get(i).getType() == "kit")
+					saida += "k";
+				else if(atores.get(i).getType() == "municao")
+					saida += "a"; //a:ammo
+				else if(atores.get(i).getType() == "monstro")
+					saida += "m"; //m: monstro		
+			}
+		}
+		else {
+			saida = "-";
+			return saida;
+		}
+		return saida;
 	}
 }

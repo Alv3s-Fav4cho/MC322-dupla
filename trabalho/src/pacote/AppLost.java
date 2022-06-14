@@ -16,7 +16,7 @@ public class AppLost {
 		s.atores.add(prot);
 		s.atores.add(monstro);*/		
 		m.montar();
-		neth.imprimeNether();
+		neth.imprimeNether1();
 		
 		cj.conectaProtagonista(neth.s);
 		System.out.println(cj.prot.getLinha()+" "+cj.prot.getColuna());
@@ -24,7 +24,7 @@ public class AppLost {
 		/*
 		 * System.out.println(5 / 3); System.out.println((5 % 3));
 		 */
-		 
+		neth.imprimeNether2();
 		
 	}
 }
