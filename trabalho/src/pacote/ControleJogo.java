@@ -5,7 +5,7 @@ public class ControleJogo {
 	private char movimento;
 	private char acao;
 	private int turnos = 0;
-	//
+	//commit
 	public void conectaProtagonista(Sala s[][]) {
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
