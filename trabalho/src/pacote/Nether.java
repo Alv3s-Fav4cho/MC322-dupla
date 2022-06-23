@@ -34,17 +34,19 @@ public class Nether {
 	
 	public int achaIndice(int linha_atual, int coluna_atual, String tipo) {
 		int i;
+		int indice_desejado = -1;
 		for(i = 0; i < s[linha_atual][coluna_atual].atores.size(); i++){
 			if(s[linha_atual][coluna_atual].atores.get(i).getType() == tipo) {
-				return i;
+				indice_desejado = i;
+				return indice_desejado;
 			}
 		}
-		return i;
+		return indice_desejado;
 	}
 
 	public int existeKit(int linha_atual, int coluna_atual) {
 		int valor = -1;
-		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
 		}
 		valor = achaIndice(linha_atual, coluna_atual, "kit");
@@ -53,7 +55,7 @@ public class Nether {
 	
 	public int existeMunicao(int linha_atual, int coluna_atual) {
 		int valor = -1;
-		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
 		}
 		valor = achaIndice(linha_atual, coluna_atual, "municao");
@@ -62,7 +64,7 @@ public class Nether {
 	
 	public int existePessoaPerdida(int linha_atual, int coluna_atual) {
 		int valor = -1;
-		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
 		}
 		valor = achaIndice(linha_atual, coluna_atual, "pessoap");
@@ -71,7 +73,7 @@ public class Nether {
 	
 	public int existeMonstro(int linha_atual, int coluna_atual) {
 		int valor = -1;
-		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
 		}
 		valor = achaIndice(linha_atual, coluna_atual, "monstro");

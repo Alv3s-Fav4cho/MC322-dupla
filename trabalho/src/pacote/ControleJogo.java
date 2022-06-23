@@ -64,7 +64,7 @@ public class ControleJogo {
 		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
 			System.out.println("nao eh possivel recolher kitMedico sem investigar a sala");
 		}
-		else if(((Protagonista) prot).pegaMunicao(prot.getLinha(),prot.getColuna())) {
+		else if(((Protagonista) prot).pegaKit(prot.getLinha(),prot.getColuna())) {
 			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() + 1);
 			System.out.println("Kit pego com sucesso");
 		}
@@ -77,7 +77,7 @@ public class ControleJogo {
 		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
 			System.out.println("nao eh possivel capturar a pessoa perdida sem investigar a sala");
 		}
-		else if(((Protagonista) prot).pegaMunicao(prot.getLinha(),prot.getColuna())) {
+		else if(((Protagonista) prot).capturaPessoaPerdida(prot.getLinha(),prot.getColuna())) {
 			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() + 1);
 			System.out.println("pessoa pega com sucesso");
 		}

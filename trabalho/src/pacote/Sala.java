@@ -22,7 +22,7 @@ public class Sala {
 		}
 		
 		y = rand.nextInt(100)+1;
-		if(y > 90){ // 10% de chance de criar um kitMedico junto com a sala
+		if(y > 0){ // 10% de chance de criar um kitMedico junto com a sala
 			KitMedico kit = new KitMedico();
 			kit.setLinha(i);
 			kit.setColuna(j);
@@ -31,7 +31,7 @@ public class Sala {
 		}
 		
 		z = rand.nextInt(100)+1;
-		if(y > 0){ // 10% de chance de criar uma municao junto com a sala
+		if(y > 90){ // 10% de chance de criar uma municao junto com a sala
 			Municao municao = new Municao();
 			municao.setLinha(i);
 			municao.setColuna(j);

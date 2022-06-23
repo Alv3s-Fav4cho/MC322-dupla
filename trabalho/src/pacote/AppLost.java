@@ -27,9 +27,6 @@ public class AppLost {
 
 		cj.conectaProtagonista(neth.s);
 		neth.imprimeNether1();
-
-		neth.imprimeNether1();
-
 		
 		System.out.println(cj.prot.getLinha()+" "+cj.prot.getColuna());
 		
@@ -40,8 +37,18 @@ public class AppLost {
 		entrada = in.nextLine().charAt(0);
 		cj.comando(entrada);
 		neth.imprimeNether1();
+		System.out.println(((Protagonista) cj.prot).getKitMedico());
 
-		neth.imprimeNether2();
+		
+		entrada = in.nextLine().charAt(0);
+		cj.comando(entrada);
+		neth.imprimeNether1();
+		System.out.println(((Protagonista) cj.prot).getKitMedico());
+
+		
+		
+
+		//neth.imprimeNether2();
 		
 	}
 }
