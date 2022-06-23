@@ -44,6 +44,7 @@ public class Montador {
 				prot.setLinha(linha);
 				prot.setColuna(coluna);
 				prot.setType("prot");
+				prot.conectaNether(neth);
 				this.neth.insereSala(linha, coluna, prot);
 				
 			} else if (i == 1) {
@@ -63,6 +64,7 @@ public class Montador {
 				pessoap.setLinha(linha);
 				pessoap.setColuna(coluna);
 				pessoap.setType("pessoap");
+				pessoap.conectaNether(neth);
 				this.neth.insereSala(linha, coluna, pessoap);
 				
 			} else {
@@ -82,6 +84,7 @@ public class Montador {
 				porta.setLinha(linha);
 				porta.setColuna(coluna);
 				porta.setType("porta");
+				porta.conectaNether(neth);
 				this.neth.insereSala(linha, coluna, porta);			
 			}
 		}

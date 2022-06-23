@@ -18,25 +18,65 @@ public class Nether {
 		this.s[linha][coluna].atores.add(ator);		
 	}
 
-	public void MovimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
-
+	public boolean movimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
+		if(nova_linha >= 0 && nova_linha < 4 && nova_coluna >= 0 && nova_coluna < 4) {
+			alteraNether(linha_atual, coluna_atual, nova_linha, nova_coluna);
+			return true;
+		}
+		return false;
 	}
 
 	public void alteraNether(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
-
+		int indice = achaIndice(linha_atual, coluna_atual, "prot");
+		s[nova_linha][nova_coluna].atores.add(s[linha_atual][coluna_atual].atores.get(indice));
+		s[linha_atual][coluna_atual].atores.remove(indice);
+	}
+	
+	public int achaIndice(int linha_atual, int coluna_atual, String tipo) {
+		int i;
+		for(i = 0; i < s[linha_atual][coluna_atual].atores.size(); i++){
+			if(s[linha_atual][coluna_atual].atores.get(i).getType() == tipo) {
+				return i;
+			}
+		}
+		return i;
 	}
 
-	/*
-	 * public boolean existeKit(int linha_atual, int coluna_atual) {
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public boolean existeMunicao(int linha_atual, int coluna_atual) {
-	 * 
-	 * }
-	 */
+	public int existeKit(int linha_atual, int coluna_atual) {
+		int valor = -1;
+		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+			return valor;
+		}
+		valor = achaIndice(linha_atual, coluna_atual, "kit");
+		return valor;
+	}
+	
+	public int existeMunicao(int linha_atual, int coluna_atual) {
+		int valor = -1;
+		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+			return valor;
+		}
+		valor = achaIndice(linha_atual, coluna_atual, "municao");
+		return valor;
+	}
+	
+	public int existePessoaPerdida(int linha_atual, int coluna_atual) {
+		int valor = -1;
+		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+			return valor;
+		}
+		valor = achaIndice(linha_atual, coluna_atual, "pessoap");
+		return valor;
+	}	 
+	
+	public int existeMonstro(int linha_atual, int coluna_atual) {
+		int valor = -1;
+		if(s[linha_atual][coluna_atual].atores.size() == 0) {
+			return valor;
+		}
+		valor = achaIndice(linha_atual, coluna_atual, "monstro");
+		return valor;
+	}
 
 	/*
 	 * public boolean existePessoaPerdida(int linha_atual, int coluna_atual) {

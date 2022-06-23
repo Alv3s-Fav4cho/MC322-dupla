@@ -54,30 +54,49 @@ public class Protagonista extends Ator{
 		this.pessoaPerdida = pessoaPerdida;
 	}
 	
+	public boolean protSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) {
+		if(neth.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna))
+			return true;
+		return false;
+	}
 	
-	/*
-	 * public boolean protSeMove(int linha_atual, int coluna_atual, int nova_linha,
-	 * int nova_coluna) {
-	 * 
-	 * }
-	 */	 
+	public boolean capturaPessoaPerdida(int linha, int coluna) {
+		int valor = neth.existePessoaPerdida(linha, coluna);
+		if(valor >= 0) {
+			neth.s[linha][coluna].atores.remove(valor);
+			return true;
+		}
+		return false;
+	}
 	
-	/*
-	 * public boolean capturaPessoaPerdida(int linha, int coluna) {
-	 * 
-	 * }
-	 */
+	public boolean pegaKit(int linha, int coluna) {
+		int valor = neth.existeKit(linha, coluna);
+		if(valor >= 0) {
+			neth.s[linha][coluna].atores.remove(valor);
+			return true;
+		}
+		return false;
+	}
+	 	
+	public boolean pegaMunicao(int linha, int coluna){
+		int valor = neth.existeMunicao(linha, coluna);
+		if(valor >= 0) {
+			neth.s[linha][coluna].atores.remove(valor);
+			return true;
+		}
+		return false;
+		
+	}
 	
-	/*
-	 * public boolean pegaKit(int linha, int coluna) {
-	 * 
-	 * }
-	 */
+	public boolean verificaMonstro(int linha, int coluna) {
+		int valor = neth.existeMonstro(linha, coluna);
+		if(valor >= 0) {
+			neth.s[linha][coluna].atores.remove(valor);
+			return true;
+		}
+		return false;
+		
+	}
 	 
-	/*
-	 * public boolean pegaMunicao(int linha, int coluna){
-	 * 
-	 * }
-	 */
 	
 }

@@ -1,5 +1,7 @@
 package pacote;
 
+import java.util.Scanner;
+
 public class AppLost {
 
 	public static void main(String[] args) {
@@ -8,23 +10,31 @@ public class AppLost {
 		Montador m = new Montador();
 		ControleJogo cj = new ControleJogo();
 		m.conectaNether(neth);
+		Scanner in = new Scanner(System.in);
+		char entrada;
+
 		/*Protagonista prot = new Protagonista();
+		Municao mu = new Municao();
 		Sala s = new Sala(0,0);
 		prot.setType("prot");
-		Monstro monstro = new Monstro();
 		monstro.setType("monstro");
+		Monstro monstro = new Monstro();
 		s.atores.add(prot);
-		s.atores.add(monstro);*/		
+		s.atores.add(monstro);	
+		System.out.println(s.atores.contains(Kitmedico));*/
+		
 		m.montar();
+		cj.conectaProtagonista(neth.s);
 		neth.imprimeNether();
 		
-		cj.conectaProtagonista(neth.s);
 		System.out.println(cj.prot.getLinha()+" "+cj.prot.getColuna());
+		
 		
 		/*
 		 * System.out.println(5 / 3); System.out.println((5 % 3));
 		 */
-		 
-		
+		entrada = in.nextLine().charAt(0);
+		cj.comando(entrada);
+		neth.imprimeNether();
 	}
 }

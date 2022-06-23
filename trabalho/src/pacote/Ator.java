@@ -30,11 +30,9 @@ public class Ator {
 		this.coluna = coluna;
 	}
 
-	/*
 	public void conectaNether(Nether neth) {
 		this.neth = neth;
 	}
-	 */
 	
 	public String toString() {
 		return linha +" "+coluna;

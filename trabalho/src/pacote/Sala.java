@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Sala {	
 	ArrayList<Ator> atores = new ArrayList<Ator>();
+	private boolean sala_investigada;
 	
 	public Sala(int i, int j) {
 		atores = new ArrayList<Ator>();
@@ -30,13 +31,22 @@ public class Sala {
 		}
 		
 		z = rand.nextInt(100)+1;
-		if(y > 90){ // 10% de chance de criar uma municao junto com a sala
+		if(y > 0){ // 10% de chance de criar uma municao junto com a sala
 			Municao municao = new Municao();
 			municao.setLinha(i);
 			municao.setColuna(j);
 			municao.setType("municao");
 			atores.add(municao);
 		}
+		this.sala_investigada = false;
+	}
+
+	public boolean isSala_investigada() {
+		return sala_investigada;
+	}
+
+	public void setSala_investigada(boolean sala_investigada) {
+		this.sala_investigada = sala_investigada;
 	}
 
 	public void atoresNaSala() {
