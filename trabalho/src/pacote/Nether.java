@@ -98,7 +98,7 @@ public class Nether {
 	 */
 
 	
-	public void imprimeNether(){
+	public void imprimeNether1(){
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				if(s[i][j].atores.size() > 0) {
@@ -114,6 +114,15 @@ public class Nether {
 					System.out.println();
 				}
 			}
+		}
+	}
+	
+	public void imprimeNether2(){
+		for(int i = 0; i < 5; i++) {
+			for(int j = 0; j < 5; j++) {
+				System.out.print(s[i][j].atoresNaSala());
+			}
+			System.out.println();
 		}
 	}
 	 

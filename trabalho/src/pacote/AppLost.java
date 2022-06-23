@@ -24,8 +24,12 @@ public class AppLost {
 		System.out.println(s.atores.contains(Kitmedico));*/
 		
 		m.montar();
+
 		cj.conectaProtagonista(neth.s);
-		neth.imprimeNether();
+		neth.imprimeNether1();
+
+		neth.imprimeNether1();
+
 		
 		System.out.println(cj.prot.getLinha()+" "+cj.prot.getColuna());
 		
@@ -35,6 +39,9 @@ public class AppLost {
 		 */
 		entrada = in.nextLine().charAt(0);
 		cj.comando(entrada);
-		neth.imprimeNether();
+		neth.imprimeNether1();
+
+		neth.imprimeNether2();
+		
 	}
 }
