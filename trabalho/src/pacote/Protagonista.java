@@ -1,5 +1,7 @@
 package pacote;
 
+import java.util.ArrayList;
+
 public class Protagonista extends Ator{
 	private String nome;
 	private int vida;
@@ -12,7 +14,7 @@ public class Protagonista extends Ator{
 		this.nome = "";
 		this.vida = 10;
 		this.municao = 7;
-		this.sanidade = 5;
+		this.sanidade = 10;
 		this.kitMedico = 0;
 		this.pessoaPerdida = false;
 	}
@@ -60,7 +62,11 @@ public class Protagonista extends Ator{
 		return false;
 	}
 	
-	public boolean capturaPessoaPerdida(int linha, int coluna) {
+	public void alteraStatusSala() {
+		neth.s[getLinha()][getColuna()].setSala_investigada(false);
+	}
+	
+	public boolean verificaPessoaPerdida(int linha, int coluna) {
 		int valor = neth.existePessoaPerdida(linha, coluna);
 		if(valor >= 0) {
 			neth.s[linha][coluna].atores.remove(valor);
@@ -84,19 +90,38 @@ public class Protagonista extends Ator{
 			neth.s[linha][coluna].atores.remove(valor);
 			return true;
 		}
-		return false;
-		
+		return false;	
+	}
+	
+	public void mataMonstro(int linha, int coluna) {
+		int valor = neth.existeMonstro(linha, coluna);
+		if(valor >= 0) {
+			neth.s[linha][coluna].atores.remove(valor);
+		}
 	}
 	
 	public boolean verificaMonstro(int linha, int coluna) {
 		int valor = neth.existeMonstro(linha, coluna);
 		if(valor >= 0) {
-			neth.s[linha][coluna].atores.remove(valor);
+			//neth.s[linha][coluna].atores.remove(valor);
 			return true;
 		}
 		return false;
-		
 	}
 	 
+	public boolean verificaPorta(int linha, int coluna) {
+		int valor = neth.existePorta(linha, coluna);
+		if(valor >= 0) {
+			//neth.s[linha][coluna].atores.remove(valor);
+			return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<String> tateiaSala(int linha, int coluna){
+		ArrayList<String> atores = new ArrayList<String>();
+		atores = neth.atores_na_sala(linha, coluna);
+		return atores;
+	}
 	
 }

@@ -19,7 +19,7 @@ public class Nether {
 	}
 
 	public boolean movimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
-		if(nova_linha >= 0 && nova_linha < 4 && nova_coluna >= 0 && nova_coluna < 4) {
+		if(nova_linha >= 0 && nova_linha < 5 && nova_coluna >= 0 && nova_coluna < 5) {
 			alteraNether(linha_atual, coluna_atual, nova_linha, nova_coluna);
 			return true;
 		}
@@ -80,19 +80,27 @@ public class Nether {
 		return valor;
 	}
 
-	/*
-	 * public boolean existePessoaPerdida(int linha_atual, int coluna_atual) {
-	 * 
-	 * }
-	 */
-
-	/*
-	 * public boolean existePorta(int linha_atual, int coluna_atual) {
-	 * 
-	 * }
-	 */
-
-
+	public int existePorta(int linha_atual, int coluna_atual) {
+		int valor = -1;
+		if(s[linha_atual][coluna_atual].atores.size() == 1) {
+			return valor;
+		}
+		valor = achaIndice(linha_atual, coluna_atual, "porta");
+		return valor;
+	}
+	
+	public ArrayList<String> atores_na_sala(int linha, int coluna){
+		ArrayList<String> atores = new ArrayList<String>();
+		/*
+		 * if(s[linha][coluna].atores.size() > 1){ }
+		 */
+		s[linha][coluna].setSala_investigada(true);
+		for(int i = 0; i < s[linha][coluna].atores.size(); i++) {
+			atores.add(s[linha][coluna].atores.get(i).getType());				
+		}
+		return atores;
+	}
+	
 	/*
 	public char[][] montaSaida(){ 
 		

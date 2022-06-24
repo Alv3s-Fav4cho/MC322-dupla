@@ -34,16 +34,15 @@ public class AppLost {
 		/*
 		 * System.out.println(5 / 3); System.out.println((5 % 3));
 		 */
+		cj.statsProtagonista();
 		entrada = in.nextLine().charAt(0);
-		cj.comando(entrada);
-		neth.imprimeNether1();
-		System.out.println(((Protagonista) cj.prot).getKitMedico());
-
-		
-		entrada = in.nextLine().charAt(0);
-		cj.comando(entrada);
-		neth.imprimeNether1();
-		System.out.println(((Protagonista) cj.prot).getKitMedico());
+		while(entrada !=  0) {
+			cj.comando(entrada);
+			cj.statsProtagonista();
+			entrada = in.nextLine().charAt(0);
+			//neth.imprimeNether1();
+		}
+		//System.out.println(((Protagonista) cj.prot).getKitMedico());
 
 		
 		
