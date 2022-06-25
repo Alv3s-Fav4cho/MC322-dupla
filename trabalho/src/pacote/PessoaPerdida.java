@@ -3,7 +3,7 @@ package pacote;
 public class PessoaPerdida extends Ator{
 	private boolean sangrando;
 	private boolean achada;
-
+	//
 	public boolean isAchada() {
 		return achada;
 	}
