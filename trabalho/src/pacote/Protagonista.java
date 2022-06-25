@@ -9,7 +9,8 @@ public class Protagonista extends Ator{
 	private int sanidade;
 	private int kitMedico;
 	private boolean pessoaPerdida;
-	
+	private boolean concluiuMeta;
+
 	public Protagonista() {
 		this.nome = "";
 		this.vida = 10;
@@ -54,6 +55,14 @@ public class Protagonista extends Ator{
 	}
 	public void setPessoaPerdida(boolean pessoaPerdida) {
 		this.pessoaPerdida = pessoaPerdida;
+	}
+	
+	public boolean isConcluiuMeta() {
+		return concluiuMeta;
+	}
+
+	public void setConcluiuMeta(boolean concluiuMeta) {
+		this.concluiuMeta = concluiuMeta;
 	}
 	
 	/*public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) { 

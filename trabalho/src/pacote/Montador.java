@@ -41,11 +41,11 @@ public class Montador {
 					linha = x / n;
 					coluna = x % n - 1;
 				}
-				prot.setLinha(linha);
-				prot.setColuna(coluna);
+				prot.setLinha(linha); // alterar para linha
+				prot.setColuna(coluna); // alterar para coluna
 				prot.setType("prot");
 				prot.conectaNether(neth);
-				this.neth.insereSala(linha, coluna, prot);
+				this.neth.insereSala(linha, coluna, prot); // alterar para linha e coluna
 				
 			} else if (i == 1) {
 				//classe = "PessoaPerdida";
@@ -61,11 +61,11 @@ public class Montador {
 					linha = x / n;
 					coluna = x % n - 1;
 				}
-				pessoap.setLinha(linha);
-				pessoap.setColuna(coluna);
+				pessoap.setLinha(linha); 
+				pessoap.setColuna(coluna); 
 				pessoap.setType("pessoap");
 				pessoap.conectaNether(neth);
-				this.neth.insereSala(linha, coluna, pessoap);
+				this.neth.insereSala(linha, coluna, pessoap); // alterar para linha e coluna
 				
 			} else {
 				//classe = "Porta";

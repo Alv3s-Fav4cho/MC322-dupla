@@ -76,11 +76,29 @@ public class ControleJogo {
 				System.out.println("voce matou um monstro");
 			}
 			else if(haPessoaPerdida) {
-				//f((Protagonista) prot).ferePessoaPerdida(prot.getLinha(), prot.getColuna());
-				System.out.println("voce feriu a pessoa perdida, que morrerá em x turnos se nao for curada");
+				if(!((PessoaPerdida) pessoap).isAchada())
+					((PessoaPerdida) pessoap).setSangrando(true);
+					System.out.println("voce feriu a pessoa perdida, que morrerá em "+turnos_pessoap+" turnos se nao for curada");
 			}
-			investiga();
-			((Protagonista) prot).setSanidade(((Protagonista) prot).getSanidade() + 1);// repor a sanidade perdida por chamar investiga, protagonista nao deve perder sanidade ao atirar
+			ArrayList<String> atores = new ArrayList<String>();
+			atores = ((Protagonista) prot).tateiaSala(prot.getLinha(), prot.getColuna());
+			if(atores.size() == 1) {			
+				System.out.println("elementos da sala atual:");
+				System.out.println("->Nao ha nada nesta sala.");
+			}
+			else {				
+				System.out.println("elementos da sala atual:");
+				for(String i : atores) {
+					if(i != "prot")
+						if(((PessoaPerdida) pessoap).isAchada()) {
+							if(i != "pessoap")
+								System.out.println("->"+ i);							
+						}
+						else
+							System.out.println("->"+ i);
+				}
+			}
+			//((Protagonista) prot).setSanidade(((Protagonista) prot).getSanidade() + 1);// repor a sanidade perdida por chamar investiga, protagonista nao deve perder sanidade ao atirar
 			((Protagonista) prot).setMunicao(((Protagonista) prot).getMunicao() - 1);			
 		}
 		else{
@@ -98,7 +116,17 @@ public class ControleJogo {
 	}
 	
 	public void curaOutro() {
-		
+		if(((PessoaPerdida) pessoap).isSangrando() && ((Protagonista) prot).getKitMedico() > 0) {
+			((PessoaPerdida) pessoap).setSangrando(false);
+			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() - 1);
+			System.out.println("pessoa curada com sucesso!");
+		}
+		else if(((Protagonista) prot).getKitMedico() > 0){
+			System.out.println("voce nao possui kits para curar");
+		}
+		else {
+			System.out.println("pessoa nao esta ferida.");
+		}
 	}
 	
 	public void recolheMunicao() {
@@ -146,8 +174,8 @@ public class ControleJogo {
 			System.out.println("nao eh possivel usar a porta sem investigar a sala");
 		}
 		else if(((Protagonista) prot).verificaPorta(prot.getLinha(),prot.getColuna())) {
-			if(((Protagonista) prot).isPessoaPerdida())
-				System.out.println("parabens voce ganhou!!");
+			if(((PessoaPerdida) pessoap).isAchada())
+				((Protagonista) prot).setConcluiuMeta(true);
 			else {
 				System.out.println("pessoa perdida não esta com voce, nao pode sair");
 			}
@@ -206,12 +234,32 @@ public class ControleJogo {
 			protTomaDano();
 		}
 		((Protagonista) prot).setSanidade(10);
+		if(((PessoaPerdida) pessoap).isSangrando()) {
+			turnos_pessoap--;
+		}
 		this.turnos++;
 		System.out.println("Sanidade recuperada");
 	}
 	
+	public boolean continua(){
+		if(((Protagonista) prot).getVida() == 0) {
+			System.out.println("Sua vida chegou a 0, voce perdeu!");
+			return false;
+		}
+		else if(turnos_pessoap == 0){
+			System.out.println("pessoa perdida morreu, voce perdeu!");
+			return false;
+		}else if(((Protagonista) prot).isConcluiuMeta()){
+			System.out.println("parabens voce ganhou!!");
+			return false;
+		}
+		return true;
+	}
+	
 	public void statsProtagonista() {
 		String nome;
+		//if(((Protagonista) prot).getVida() > 0) {
+		
 		int vida, municao, sanidade, kitMedico;
 		vida = ((Protagonista) prot).getVida();
 		municao = ((Protagonista) prot).getMunicao();
@@ -222,12 +270,21 @@ public class ControleJogo {
 		System.out.println("municao:"+municao+"/7");
 		System.out.println("sanidade:"+sanidade+"/10");
 		System.out.println("kits disponiveis:"+kitMedico);
+		if(((PessoaPerdida) pessoap).isSangrando()) {
+			statsPessoap();
+		}
+		
 	}
 	
+	private void statsPessoap() {
+		System.out.println("Pessoa perdida morrerá em "+ turnos_pessoap +" turnos");
+	}
+
 	public void executaMovimeto(char movimento) {
 		if (movimento == 'w' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() - 1, prot.getColuna(), prot.getType())) {
 			if(((PessoaPerdida) pessoap).isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() - 1, pessoap.getColuna(), pessoap.getType());
+				pessoap.setLinha(pessoap.getLinha() - 1);
 			}
 			System.out.println("Protagonista se moveu para cima");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
@@ -236,11 +293,15 @@ public class ControleJogo {
 			((Protagonista) prot).alteraStatusSala();
 			prot.setLinha(prot.getLinha() - 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
+			if(((PessoaPerdida) pessoap).isSangrando()) {
+				turnos_pessoap--;
+			}
 			this.turnos++;
 		}
 		else if (movimento == 's' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() + 1, prot.getColuna(), prot.getType())) {
 			if(((PessoaPerdida) pessoap).isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() + 1, pessoap.getColuna(), pessoap.getType());
+				pessoap.setLinha(pessoap.getLinha()+1);
 			}
 			System.out.println("Protagonista se moveu para baixo");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
@@ -249,11 +310,15 @@ public class ControleJogo {
 			((Protagonista) prot).alteraStatusSala();
 			prot.setLinha(prot.getLinha() + 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
+			if(((PessoaPerdida) pessoap).isSangrando()) {
+				turnos_pessoap--;
+			}
 			this.turnos++;
 		}
 		else if (movimento == 'a' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha(), prot.getColuna() - 1, prot.getType())) {
 			if(((PessoaPerdida) pessoap).isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna()-1, pessoap.getType());
+				pessoap.setColuna(pessoap.getColuna() - 1);
 			}
 			System.out.println("Protagonista se moveu para a esquerda");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
@@ -262,20 +327,27 @@ public class ControleJogo {
 			((Protagonista) prot).alteraStatusSala();
 			prot.setColuna(prot.getColuna() - 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
+			if(((PessoaPerdida) pessoap).isSangrando()) {
+				turnos_pessoap--;
+			}
 			this.turnos++;
 			
 		}
 		else if (movimento == 'd' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() , prot.getColuna() + 1, prot.getType())) {
 			if(((PessoaPerdida) pessoap).isAchada()) {
-				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna() - 1,  pessoap.getType());
+				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna() + 1,  pessoap.getType());
+				pessoap.setColuna(pessoap.getColuna() + 1);
 			}
 			System.out.println("Protagonista se moveu para a direita");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
 			((Protagonista) prot).alteraStatusSala();
-			((Protagonista)prot).setColuna(((Protagonista)prot).getColuna() + 1);
+			prot.setColuna(prot.getColuna() + 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
+			if(((PessoaPerdida) pessoap).isSangrando()) {
+				turnos_pessoap--;
+			}
 			this.turnos++;
 		}
 		else
