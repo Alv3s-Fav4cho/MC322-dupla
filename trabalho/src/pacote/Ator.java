@@ -34,6 +34,12 @@ public class Ator {
 		this.neth = neth;
 	}
 	
+	public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna, String tipo) {
+		if(neth.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna, tipo))
+			return true;
+		return false;
+	}
+	
 	public String toString() {
 		return linha +" "+coluna;
 	}

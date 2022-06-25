@@ -4,18 +4,25 @@ import java.util.ArrayList;
 
 public class ControleJogo {
 	Ator prot;
+	Ator pessoap;
 	private char movimento;
 	private char acao;
 	private int turnos = 0;
 	private int turnos_pessoap = 10;
 	//commit
-	public void conectaProtagonista(Sala s[][]) {
+	public void conectaAtor(Sala s[][], String tipo) {
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				for(int k = 0; k < s[i][j].atores.size(); k++) {
-					if(s[i][j].atores.get(k).getType() == "prot") {
-						this.prot = (Protagonista)s[i][j].atores.get(k);						
-					}					
+					if(tipo == "prot") {
+						if(s[i][j].atores.get(k).getType() == "prot") {
+							this.prot = (Protagonista)s[i][j].atores.get(k);						
+						}											
+					}else if(tipo == "pessoap") {
+						if(s[i][j].atores.get(k).getType() == "pessoap") {
+							this.pessoap = (PessoaPerdida)s[i][j].atores.get(k);						
+						}
+					}
 				}
 			}
 		}
@@ -125,7 +132,8 @@ public class ControleJogo {
 			System.out.println("nao eh possivel capturar a pessoa perdida sem investigar a sala");
 		}
 		else if(((Protagonista) prot).verificaPessoaPerdida(prot.getLinha(),prot.getColuna())) {
-			((Protagonista) prot).setPessoaPerdida(true);
+			//((Protagonista) prot).setPessoaPerdida(true);
+			((PessoaPerdida) pessoap).setAchada(true);
 			System.out.println("pessoa pega com sucesso");
 		}
 		else {
@@ -165,7 +173,12 @@ public class ControleJogo {
 				System.out.println("elementos da sala atual:");
 				for(String i : atores) {
 					if(i != "prot")
-						System.out.println("->"+ i);
+						if(((PessoaPerdida) pessoap).isAchada()) {
+							if(i != "pessoap")
+								System.out.println("->"+ i);							
+						}
+						else
+							System.out.println("->"+ i);
 				}
 				if(atores.contains("monstro")) {
 					protTomaDano();
@@ -212,38 +225,50 @@ public class ControleJogo {
 	}
 	
 	public void executaMovimeto(char movimento) {
-		if (movimento == 'w' && ((Protagonista)prot).protSeMove(((Protagonista)prot).getLinha(), ((Protagonista)prot).getColuna(), ((Protagonista)prot).getLinha() - 1, ((Protagonista)prot).getColuna())) {
+		if (movimento == 'w' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() - 1, prot.getColuna(), prot.getType())) {
+			if(((PessoaPerdida) pessoap).isAchada()) {
+				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() - 1, pessoap.getColuna(), pessoap.getType());
+			}
 			System.out.println("Protagonista se moveu para cima");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
 			((Protagonista) prot).alteraStatusSala();
-			((Protagonista)prot).setLinha(((Protagonista)prot).getLinha() - 1);
+			prot.setLinha(prot.getLinha() - 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
 			this.turnos++;
 		}
-		else if (movimento == 's' && ((Protagonista)prot).protSeMove(((Protagonista)prot).getLinha(), ((Protagonista)prot).getColuna(), ((Protagonista)prot).getLinha() + 1, ((Protagonista)prot).getColuna())) {
+		else if (movimento == 's' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() + 1, prot.getColuna(), prot.getType())) {
+			if(((PessoaPerdida) pessoap).isAchada()) {
+				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() + 1, pessoap.getColuna(), pessoap.getType());
+			}
 			System.out.println("Protagonista se moveu para baixo");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
 			((Protagonista) prot).alteraStatusSala();
-			((Protagonista)prot).setLinha(((Protagonista)prot).getLinha() + 1);
+			prot.setLinha(prot.getLinha() + 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
 			this.turnos++;
 		}
-		else if (movimento == 'a' && ((Protagonista)prot).protSeMove(((Protagonista)prot).getLinha(), ((Protagonista)prot).getColuna(), ((Protagonista)prot).getLinha(), ((Protagonista)prot).getColuna() - 1)) {
+		else if (movimento == 'a' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha(), prot.getColuna() - 1, prot.getType())) {
+			if(((PessoaPerdida) pessoap).isAchada()) {
+				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna()-1, pessoap.getType());
+			}
 			System.out.println("Protagonista se moveu para a esquerda");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
 			((Protagonista) prot).alteraStatusSala();
-			((Protagonista)prot).setColuna(((Protagonista)prot).getColuna() - 1);
+			prot.setColuna(prot.getColuna() - 1);
 			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
 			this.turnos++;
 			
 		}
-		else if (movimento == 'd' && ((Protagonista)prot).protSeMove(((Protagonista)prot).getLinha(), ((Protagonista)prot).getColuna(), ((Protagonista)prot).getLinha() , ((Protagonista)prot).getColuna() + 1)) {
+		else if (movimento == 'd' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() , prot.getColuna() + 1, prot.getType())) {
+			if(((PessoaPerdida) pessoap).isAchada()) {
+				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna() - 1,  pessoap.getType());
+			}
 			System.out.println("Protagonista se moveu para a direita");
 			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);

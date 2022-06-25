@@ -16,9 +16,9 @@ public class Montador {
 		// matriz 5x5, ordem n=5
 		int n = 5;
 		//String classe = "teste";
-		Protagonista prot;
-		PessoaPerdida pessoap;
-		Porta porta;
+		Ator prot;
+		Ator pessoap;
+		Ator porta;
 		Random rand = new Random();
 
 		for (int i = 0; i <= 2; i++) {

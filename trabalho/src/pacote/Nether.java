@@ -18,16 +18,16 @@ public class Nether {
 		this.s[linha][coluna].atores.add(ator);		
 	}
 
-	public boolean movimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
+	public boolean movimentoValido(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna, String tipo) {
 		if(nova_linha >= 0 && nova_linha < 5 && nova_coluna >= 0 && nova_coluna < 5) {
-			alteraNether(linha_atual, coluna_atual, nova_linha, nova_coluna);
+			alteraNether(linha_atual, coluna_atual, nova_linha, nova_coluna, tipo);
 			return true;
 		}
 		return false;
 	}
 
-	public void alteraNether(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna) {
-		int indice = achaIndice(linha_atual, coluna_atual, "prot");
+	public void alteraNether(int linha_atual, int coluna_atual, int nova_linha, int nova_coluna, String tipo) {
+		int indice = achaIndice(linha_atual, coluna_atual, tipo);
 		s[nova_linha][nova_coluna].atores.add(s[linha_atual][coluna_atual].atores.get(indice));
 		s[linha_atual][coluna_atual].atores.remove(indice);
 	}

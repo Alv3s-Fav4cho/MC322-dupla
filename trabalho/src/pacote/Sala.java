@@ -14,7 +14,7 @@ public class Sala {
 		
 		x = rand.nextInt(100)+1;
 		if(x > 90){ // 10% de chance de criar um monstro junto com a sala
-			Monstro monstro = new Monstro();
+			Ator monstro = new Monstro();
 			monstro.setLinha(i);
 			monstro.setColuna(j);
 			monstro.setType("monstro");
@@ -23,7 +23,7 @@ public class Sala {
 		
 		y = rand.nextInt(100)+1;
 		if(y > 0){ // 10% de chance de criar um kitMedico junto com a sala
-			KitMedico kit = new KitMedico();
+			Ator kit = new KitMedico();
 			kit.setLinha(i);
 			kit.setColuna(j);
 			kit.setType("kit");
@@ -32,7 +32,7 @@ public class Sala {
 		
 		z = rand.nextInt(100)+1;
 		if(y > 90){ // 10% de chance de criar uma municao junto com a sala
-			Municao municao = new Municao();
+			Ator municao = new Municao();
 			municao.setLinha(i);
 			municao.setColuna(j);
 			municao.setType("municao");

@@ -25,7 +25,8 @@ public class AppLost {
 		
 		m.montar();
 
-		cj.conectaProtagonista(neth.s);
+		cj.conectaAtor(neth.s, "prot");
+		cj.conectaAtor(neth.s, "pessoap");
 		neth.imprimeNether1();
 		
 		System.out.println(cj.prot.getLinha()+" "+cj.prot.getColuna());

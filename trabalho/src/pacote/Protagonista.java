@@ -56,11 +56,13 @@ public class Protagonista extends Ator{
 		this.pessoaPerdida = pessoaPerdida;
 	}
 	
-	public boolean protSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) {
-		if(neth.movimentoValido(linha_atual, coluna_atual, nova_linha, nova_coluna))
+	/*public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) { 
+		if(neth.movimentoValido(linha_atual,coluna_atual, nova_linha, nova_coluna))
 			return true;
-		return false;
-	}
+		return false; 
+	}*/
+	
+	
 	
 	public void alteraStatusSala() {
 		neth.s[getLinha()][getColuna()].setSala_investigada(false);
@@ -69,7 +71,7 @@ public class Protagonista extends Ator{
 	public boolean verificaPessoaPerdida(int linha, int coluna) {
 		int valor = neth.existePessoaPerdida(linha, coluna);
 		if(valor >= 0) {
-			neth.s[linha][coluna].atores.remove(valor);
+			//neth.s[linha][coluna].atores.remove(valor);
 			return true;
 		}
 		return false;
