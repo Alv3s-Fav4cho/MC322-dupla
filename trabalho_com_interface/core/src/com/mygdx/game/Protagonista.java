@@ -3,29 +3,32 @@ package com.mygdx.game;
 import java.util.ArrayList;
 
 public class Protagonista extends Ator{
-	private String nome;
 	private int vida;
 	private int municao;
 	private int sanidade;
 	private int kitMedico;
-	private boolean pessoaPerdida;
 	private boolean concluiuMeta;
 
-	public Protagonista() {
+	/*public Protagonista() {
 		this.nome = "";
 		this.vida = 10;
 		this.municao = 7;
 		this.sanidade = 10;
 		this.kitMedico = 0;
 		this.pessoaPerdida = false;
+	}*/
+
+	public Protagonista(String type, int linha, int coluna, Nether neth) {
+		setType(type);
+		setLinha(linha);
+		setColuna(coluna);
+		conectaNether(neth);
+		this.vida = 10;
+		this.municao = 7;
+		this.sanidade = 10;
+		this.kitMedico = 0;
 	}
-	
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+
 	public int getVida() {
 		return vida;
 	}
@@ -49,12 +52,6 @@ public class Protagonista extends Ator{
 	}
 	public void setKitMedico(int kitMedico) {
 		this.kitMedico = kitMedico;
-	}
-	public boolean isPessoaPerdida() {
-		return pessoaPerdida;
-	}
-	public void setPessoaPerdida(boolean pessoaPerdida) {
-		this.pessoaPerdida = pessoaPerdida;
 	}
 	
 	public boolean isConcluiuMeta() {
@@ -133,6 +130,28 @@ public class Protagonista extends Ator{
 		ArrayList<String> atores = new ArrayList<String>();
 		atores = neth.atores_na_sala(linha, coluna);
 		return atores;
+	}
+
+	@Override
+	public boolean isAchada() {
+		//do nothing
+		return false;
+	}
+
+	@Override
+	public void setAchada(boolean achada) {
+		//do nothing
+	}
+
+	@Override
+	public boolean isSangrando() {
+		//do nothing
+		return false;
+	}
+
+	@Override
+	public void setSangrando(boolean sangrando) {
+		//do nothing
 	}
 	
 }

@@ -18,11 +18,11 @@ public class ControleJogo {
 				for(int k = 0; k < s[i][j].atores.size(); k++) {
 					if(tipo == "prot") {
 						if(s[i][j].atores.get(k).getType() == "prot") {
-							this.prot = (Protagonista)s[i][j].atores.get(k);						
+							this.prot = s[i][j].atores.get(k); //cast						
 						}											
 					}else if(tipo == "pessoap") {
 						if(s[i][j].atores.get(k).getType() == "pessoap") {
-							this.pessoap = (PessoaPerdida)s[i][j].atores.get(k);						
+							this.pessoap = s[i][j].atores.get(k);	//cast							
 						}
 					}
 				}
@@ -58,7 +58,7 @@ public class ControleJogo {
 		mensagens = new ArrayList<String>();
 		if(c == 'w' || c == 'a' || c == 's' || c == 'd') {
 			this.movimento = c;
-			if(((Protagonista) prot).getSanidade() > 0) {
+			if(prot.getSanidade() > 0) {
 				executaMovimeto(movimento);
 				return mensagens;
 			}
@@ -67,7 +67,7 @@ public class ControleJogo {
 				System.out.println("Sanidade baixa, recupere para poder se mover");
 			}
 		}
-		else if(c == 'e' || c == 'r' || c == 'f' || c == 'g' || c == 'z' || c == 'x' || c == 'q' || c == 't') {
+		else if(c == 'c' || c == 'e' || c == 'r' || c == 'f' || c == 'g' || c == 'z' || c == 'x' || c == 'q' || c == 't') {
 			this.acao = c;
 			executaAcao(acao);
 			return mensagens;
@@ -75,6 +75,7 @@ public class ControleJogo {
 		mensagens.add("comando nao reconhecido");
 		return mensagens;
 	}
+	
 	public void revelaSuaPosicao() {
 		for(int i = 0; i < 5;i++) {
 			for(int j = 0; j < 5;j++) {
@@ -92,26 +93,26 @@ public class ControleJogo {
 	public void atira() {
 		//sanidade++ para não contar a sanidade perdida ao investigar
 		//mata monstro e entao chama investiga
-		if(((Protagonista) prot).getMunicao() > 0) {
-			boolean haMonstro = ((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna());
-			boolean haPessoaPerdida = ((Protagonista) prot).verificaPessoaPerdida(prot.getLinha(), prot.getColuna());
+		if(prot.getMunicao() > 0) {
+			boolean haMonstro = prot.verificaMonstro(prot.getLinha(), prot.getColuna());
+			boolean haPessoaPerdida = prot.verificaPessoaPerdida(prot.getLinha(), prot.getColuna());
 			//System.out.println("sua posicao no mapa:");
 			//revelaSuaPosicao();
 			if(haMonstro) {
-				((Protagonista) prot).mataMonstro(prot.getLinha(), prot.getColuna());
+				prot.mataMonstro(prot.getLinha(), prot.getColuna());
 				guardaMensagem("voce matou um monstro");
 				System.out.println("voce matou um monstro");
 			}
 			else if(haPessoaPerdida) {
-				if(!((PessoaPerdida) pessoap).isAchada()) {
-					((PessoaPerdida) pessoap).setSangrando(true);
+				if(!pessoap.isAchada()) {
+					pessoap.setSangrando(true);
 					String turnosp = String.valueOf(turnos_pessoap);
 					guardaMensagem("voce feriu a pessoa perdida, que morrerá em "+turnosp+" turnos se nao for curada");
 					System.out.println("voce feriu a pessoa perdida, que morrerá em "+turnos_pessoap+" turnos se nao for curada");					
 				}
 			}
 			ArrayList<String> atores = new ArrayList<String>();
-			atores = ((Protagonista) prot).tateiaSala(prot.getLinha(), prot.getColuna());
+			atores = prot.tateiaSala(prot.getLinha(), prot.getColuna());
 			if(atores.size() == 1) {
 				guardaMensagem("elementos da sala atual:");
 				guardaMensagem("->Nao ha nada nesta sala.");
@@ -123,7 +124,7 @@ public class ControleJogo {
 				System.out.println("elementos da sala atual:");
 				for(String i : atores) {
 					if(i != "prot")
-						if(((PessoaPerdida) pessoap).isAchada()) {
+						if(pessoap.isAchada()) {
 							if(i != "pessoap") {
 								guardaMensagem("->"+ i);
 								System.out.println("->"+ i);															
@@ -136,7 +137,7 @@ public class ControleJogo {
 				}
 			}
 			//((Protagonista) prot).setSanidade(((Protagonista) prot).getSanidade() + 1);// repor a sanidade perdida por chamar investiga, protagonista nao deve perder sanidade ao atirar
-			((Protagonista) prot).setMunicao(((Protagonista) prot).getMunicao() - 1);			
+			prot.setMunicao(prot.getMunicao() - 1);			
 		}
 		else{
 			guardaMensagem("voce esta sem municao");
@@ -145,16 +146,16 @@ public class ControleJogo {
 	}
 
 	public void curaSiMesmo() {
-		if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
-			((Protagonista) prot).setVida(((Protagonista) prot).getVida() - 1);
+		if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
+			prot.setVida(prot.getVida() - 1);
 		}
-		if(((Protagonista) prot).getKitMedico() > 0 && ((Protagonista) prot).getVida() < 10) {
-			((Protagonista) prot).setVida(10);
-			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() - 1);
+		if(prot.getKitMedico() > 0 && prot.getVida() < 10) {
+			prot.setVida(10);
+			prot.setKitMedico(prot.getKitMedico() - 1);
 			guardaMensagem("curado com sucesso");
 			System.out.println("curado com sucesso");
 		}
-		else if(((Protagonista) prot).getVida() == 10){
+		else if(prot.getVida() == 10){
 			guardaMensagem("vida cheia, nao ha necessidade de se curar");
 			System.out.println("vida cheia, nao ha necessidade de se curar");
 		}
@@ -165,13 +166,13 @@ public class ControleJogo {
 	}
 	
 	public void curaOutro() {
-		if(((PessoaPerdida) pessoap).isSangrando() && ((Protagonista) prot).getKitMedico() > 0) {
-			((PessoaPerdida) pessoap).setSangrando(false);
-			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() - 1);
+		if(pessoap.isSangrando() && prot.getKitMedico() > 0) {
+			pessoap.setSangrando(false);
+			prot.setKitMedico(prot.getKitMedico() - 1);
 			guardaMensagem("pessoa curada com sucesso!");
 			System.out.println("pessoa curada com sucesso!");
 		}
-		else if(((Protagonista) prot).getKitMedico() > 0){
+		else if(prot.getKitMedico() > 0){
 			guardaMensagem("voce nao possui kits para curar");
 			System.out.println("voce nao possui kits para curar");
 		}
@@ -186,8 +187,8 @@ public class ControleJogo {
 			guardaMensagem("nao eh possivel recolher municao sem investigar a sala");
 			System.out.println("nao eh possivel recolher municao sem investigar a sala");
 		}
-		else if(((Protagonista) prot).pegaMunicao(prot.getLinha(),prot.getColuna())) {
-			((Protagonista) prot).setMunicao(7);
+		else if(prot.pegaMunicao(prot.getLinha(),prot.getColuna())) {
+			prot.setMunicao(7);
 			guardaMensagem("muniçao pega com sucesso");
 			System.out.println("muniçao pega com sucesso");
 		}
@@ -202,8 +203,8 @@ public class ControleJogo {
 			guardaMensagem("nao eh possivel recolher kitMedico sem investigar a sala");
 			System.out.println("nao eh possivel recolher kitMedico sem investigar a sala");
 		}
-		else if(((Protagonista) prot).pegaKit(prot.getLinha(),prot.getColuna())) {
-			((Protagonista) prot).setKitMedico(((Protagonista) prot).getKitMedico() + 1);
+		else if(prot.pegaKit(prot.getLinha(),prot.getColuna())) {
+			prot.setKitMedico(prot.getKitMedico() + 1);
 			guardaMensagem("Kit pego com sucesso");
 			System.out.println("Kit pego com sucesso");
 		}
@@ -214,13 +215,17 @@ public class ControleJogo {
 	}
 	
 	public void achaPessoaPerdida() {
-		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
+		if (pessoap.isAchada()) {
+			guardaMensagem("Você já pegou a pessoa");
+			System.out.println("Você já pegou a pessoa");
+		}
+		else if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
 			guardaMensagem("nao eh possivel capturar a pessoa perdida sem investigar a sala");
 			System.out.println("nao eh possivel capturar a pessoa perdida sem investigar a sala");
 		}
-		else if(((Protagonista) prot).verificaPessoaPerdida(prot.getLinha(),prot.getColuna())) {
+		else if(prot.verificaPessoaPerdida(prot.getLinha(),prot.getColuna())) {
 			//((Protagonista) prot).setPessoaPerdida(true);
-			((PessoaPerdida) pessoap).setAchada(true);
+			pessoap.setAchada(true);
 			guardaMensagem("pessoa pega com sucesso");
 			System.out.println("pessoa pega com sucesso");
 		}
@@ -235,9 +240,9 @@ public class ControleJogo {
 			guardaMensagem("nao eh possivel usar a porta sem investigar a sala");
 			System.out.println("nao eh possivel usar a porta sem investigar a sala");
 		}
-		else if(((Protagonista) prot).verificaPorta(prot.getLinha(),prot.getColuna())) {
-			if(((PessoaPerdida) pessoap).isAchada())
-				((Protagonista) prot).setConcluiuMeta(true);
+		else if(prot.verificaPorta(prot.getLinha(),prot.getColuna())) {
+			if(pessoap.isAchada())
+				prot.setConcluiuMeta(true);
 			else {
 				guardaMensagem("pessoa perdida não esta com voce, nao pode sair");
 				System.out.println("pessoa perdida não esta com voce, nao pode sair");
@@ -253,10 +258,10 @@ public class ControleJogo {
 		
 		//deve receber uma lista dos atores presentes na sala(linha, coluna) em que o protagonista se encontra
 		// incluir condição de sanidade
-		int sanidade_atual = ((Protagonista) prot).getSanidade();
+		int sanidade_atual = prot.getSanidade();
 		if(sanidade_atual > 0) {
 			ArrayList<String> atores = new ArrayList<String>();
-			atores = ((Protagonista) prot).tateiaSala(prot.getLinha(), prot.getColuna());
+			atores = prot.tateiaSala(prot.getLinha(), prot.getColuna());
 			if(atores.size() == 1) {
 				guardaMensagem("elementos da sala atual:");
 				System.out.println("elementos da sala atual:");
@@ -268,7 +273,7 @@ public class ControleJogo {
 				System.out.println("elementos da sala atual:");
 				for(String i : atores) {
 					if(i != "prot")
-						if(((PessoaPerdida) pessoap).isAchada()) {
+						if(pessoap.isAchada()) {
 							if(i != "pessoap")
 								guardaMensagem("->"+ i);
 								System.out.println("->"+ i);							
@@ -281,7 +286,7 @@ public class ControleJogo {
 					protTomaDano();
 				}
 			}			
-			((Protagonista) prot).setSanidade(sanidade_atual - 1);
+			prot.setSanidade(sanidade_atual - 1);
 		}
 		else {
 			guardaMensagem("Sanidade insuficiente");
@@ -290,23 +295,23 @@ public class ControleJogo {
 	}
 	
 	private void protTomaDano() {
-		((Protagonista) prot).setVida(((Protagonista) prot).getVida()-1);
+		prot.setVida(prot.getVida()-1);
 		guardaMensagem("monstro na sala, Voce tomou dano.");
 		System.out.println("monstro na sala, Voce tomou dano.");
 	}
 	
 	private void protTomaDano(char c) {
-		((Protagonista) prot).setVida(((Protagonista) prot).getVida()-1);
+		prot.setVida(prot.getVida()-1);
 		guardaMensagem("monstro na ultima sala, saiu sem matar, Voce tomou dano.");
 		System.out.println("monstro na ultima sala, saiu sem matar, Voce tomou dano.");
 	}
 
 	public void recuperaSanidade() {
-		if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
+		if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 			protTomaDano();
 		}
-		((Protagonista) prot).setSanidade(10);
-		if(((PessoaPerdida) pessoap).isSangrando()) {
+		prot.setSanidade(10);
+		if(pessoap.isSangrando()) {
 			turnos_pessoap--;
 		}
 		this.turnos++;
@@ -315,7 +320,7 @@ public class ControleJogo {
 	}
 	
 	public boolean continua(){
-		if(((Protagonista) prot).getVida() == 0) {
+		if(prot.getVida() == 0) {
 			guardaMensagem("Sua vida chegou a 0, voce perdeu!");
 			System.out.println("Sua vida chegou a 0, voce perdeu!");
 			return false;
@@ -324,7 +329,7 @@ public class ControleJogo {
 			guardaMensagem("pessoa perdida morreu, voce perdeu!");
 			System.out.println("pessoa perdida morreu, voce perdeu!");
 			return false;
-		}else if(((Protagonista) prot).isConcluiuMeta()){
+		}else if(prot.isConcluiuMeta()){
 			guardaMensagem("parabens voce ganhou!!");
 			System.out.println("parabens voce ganhou!!");
 			return false;
@@ -334,12 +339,12 @@ public class ControleJogo {
 	
 	public ArrayList<String> statsProtagonista() {// fazer ter ligacao com a interface (retornar um arraylist)
 		status = new ArrayList<String>();
-		String sturnos, nome, vida, municao, sanidade, kitMedico;
+		String sturnos, vida, municao, sanidade, kitMedico;
 		sturnos = String.valueOf(turnos);
-		vida = String.valueOf(((Protagonista) prot).getVida());
-		municao = String.valueOf(((Protagonista) prot).getMunicao());
-		sanidade = String.valueOf(((Protagonista) prot).getSanidade());
-		kitMedico = String.valueOf(((Protagonista) prot).getKitMedico());
+		vida = String.valueOf(prot.getVida());
+		municao = String.valueOf(prot.getMunicao());
+		sanidade = String.valueOf(prot.getSanidade());
+		kitMedico = String.valueOf(prot.getKitMedico());
 		guardaStatus("numero de turnos:"+sturnos);
 		guardaStatus("HP:"+vida+"/10");
 		guardaStatus("municao:"+municao+"/7");
@@ -351,7 +356,7 @@ public class ControleJogo {
 		System.out.println("municao:"+municao+"/7");
 		System.out.println("sanidade:"+sanidade+"/10");
 		System.out.println("kits disponiveis:"+kitMedico);
-		if(((PessoaPerdida) pessoap).isSangrando()) {
+		if(pessoap.isSangrando()) {
 			statsPessoap();
 		}
 		return status;
@@ -365,74 +370,74 @@ public class ControleJogo {
 
 	public void executaMovimeto(char movimento) {
 		if (movimento == 'w' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() - 1, prot.getColuna(), prot.getType())) {
-			if(((PessoaPerdida) pessoap).isAchada()) {
+			if(pessoap.isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() - 1, pessoap.getColuna(), pessoap.getType());
 				pessoap.setLinha(pessoap.getLinha() - 1);
 			}
 			guardaMensagem("Protagonista se moveu para cima");
 			System.out.println("Protagonista se moveu para cima");
-			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
+			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
-			((Protagonista) prot).alteraStatusSala();
+			prot.alteraStatusSala();
 			prot.setLinha(prot.getLinha() - 1);
-			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
-			if(((PessoaPerdida) pessoap).isSangrando()) {
+			prot.setSanidade(prot.getSanidade()-1);
+			if(pessoap.isSangrando()) {
 				turnos_pessoap--;
 			}
 			this.turnos++;
 		}
 		else if (movimento == 's' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() + 1, prot.getColuna(), prot.getType())) {
-			if(((PessoaPerdida) pessoap).isAchada()) {
+			if(pessoap.isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha() + 1, pessoap.getColuna(), pessoap.getType());
 				pessoap.setLinha(pessoap.getLinha()+1);
 			}
 			guardaMensagem("Protagonista se moveu para baixo");
 			System.out.println("Protagonista se moveu para baixo");
-			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
+			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
-			((Protagonista) prot).alteraStatusSala();
+			prot.alteraStatusSala();
 			prot.setLinha(prot.getLinha() + 1);
-			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
-			if(((PessoaPerdida) pessoap).isSangrando()) {
+			prot.setSanidade(prot.getSanidade()-1);
+			if(pessoap.isSangrando()) {
 				turnos_pessoap--;
 			}
 			this.turnos++;
 		}
 		else if (movimento == 'a' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha(), prot.getColuna() - 1, prot.getType())) {
-			if(((PessoaPerdida) pessoap).isAchada()) {
+			if(pessoap.isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna()-1, pessoap.getType());
 				pessoap.setColuna(pessoap.getColuna() - 1);
 			}
 			guardaMensagem("Protagonista se moveu para a esquerda");
 			System.out.println("Protagonista se moveu para a esquerda");
-			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
+			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
-			((Protagonista) prot).alteraStatusSala();
+			prot.alteraStatusSala();
 			prot.setColuna(prot.getColuna() - 1);
-			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
-			if(((PessoaPerdida) pessoap).isSangrando()) {
+			prot.setSanidade(prot.getSanidade()-1);
+			if(pessoap.isSangrando()) {
 				turnos_pessoap--;
 			}
 			this.turnos++;
 			
 		}
 		else if (movimento == 'd' && prot.atorSeMove(prot.getLinha(), prot.getColuna(), prot.getLinha() , prot.getColuna() + 1, prot.getType())) {
-			if(((PessoaPerdida) pessoap).isAchada()) {
+			if(pessoap.isAchada()) {
 				pessoap.atorSeMove(pessoap.getLinha(), pessoap.getColuna(), pessoap.getLinha(), pessoap.getColuna() + 1,  pessoap.getType());
 				pessoap.setColuna(pessoap.getColuna() + 1);
 			}
 			guardaMensagem("Protagonista se moveu para a direita");
 			System.out.println("Protagonista se moveu para a direita");
-			if(((Protagonista) prot).verificaMonstro(prot.getLinha(), prot.getColuna())) {
+			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
-			((Protagonista) prot).alteraStatusSala();
+			prot.alteraStatusSala();
 			prot.setColuna(prot.getColuna() + 1);
-			((Protagonista)prot).setSanidade(((Protagonista) prot).getSanidade()-1);
-			if(((PessoaPerdida) pessoap).isSangrando()) {
+			prot.setSanidade(prot.getSanidade()-1);
+			if(pessoap.isSangrando()) {
 				turnos_pessoap--;
 			}
 			this.turnos++;
@@ -441,7 +446,6 @@ public class ControleJogo {
 			guardaMensagem("Movimento "+movimento+" invalido");
 			System.out.println("Movimento "+movimento+" invalido");
 	}
-	
 	
 	public void executaAcao(char acao) {
 		if(acao == 'r') {//ok

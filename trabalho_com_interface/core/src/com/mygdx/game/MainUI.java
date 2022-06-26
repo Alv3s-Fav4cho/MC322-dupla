@@ -182,6 +182,7 @@ public class MainUI extends ApplicationAdapter {
 			batch.draw(celwhite, _00.x + ((tamanho_celula+espacamento_celulas)*cj.prot.getColuna()), _00.y - ((tamanho_celula+espacamento_celulas) * cj.prot.getLinha()));
 			batch.end();
 			msgs = cj.comando(comando);	
+			statsProt = cj.statsProtagonista();	
 		}
 		
 		if(Gdx.input.isKeyJustPressed(Keys.W)){ comando = 'w'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}	

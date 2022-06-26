@@ -1,6 +1,6 @@
 package com.mygdx.game;
 
-public class Ator {
+public abstract class Ator implements Iator {
 	private String type;
 	private int linha;
 	private int coluna;
