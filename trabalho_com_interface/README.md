@@ -4,6 +4,14 @@
 
 > Descreva resumidamente o jogo e seu propósito.
 
+Lost in The Darkness é um jogo que se passa em um mapa quadriculado escuro de tamanho fixo 5x5
+representando um mundo sombrio. Há uma pessoa perdida e monstros espalhados pelo mapa, gerados aleatoriamente. No entanto,
+o protagonista do jogo pode cumprir a missão de salvar a pessoa, tendo consigo uma arma para enfrentar tais monstros.
+Ademais, ele conta com munição e kit médico também espalhados aleatoriamente pelo mapa.
+Assim, o protagonista ganha o jogo se conseguir capturar a pessoa perdida e encontrar a porta para sair do mundo sombrio. Os turnos para
+cumprir tal objetivo são contados e, quanto menos turnos para ganhar o jogo, melhor.
+Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangramento.
+
 # Equipe
 * Nome: Daniel Alves da Rocha - RA:247024
 * Nome: Leonardo Luca Favacho - RA:247226
