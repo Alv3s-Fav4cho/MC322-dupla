@@ -15,6 +15,7 @@ public class ControleJogo {
     ArrayList<String> mensagens;
 
 	public void conectaAtor(Sala s[][], String tipo) {
+		
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				for(int k = 0; k < s[i][j].atores.size(); k++) {
