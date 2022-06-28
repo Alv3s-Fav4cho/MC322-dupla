@@ -30,7 +30,7 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 ## diagrama de classes
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20classes.drawio.png)
 
-## diagrama de exceções
+## Diagrama de exceções
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20excecoes.PNG)
 
 ## Diagrama Geral da Arquitetura do Jogo
