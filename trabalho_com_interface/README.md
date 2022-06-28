@@ -21,10 +21,10 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 # Slides do Projeto
 
 ## Slides da Prévia
-[apresentação 1](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Slides/Lost%20in%20the%20darkness.pptx)
+[apresentação 1](https://docs.google.com/presentation/d/1ebuWa0mRhdeRJlyFdBaJB6J8-5YdEax1ck0ExOhTA0o/edit#slide=id.g12eab453924_0_0)
 
 ## Slides da Apresentação Final
-[apresentação final](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Slides/Apresenta%C3%A7%C3%A3o%20final.pptx)
+[apresentação final](https://docs.google.com/presentation/d/1_Il_i4ERdoqOP_OMNCpQH4tbsKAtW0nK6Z0qSo7RvOk/edit#slide=id.p)
 
 # Diagramas
 ## diagrama de classes
