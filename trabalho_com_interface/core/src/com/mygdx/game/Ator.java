@@ -75,21 +75,12 @@ public abstract class Ator implements IProtPessoap{
 	
 	public boolean isConcluiuMeta() {
 		return false;
-
 	}
 
 	public void setConcluiuMeta(boolean concluiuMeta) {
 
 	}
-	
-	/*public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) { 
-		if(neth.movimentoValido(linha_atual,coluna_atual, nova_linha, nova_coluna))
-			return true;
-		return false; 
-	}*/
-	
-	
-	
+
 	public void alteraStatusSala() {
 
 	}

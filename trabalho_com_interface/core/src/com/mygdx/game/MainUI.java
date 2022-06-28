@@ -34,19 +34,13 @@ public class MainUI extends ApplicationAdapter {
 	private Texture celwhite;
 	private int tamanho_celula = 90;
 	private int espacamento_celulas = 6;
-	private ShapeRenderer shape;
-	private String nome = "Jonathan";
-	private int municao = 5;
-	private int sanidade = 10;  
-	private int turnos = 0;
-	private int linha = 0;
-	private int coluna = 0;
 	private char comando;
 
 	private BitmapFont font;
 	private ArrayList<String> statsProt;
 	private ArrayList<String> msgs;
-	private boolean check=true;
+	private boolean check=false;
+	private boolean conti=true;
 	
 	private Nether neth;
 	private Montador m;
@@ -75,16 +69,10 @@ public class MainUI extends ApplicationAdapter {
 		cj.conectaAtor(neth.s, "pessoap");
 		
 		msgs = new ArrayList<String>();
-		msgs.add("");
+		msgs = cj.comando('p');
 		statsProt = new ArrayList<String>();
 		statusInicial();
 		statsProt.add("");
-		
-		/*msgs = new Array<>();
-	      msgs.add("Nome: "+nome);
-	      msgs.add("municao: "+municao+"/5");
-	      msgs.add("sanidade: "+sanidade+"/10");*/
-		
 		
 		//teste do trabalho
 		_00 = new Rectangle();
@@ -101,25 +89,17 @@ public class MainUI extends ApplicationAdapter {
 		municao = String.valueOf(((Protagonista) cj.prot).getMunicao());
 		sanidade = String.valueOf(((Protagonista) cj.prot).getSanidade());
 		kitMedico = String.valueOf(((Protagonista) cj.prot).getKitMedico());
-		statsProt.add("numero de turnos:"+sturnos);
-		statsProt.add("HP:"+vida+"/10");
-		statsProt.add("municao:"+municao+"/7");
-		statsProt.add("sanidade:"+sanidade+"/10");
-		statsProt.add("kits disponiveis:"+kitMedico);
+		statsProt.add("Número de turnos: "+sturnos);
+		statsProt.add("HP: "+vida+"/10");
+		statsProt.add("Munição: "+municao+"/7");
+		statsProt.add("Sanidade: "+sanidade+"/10");
+		statsProt.add("Kits disponíveis: "+kitMedico);
 		
 	}
 	
 	public void atualizaStatus(ArrayList<String> status) {
 		statsProt = new ArrayList<>();
 		statsProt = status;
-		//colocar variaveis dependentes da classe protagonista
-		/*statsProt = new ArrayList<>();
-		statsProt = cj.statsProtagonista();
-		/*statsProt.add("Nome: "+nome);
-		statsProt.add("municao: "+municao+"/5");
-		statsProt.add("sanidade: "+sanidade+"/10");
-		statsProt.add("posicao atual:("+linha+","+coluna+")");
-		statsProt.add("turnos: "+ turnos);*/
 		batch.begin();
 		for(int i = 0 ; i < statsProt.size(); i++) {
 			font.draw(batch, statsProt.get(i), 0, 480-(20*i));
@@ -140,9 +120,7 @@ public class MainUI extends ApplicationAdapter {
 	public void mostraInvestigacao() {
 		msgs = new ArrayList<>();
 		String  text = "frase estupidamente grande com ambito de verificar como esta se comporta na interface grafica do trabalho";
-		//msgs.add("frase estupidamente grande com ambito de verific<br>ar como esta se comporta na interface grafica do trabalho");
-		
-		//colocar no controlle esse for para fazer o array de mensagens que o controlle passará para a interface 
+
 		int length = text.length();
 		for (int i = 0; i < length; i += 48) {
 			msgs.add(text.substring(i, Math.min(length, i + 48)));
@@ -181,16 +159,17 @@ public class MainUI extends ApplicationAdapter {
 			msgs = cj.comando(comando);
 			statsProt = cj.statsProtagonista();	
 			if (!msgs.contains("voce esta sem municao")) {
-				batch.begin();
+				check = true;
+				/*batch.begin();
 				batch.draw(celwhite, _00.x + ((tamanho_celula+espacamento_celulas)*cj.prot.getColuna()), _00.y - ((tamanho_celula+espacamento_celulas) * cj.prot.getLinha()));
-				batch.end();
+				batch.end();*/
 			}
 		}
 		
-		if(Gdx.input.isKeyJustPressed(Keys.W)){ comando = 'w'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}	
-		if(Gdx.input.isKeyJustPressed(Keys.S)) { comando = 's'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
-		if(Gdx.input.isKeyJustPressed(Keys.D)) { comando = 'd'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
-		if(Gdx.input.isKeyJustPressed(Keys.A)) { comando = 'a'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
+		if(Gdx.input.isKeyJustPressed(Keys.W)){ check = false; comando = 'w'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}	
+		if(Gdx.input.isKeyJustPressed(Keys.S)) { check = false; comando = 's'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
+		if(Gdx.input.isKeyJustPressed(Keys.D)) { check = false; comando = 'd'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
+		if(Gdx.input.isKeyJustPressed(Keys.A)) { check = false; comando = 'a'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
 		if(Gdx.input.isKeyJustPressed(Keys.R)) { comando = 'r'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
 		if(Gdx.input.isKeyJustPressed(Keys.F)) { comando = 'f'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
 		if(Gdx.input.isKeyJustPressed(Keys.G)) { comando = 'g'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
@@ -199,11 +178,26 @@ public class MainUI extends ApplicationAdapter {
 		if(Gdx.input.isKeyJustPressed(Keys.C)) { comando = 'c'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
 		if(Gdx.input.isKeyJustPressed(Keys.Q)) { comando = 'q'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}		
 		if(Gdx.input.isKeyJustPressed(Keys.T)) { comando = 't'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}			
+		if(Gdx.input.isKeyJustPressed(Keys.P)) { comando = 'p'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}
+		
+		ArrayList<String> listaContinua =  new ArrayList<>();
+		listaContinua = cj.comando('0');
+		if(!listaContinua.contains(" ") && conti){
+			
+			GameOver exibir = new GameOver();
+			
+			//chama nova tela vitoria ou derrota
+			//msgs = cj.comando('0');
+			//conti = false;
+		}
 		
 		if(check) {
+			batch.begin();
+			batch.draw(celwhite, _00.x + ((tamanho_celula+espacamento_celulas)*cj.prot.getColuna()), _00.y - ((tamanho_celula+espacamento_celulas) * cj.prot.getLinha()));
+			batch.end();
 			//mostraInvestigacao();
 			//mostraMsg(msgs);
-			check = false;
+			//check = false;
 		}
 		atualizaStatus(statsProt);
 		mostraMsg(msgs);

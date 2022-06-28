@@ -26,7 +26,7 @@ public class Sala {
 		}
 		
 		z = rand.nextInt(100)+1;
-		if(y > 60){ // 40% de chance de criar uma municao junto com a sala
+		if(z > 60){ // 40% de chance de criar uma municao junto com a sala
 			Ator municao = AtorFactory.getAtor("municao", i, j, null);
 			atores.add(municao);
 		}

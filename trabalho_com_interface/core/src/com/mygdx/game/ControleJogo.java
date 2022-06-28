@@ -3,8 +3,6 @@ package com.mygdx.game;
 import java.util.ArrayList;
 
 public class ControleJogo {
-	/*
-	 */
 	Ator prot;
 	Ator pessoap;
 	private char movimento;
@@ -36,7 +34,26 @@ public class ControleJogo {
 	public int getTurnos() {
 		return turnos;
 	}
-
+	
+	private void mensagensPause() {
+		guardaMensagem("Comandos:");
+		guardaMensagem("Movimentos:");
+		guardaMensagem("    w: anda para sala de cima");
+		guardaMensagem("    s: anda para sala de baixo");
+		guardaMensagem("    d: anda para sala da direita");
+		guardaMensagem("    a: anda para sala da esquerda");
+		guardaMensagem("Ações:");
+		guardaMensagem("    e: atira");
+		guardaMensagem("    r: pega muniçao na sala");
+		guardaMensagem("    f: pega kit na sala");
+		guardaMensagem("    g: cura pessoa perdida");
+		guardaMensagem("    z: investiga");
+		guardaMensagem("    x: recupera sanidade");
+		guardaMensagem("    c: cura a si mesmo");
+		guardaMensagem("    q: usa a porta para sair");
+		guardaMensagem("    p: mostra lista de comandos");
+	}
+	
 	public void guardaStatus(String msg) {
 		int length = msg.length();
 		for (int i = 0; i < length; i += 48) {
@@ -65,14 +82,14 @@ public class ControleJogo {
 				}
 			}
 			catch (MovimentoParaBorda e) {
-				guardaMensagem("Movimento "+movimento+" invalido");
+				guardaMensagem("Movimento "+movimento+" inválido");
 			}
 			catch (MovimentoSemSanidade e) {
 				guardaMensagem("Sanidade baixa, recupere para poder se mover");
 			}
 			return mensagens;					
 		}
-		else if(c == 'c' || c == 'e' || c == 'r' || c == 'f' || c == 'g' || c == 'z' || c == 'x' || c == 'q' || c == 't') {
+		else if(c == 'c' || c == 'e' || c == 'r' || c == 'f' || c == 'g' || c == 'z' || c == 'x' || c == 'q' || c == 't' || c == 'p' || c == '0') {
 			this.acao = c;
 			executaAcao(acao);
 			return mensagens;
@@ -80,20 +97,6 @@ public class ControleJogo {
 		return mensagens;
 	}
 	
-	public void revelaSuaPosicao() {
-		for(int i = 0; i < 5;i++) {
-			for(int j = 0; j < 5;j++) {
-				if(prot.getLinha() != i || prot.getColuna() != j){
-					System.out.print("-  ");
-				}
-				else {
-					System.out.print("u  ");
-				}
-			}
-			System.out.println();
-		}
-	}
-
 	public void atira() throws TiroSemMunicao {
 		//sanidade++ para não contar a sanidade perdida ao investigar
 		//mata monstro e entao chama investiga
@@ -102,45 +105,36 @@ public class ControleJogo {
 			boolean haPessoaPerdida = prot.verificaPessoaPerdida(prot.getLinha(), prot.getColuna());
 			if(haMonstro) {
 				prot.mataMonstro(prot.getLinha(), prot.getColuna());
-				guardaMensagem("voce matou um monstro");
-				System.out.println("voce matou um monstro");
+				guardaMensagem("Você matou um monstro");
 			}
 			else if(haPessoaPerdida) {
 				if(!pessoap.isAchada()) {
 					pessoap.setSangrando(true);
 					String turnosp = String.valueOf(turnos_pessoap);
-					guardaMensagem("voce feriu a pessoa perdida, que morrerá em "+turnosp+" turnos se nao for curada");
-					System.out.println("voce feriu a pessoa perdida, que morrerá em "+turnos_pessoap+" turnos se nao for curada");					
+					guardaMensagem("Você feriu a pessoa perdida, que morrerá em "+turnosp+" turnos se não for curada");				
 				}
 			}
 			ArrayList<String> atores = new ArrayList<String>();
 			atores = prot.tateiaSala(prot.getLinha(), prot.getColuna());
 			if(atores.size() == 1) {
-				guardaMensagem("elementos da sala atual:");
-				guardaMensagem("->Nao ha nada nesta sala.");
-				System.out.println("elementos da sala atual:");
-				System.out.println("->Nao ha nada nesta sala.");
+				guardaMensagem("Elementos da sala atual:");
+				guardaMensagem("-> Não há nada nesta sala.");
 			}
 			else if(atores.size() == 2 && pessoap.isAchada()) {
-				guardaMensagem("elementos da sala atual:");
-				System.out.println("elementos da sala atual:");
-				guardaMensagem("->Nao ha nada nesta sala.");
-				System.out.println("->Nao ha nada nesta sala.");
+				guardaMensagem("Elementos da sala atual:");
+				guardaMensagem("-> Não há nada nesta sala.");
 			}
 			else {				
-				guardaMensagem("elementos da sala atual:");
-				System.out.println("elementos da sala atual:");
+				guardaMensagem("Elementos da sala atual:");
 				for(String i : atores) {
 					if(i != "prot")
 						if(pessoap.isAchada()) {
 							if(i != "pessoap") {
-								guardaMensagem("->"+ i);
-								System.out.println("->"+ i);															
+								guardaMensagem("-> "+ i);															
 							}
 						}
 						else {
-							guardaMensagem("->"+ i);
-							System.out.println("->"+ i);
+							guardaMensagem("-> "+ i);
 						}					
 				}
 			}
@@ -158,12 +152,10 @@ public class ControleJogo {
 		if(prot.getKitMedico() > 0 && prot.getVida() < 10) {
 			prot.setVida(10);
 			prot.setKitMedico(prot.getKitMedico() - 1);
-			guardaMensagem("curado com sucesso");
-			System.out.println("curado com sucesso");
+			guardaMensagem("Curado com sucesso");
 		}
 		else if(prot.getVida() == 10){
-			guardaMensagem("vida cheia, nao ha necessidade de se curar");
-			System.out.println("vida cheia, nao ha necessidade de se curar");
+			guardaMensagem("Vida cheia, não há necessidade de se curar");
 		}
 		else {
 			throw new UsarKit_SemTer();	
@@ -174,28 +166,23 @@ public class ControleJogo {
 		if(pessoap.isSangrando() && prot.getKitMedico() > 0) {
 			pessoap.setSangrando(false);
 			prot.setKitMedico(prot.getKitMedico() - 1);
-			guardaMensagem("pessoa curada com sucesso!");
-			System.out.println("pessoa curada com sucesso!");
+			guardaMensagem("Pessoa curada com sucesso!");
 		}
 		else if(prot.getKitMedico() > 0){
-			guardaMensagem("voce nao possui kits para curar");
-			System.out.println("voce nao possui kits para curar");
+			guardaMensagem("Você não possui kits para curar");
 		}
 		else {
 			guardaMensagem("pessoa nao esta ferida.");
-			System.out.println("pessoa nao esta ferida.");
 		}
 	}
 	
 	public void recolheMunicao() throws PegarMunicao_SemMunicao {
 		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
-			guardaMensagem("nao eh possivel recolher municao sem investigar a sala");
-			System.out.println("nao eh possivel recolher municao sem investigar a sala");
+			guardaMensagem("Não é possível recolher munição sem investigar a sala");
 		}
 		else if(prot.pegaMunicao(prot.getLinha(),prot.getColuna())) {
 			prot.setMunicao(7);
-			guardaMensagem("muniçao pega com sucesso");
-			System.out.println("muniçao pega com sucesso");
+			guardaMensagem("Munição pega com sucesso");
 		}
 		else {
 			throw new PegarMunicao_SemMunicao();
@@ -204,13 +191,11 @@ public class ControleJogo {
 	
 	public void recolheKit() throws PegarKit_SemKit {
 		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
-			guardaMensagem("nao eh possivel recolher kitMedico sem investigar a sala");
-			System.out.println("nao eh possivel recolher kitMedico sem investigar a sala");
+			guardaMensagem("Não é possível recolher kit médico sem investigar a sala");
 		}
 		else if(prot.pegaKit(prot.getLinha(),prot.getColuna())) {
 			prot.setKitMedico(prot.getKitMedico() + 1);
 			guardaMensagem("Kit pego com sucesso");
-			System.out.println("Kit pego com sucesso");
 		}
 		else {
 			throw new PegarKit_SemKit();
@@ -219,40 +204,33 @@ public class ControleJogo {
 	
 	public void achaPessoaPerdida() {
 		if (pessoap.isAchada()) {
-			guardaMensagem("Você já pegou a pessoa");
-			System.out.println("Você já pegou a pessoa");
+			guardaMensagem("Você já capturou a pessoa");
 		}
 		else if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
-			guardaMensagem("nao eh possivel capturar a pessoa perdida sem investigar a sala");
-			System.out.println("nao eh possivel capturar a pessoa perdida sem investigar a sala");
+			guardaMensagem("Não é possível capturar a pessoa perdida sem investigar a sala");
 		}
 		else if(prot.verificaPessoaPerdida(prot.getLinha(),prot.getColuna())) {
 			pessoap.setAchada(true);
-			guardaMensagem("pessoa pega com sucesso");
-			System.out.println("pessoa pega com sucesso");
+			guardaMensagem("Pessoa pega com sucesso");
 		}
 		else {
-			guardaMensagem("nao ha pessoa perdida nessa sala");
-			System.out.println("nao ha pessoa perdida nessa sala");
+			guardaMensagem("Não há pessoa perdida nessa sala");
 		}
 	}
 	
 	public void sairPelaPorta() {
 		if(!prot.neth.s[prot.getLinha()][prot.getColuna()].isSala_investigada()) {
-			guardaMensagem("nao eh possivel usar a porta sem investigar a sala");
-			System.out.println("nao eh possivel usar a porta sem investigar a sala");
+			guardaMensagem("Não é possível usar a porta sem investigar a sala");
 		}
 		else if(prot.verificaPorta(prot.getLinha(),prot.getColuna())) {
 			if(pessoap.isAchada())
 				prot.setConcluiuMeta(true);
 			else {
-				guardaMensagem("pessoa perdida não esta com voce, nao pode sair");
-				System.out.println("pessoa perdida não esta com voce, nao pode sair");
+				guardaMensagem("Pessoa perdida não está com você. Não pode sair");
 			}
 		}
 		else {
-			guardaMensagem("nao ha porta de saida nessa sala");
-			System.out.println("nao ha porta de saida nessa sala");
+			guardaMensagem("Não há porta de sapida nessa sala");
 		}
 	}
 	
@@ -265,29 +243,24 @@ public class ControleJogo {
 			ArrayList<String> atores = new ArrayList<String>();
 			atores = prot.tateiaSala(prot.getLinha(), prot.getColuna());
 			if(atores.size() == 1 && !pessoap.isAchada()) {
-				guardaMensagem("elementos da sala atual:");
-				System.out.println("elementos da sala atual:");
-				guardaMensagem("->Nao ha nada nesta sala.");
-				System.out.println("->Nao ha nada nesta sala.");
+				guardaMensagem("Elementos da sala atual:");
+				guardaMensagem("-> Não há nada nesta sala.");
 			}
 			else if(atores.size() == 2 && pessoap.isAchada()) {
-				guardaMensagem("elementos da sala atual:");
-				System.out.println("elementos da sala atual:");
-				guardaMensagem("->Nao ha nada nesta sala.");
-				System.out.println("->Nao ha nada nesta sala.");
+				guardaMensagem("Elementos da sala atual:");
+				guardaMensagem("-> Não há nada nesta sala.");
 			}
 			else {
-				guardaMensagem("elementos da sala atual:");
-				System.out.println("elementos da sala atual:");
+				guardaMensagem("Elementos da sala atual:");
 				for(String i : atores) {
 					if(i != "prot")
 						if(pessoap.isAchada()) {
 							if(i != "pessoap")
-								guardaMensagem("->"+ i);
-								System.out.println("->"+ i);							
+								guardaMensagem("-> "+ i);
+								System.out.println("-> "+ i);							
 						}
 						else
-							guardaMensagem("->"+ i);
+							guardaMensagem("-> "+ i);
 							System.out.println("->"+ i);
 				}
 				if(atores.contains("monstro")) {
@@ -298,20 +271,17 @@ public class ControleJogo {
 		}
 		else {
 			guardaMensagem("Sanidade insuficiente");
-			System.out.println("Sanidade insuficiente");
 		}	
 	}
 	
 	private void protTomaDano() {
 		prot.setVida(prot.getVida()-1);
-		guardaMensagem("monstro na sala, Voce tomou dano.");
-		System.out.println("monstro na sala, Voce tomou dano.");
+		guardaMensagem("Monstro na sala, você tomou dano.");
 	}
 	
 	private void protTomaDano(char c) {
 		prot.setVida(prot.getVida()-1);
-		guardaMensagem("monstro na ultima sala, saiu sem matar, Voce tomou dano.");
-		System.out.println("monstro na ultima sala, saiu sem matar, Voce tomou dano.");
+		guardaMensagem("Monstro na última sala e saiu sem matar. Você tomou dano.");
 	}
 
 	public void recuperaSanidade() {
@@ -324,31 +294,29 @@ public class ControleJogo {
 				turnos_pessoap--;
 			}
 			this.turnos++;
-			guardaMensagem("Sanidade recuperada");
-			System.out.println("Sanidade recuperada");			
+			guardaMensagem("Sanidade recuperada");		
 		}
 		else {
-			guardaMensagem("sanidade ja esta cheia");
-			System.out.println("sanidade ja esta cheia");
+			guardaMensagem("Sanidade já está cheia");
 		}
 	}
 	
-	public boolean continua(){
+	public void continua(){
 		if(prot.getVida() == 0) {
-			guardaMensagem("Sua vida chegou a 0, voce perdeu!");
-			System.out.println("Sua vida chegou a 0, voce perdeu!");
-			return false;
+			guardaMensagem("Sua vida chegou a 0. Você perdeu!");
+			//return false;
 		}
 		else if(turnos_pessoap == 0){
-			guardaMensagem("pessoa perdida morreu, voce perdeu!");
-			System.out.println("pessoa perdida morreu, voce perdeu!");
-			return false;
+			guardaMensagem("Pessoa perdida morreu. Você perdeu!");
+			//return false;
 		}else if(prot.isConcluiuMeta()){
-			guardaMensagem("parabens voce ganhou!!");
-			System.out.println("parabens voce ganhou!!");
-			return false;
+			guardaMensagem("Parabéns, você ganhou!!");
+			//return false;
 		}
-		return true;
+		if(mensagens.size() == 0) {
+			guardaMensagem(" ");
+		}
+		//return true;
 	}
 	
 	public ArrayList<String> statsProtagonista() {// fazer ter ligacao com a interface (retornar um arraylist)
@@ -359,17 +327,12 @@ public class ControleJogo {
 		municao = String.valueOf(prot.getMunicao());
 		sanidade = String.valueOf(prot.getSanidade());
 		kitMedico = String.valueOf(prot.getKitMedico());
-		guardaStatus("numero de turnos:"+sturnos);
-		guardaStatus("HP:"+vida+"/10");
-		guardaStatus("municao:"+municao+"/7");
-		guardaStatus("sanidade:"+sanidade+"/10");
-		guardaStatus("kits disponiveis:"+kitMedico);
+		guardaStatus("Número de turnos: "+sturnos);
+		guardaStatus("HP: "+vida+"/10");
+		guardaStatus("Munição: "+municao+"/7");
+		guardaStatus("Sanidade: "+sanidade+"/10");
+		guardaStatus("Kits disponíveis: "+kitMedico);
 		
-		System.out.println("numero de turnos:"+sturnos);
-		System.out.println("HP:"+vida+"/10");
-		System.out.println("municao:"+municao+"/7");
-		System.out.println("sanidade:"+sanidade+"/10");
-		System.out.println("kits disponiveis:"+kitMedico);
 		if(pessoap.isSangrando()) {
 			statsPessoap();
 		}
@@ -379,7 +342,6 @@ public class ControleJogo {
 	private void statsPessoap() {
 		String sturnos_pessoap = String.valueOf(turnos_pessoap);
 		guardaStatus("Pessoa perdida morrerá em "+ sturnos_pessoap +" turnos");
-		System.out.println("Pessoa perdida morrerá em "+ turnos_pessoap +" turnos");
 	}
 
 	public void executaMovimento(char movimento) throws MovimentoParaBorda {
@@ -389,7 +351,6 @@ public class ControleJogo {
 				pessoap.setLinha(pessoap.getLinha() - 1);
 			}
 			guardaMensagem("Protagonista se moveu para cima");
-			System.out.println("Protagonista se moveu para cima");
 			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
@@ -407,7 +368,6 @@ public class ControleJogo {
 				pessoap.setLinha(pessoap.getLinha()+1);
 			}
 			guardaMensagem("Protagonista se moveu para baixo");
-			System.out.println("Protagonista se moveu para baixo");
 			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
@@ -425,7 +385,6 @@ public class ControleJogo {
 				pessoap.setColuna(pessoap.getColuna() - 1);
 			}
 			guardaMensagem("Protagonista se moveu para a esquerda");
-			System.out.println("Protagonista se moveu para a esquerda");
 			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
@@ -444,7 +403,6 @@ public class ControleJogo {
 				pessoap.setColuna(pessoap.getColuna() + 1);
 			}
 			guardaMensagem("Protagonista se moveu para a direita");
-			System.out.println("Protagonista se moveu para a direita");
 			if(prot.verificaMonstro(prot.getLinha(), prot.getColuna())) {
 				protTomaDano(movimento);
 			}
@@ -468,7 +426,7 @@ public class ControleJogo {
 				recolheMunicao();
 			}
 			catch (PegarMunicao_SemMunicao e){
-				guardaMensagem("nao ha municao na sala");
+				guardaMensagem("Não há munição na sala");
 			}
 		}
 		else if(acao == 'e') {
@@ -476,7 +434,7 @@ public class ControleJogo {
 				atira();
 			}
 			catch (TiroSemMunicao e){
-				guardaMensagem("voce esta sem municao");
+				guardaMensagem("Você está sem munição");
 			}
 		}
 		else if(acao == 'f') {
@@ -484,7 +442,7 @@ public class ControleJogo {
 				recolheKit();
 			}
 			catch (PegarKit_SemKit e){
-				guardaMensagem("nao ha kitMedico na sala");
+				guardaMensagem("Não há kit médico na sala");
 			}
 		}
 		else if(acao == 'g') {
@@ -501,7 +459,7 @@ public class ControleJogo {
 				curaSiMesmo();
 			}
 			catch (UsarKit_SemTer e){
-				guardaMensagem("nao possui kitMedico para se curar");
+				guardaMensagem("Não possui kit médico para se curar");
 			}
 		}
 		else if(acao == 'q') {
@@ -509,6 +467,12 @@ public class ControleJogo {
 		}
 		else if(acao == 't') {
 			achaPessoaPerdida();
+		}
+		else if(acao == 'p') {
+			mensagensPause();
+		}
+		else if(acao == '0') {
+			continua();
 		}
 	}
 }

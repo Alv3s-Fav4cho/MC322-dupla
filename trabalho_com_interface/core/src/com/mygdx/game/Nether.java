@@ -95,49 +95,10 @@ public class Nether {
 	
 	public ArrayList<String> atores_na_sala(int linha, int coluna){
 		ArrayList<String> atores = new ArrayList<String>();
-		/*
-		 * if(s[linha][coluna].atores.size() > 1){ }
-		 */
 		s[linha][coluna].setSala_investigada(true);
 		for(int i = 0; i < s[linha][coluna].atores.size(); i++) {
 			atores.add(s[linha][coluna].atores.get(i).getType());				
 		}
 		return atores;
 	}
-	
-	/*
-	public char[][] montaSaida(){ 
-		
-	}
-	 */
-
-	
-	/*public void imprimeNether1(){
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(s[i][j].atores.size() > 0) {
-					for(int k = 0; k < s[i][j].atores.size(); k++) {
-						System.out.print("["+i+"]["+j+"]: ");
-						System.out.print(s[i][j].atores.get(k).getType()+" ");
-						System.out.println();
-					}					
-				}
-				else {
-					System.out.print("["+i+"]["+j+"]: ");
-					System.out.print("Posicao vazia ");
-					System.out.println();
-				}
-			}
-		}
-	}*/
-	
-	/*public void imprimeNether2(){
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 5; j++) {
-				System.out.print(s[i][j].atoresNaSala());
-			}
-			System.out.println();
-		}
-	}*/
-	 
 }
