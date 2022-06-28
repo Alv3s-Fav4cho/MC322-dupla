@@ -31,7 +31,7 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 
 # Arquivo Executável do Jogo
 
-[lost in the darkness]()
+[lost in the darkness](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/executavel/trabalho_com_interface.jar)
 
 # Slides do Projeto
 
