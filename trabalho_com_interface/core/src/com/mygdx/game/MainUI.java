@@ -178,11 +178,13 @@ public class MainUI extends ApplicationAdapter {
 		//controle de teste do trabalho
 		if(Gdx.input.isKeyJustPressed(Keys.E)) {
 			comando = 'e';
-			batch.begin();
-			batch.draw(celwhite, _00.x + ((tamanho_celula+espacamento_celulas)*cj.prot.getColuna()), _00.y - ((tamanho_celula+espacamento_celulas) * cj.prot.getLinha()));
-			batch.end();
-			msgs = cj.comando(comando);	
+			msgs = cj.comando(comando);
 			statsProt = cj.statsProtagonista();	
+			if (!msgs.contains("voce esta sem municao")) {
+				batch.begin();
+				batch.draw(celwhite, _00.x + ((tamanho_celula+espacamento_celulas)*cj.prot.getColuna()), _00.y - ((tamanho_celula+espacamento_celulas) * cj.prot.getLinha()));
+				batch.end();
+			}
 		}
 		
 		if(Gdx.input.isKeyJustPressed(Keys.W)){ comando = 'w'; msgs = cj.comando(comando); statsProt = cj.statsProtagonista();}	

@@ -11,7 +11,7 @@ public class Porta extends Ator{
 		conectaNether(neth);
 	}
 
-	@Override
+	/*@Override
 	public void alteraStatusSala() {
 		//do nothing
 	}
@@ -134,5 +134,5 @@ public class Porta extends Ator{
 	@Override
 	public void setSangrando(boolean sangrando) {
 		//do nothing
-	}
+	}*/
 }

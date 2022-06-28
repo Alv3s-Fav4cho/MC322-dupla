@@ -131,8 +131,9 @@ public class Protagonista extends Ator{
 		atores = neth.atores_na_sala(linha, coluna);
 		return atores;
 	}
+	
 
-	@Override
+	/*@Override
 	public boolean isAchada() {
 		//do nothing
 		return false;
@@ -152,6 +153,6 @@ public class Protagonista extends Ator{
 	@Override
 	public void setSangrando(boolean sangrando) {
 		//do nothing
-	}
+	}*/
 	
 }

@@ -10,7 +10,7 @@ public class Monstro extends Ator{
 		setColuna(coluna);
 	}
 
-	@Override
+	/*@Override
 	public void alteraStatusSala() {
 		//do nothing
 	}
@@ -133,5 +133,5 @@ public class Monstro extends Ator{
 	@Override
 	public void setSangrando(boolean sangrando) {
 		//do nothing
-	}
+	}*/
 }

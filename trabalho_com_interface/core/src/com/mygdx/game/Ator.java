@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
-public abstract class Ator implements Iator {
+import java.util.ArrayList;
+
+public abstract class Ator implements IProtPessoap{
 	private String type;
 	private int linha;
 	private int coluna;
@@ -42,5 +44,98 @@ public abstract class Ator implements Iator {
 	
 	public String toString() {
 		return linha +" "+coluna;
+	}
+	
+	//metodos especificos do protagonista
+	public int getVida() {
+		return 0;
+	}
+	public void setVida(int vida) {
+		
+	}
+	public int getMunicao() {
+		return 0;
+	}
+	public void setMunicao(int municao) {
+
+	}
+	public int getSanidade() {
+		return 0;
+	}
+	public void setSanidade(int sanidade) {
+
+	}
+	public int getKitMedico() {
+		return 0;
+
+	}
+	public void setKitMedico(int kitMedico) {
+
+	}
+	
+	public boolean isConcluiuMeta() {
+		return false;
+
+	}
+
+	public void setConcluiuMeta(boolean concluiuMeta) {
+
+	}
+	
+	/*public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna) { 
+		if(neth.movimentoValido(linha_atual,coluna_atual, nova_linha, nova_coluna))
+			return true;
+		return false; 
+	}*/
+	
+	
+	
+	public void alteraStatusSala() {
+
+	}
+	
+	public boolean verificaPessoaPerdida(int linha, int coluna) {
+		return false;
+	}
+	
+	public boolean pegaKit(int linha, int coluna) {
+		return false;
+	}
+	 	
+	public boolean pegaMunicao(int linha, int coluna){
+		return false;	
+	}
+	
+	public void mataMonstro(int linha, int coluna) {
+
+	}
+	
+	public boolean verificaMonstro(int linha, int coluna) {
+		return false;
+	}
+	 
+	public boolean verificaPorta(int linha, int coluna) {
+		return false;
+	}
+	
+	public ArrayList<String> tateiaSala(int linha, int coluna){
+		return null;
+	}
+	
+	//metodos especificos da PessoaPerdida
+	public boolean isAchada() {
+		return false;
+	}
+
+	public void setAchada(boolean achada) {
+
+	}
+
+	public boolean isSangrando() {
+		return false;
+	}
+
+	public void setSangrando(boolean sangrando) {
+		
 	}
 }

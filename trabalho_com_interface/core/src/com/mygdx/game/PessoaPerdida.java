@@ -30,7 +30,7 @@ public class PessoaPerdida extends Ator{
 		this.sangrando = sangrando;
 	}
 
-	@Override
+	/*@Override
 	public void alteraStatusSala() {
 		//do nothing
 	}
@@ -129,5 +129,5 @@ public class PessoaPerdida extends Ator{
 	@Override
 	public void setConcluiuMeta(boolean concluiuMeta) {
 		//do nothing
-	}
+	}*/
 }

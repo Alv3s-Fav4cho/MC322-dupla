@@ -44,46 +44,51 @@ public class Nether {
 	}
 
 	public int existeKit(int linha_atual, int coluna_atual) {
-		int valor = -1;
+		int valor;
+		/*int valor = -1;
 		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
-		}
+		}*/
 		valor = achaIndice(linha_atual, coluna_atual, "kit");
 		return valor;
 	}
 	
 	public int existeMunicao(int linha_atual, int coluna_atual) {
-		int valor = -1;
+		int valor;
+		/*int valor = -1;
 		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
-		}
+		}*/
 		valor = achaIndice(linha_atual, coluna_atual, "municao");
 		return valor;
 	}
 	
 	public int existePessoaPerdida(int linha_atual, int coluna_atual) {
-		int valor = -1;
+		int valor;
+		/*int valor = -1;
 		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
-		}
+		}*/
 		valor = achaIndice(linha_atual, coluna_atual, "pessoap");
 		return valor;
 	}	 
 	
 	public int existeMonstro(int linha_atual, int coluna_atual) {
-		int valor = -1;
+		int valor;
+		/*int valor = -1;
 		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
-		}
+		}*/
 		valor = achaIndice(linha_atual, coluna_atual, "monstro");
 		return valor;
 	}
 
 	public int existePorta(int linha_atual, int coluna_atual) {
-		int valor = -1;
+		int valor;
+		/*int valor = -1;
 		if(s[linha_atual][coluna_atual].atores.size() == 1) {
 			return valor;
-		}
+		}*/
 		valor = achaIndice(linha_atual, coluna_atual, "porta");
 		return valor;
 	}
@@ -107,7 +112,7 @@ public class Nether {
 	 */
 
 	
-	public void imprimeNether1(){
+	/*public void imprimeNether1(){
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				if(s[i][j].atores.size() > 0) {
@@ -124,15 +129,15 @@ public class Nether {
 				}
 			}
 		}
-	}
+	}*/
 	
-	public void imprimeNether2(){
+	/*public void imprimeNether2(){
 		for(int i = 0; i < 5; i++) {
 			for(int j = 0; j < 5; j++) {
 				System.out.print(s[i][j].atoresNaSala());
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	 
 }
