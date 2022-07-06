@@ -134,6 +134,13 @@ public class Sala {
 
 
 # Destaques de Pattern
+
+## Diagrama do Pattern Factory
+
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Diagrama%20de%20pattern.drawio.png)
+
+## Código do pattern Factory
+
 >instanciação com factory
 ~~~java
 Ator monstro = AtorFactory.getAtor("monstro", i, j, null);
@@ -163,6 +170,8 @@ public class Monstro extends Ator{
      }
 }
 ~~~
+
+> o Pattern Factory foi adotado para padronizar a criação de uma instância para determinado objeto, precisando para isso, passar como parâmetro uma String com tipo do objeto que se deseja instanciar e outros parâmetros referentes ao construtor do objeto alvo da instanciação, como mostra o diagrama de pattern mostrado acima.
 
 # Conclusões e Trabalhos Futuros
 > Ao final do projeto, podemos concluir que a sua proposta foi alcançada, como: utilizar os conceitos de polimorfismo, herança, classe abstrata e sobrecarga de métodos, plano de exceções e interface gráfica que, embora não tenhamos explorado melhor seu potencial, tornou o jogo mais interativo.
