@@ -17,7 +17,7 @@
 
 # Descrição Resumida do Projeto/Jogo
 
-Lost in The Darkness é um jogo que se passa em um mapa quadriculado escuro de tamanho fixo 5x5
+> Lost in The Darkness é um jogo que se passa em um mapa quadriculado escuro de tamanho fixo 5x5
 representando um mundo sombrio. Há uma pessoa perdida e monstros espalhados pelo mapa, gerados aleatoriamente. No entanto,
 o protagonista do jogo pode cumprir a missão de salvar a pessoa, tendo consigo uma arma para enfrentar tais monstros.
 Ademais, ele conta com munição e kit médico também espalhados aleatoriamente pelo mapa.
@@ -42,7 +42,7 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 [apresentação final](https://docs.google.com/presentation/d/1_Il_i4ERdoqOP_OMNCpQH4tbsKAtW0nK6Z0qSo7RvOk/edit#slide=id.p)
 
 # Relatório de Evolução
-Durante o planejamento do projeto, havíamos definido que a arquitetura do jogo seria MVC (Model-View-Controller) e, com base nisso, já tínhamos ideia do seu funcionamento geral e dos possíveis problemas que surgiriam. Um desses problemas foi o uso frequente de “casts”, que foi resolvido colocando os métodos da subclasse na superclasse, implementando nas subclasses somente os métodos pertinentes a ela. No entanto, por não entendermos a efetividade e relevância das interfaces na arquitetura do projeto, não construímos um plano de interfaces adequado ao jogo. Além disso, o uso tardio da interface gráfica, após o término e testes do jogo no terminal, e alguns erros entre a IDE e o framework (LibGDX) foram empecilhos que nos impediram de explorar mais os recursos da interface gráfica, embora todas as ações e fluxo do jogo estejam ocorrendo normalmente pela interface, faltando somente duas telas para vitória e derrota que finalizam o jogo.
+> Durante o planejamento do projeto, havíamos definido que a arquitetura do jogo seria MVC (Model-View-Controller) e, com base nisso, já tínhamos ideia do seu funcionamento geral e dos possíveis problemas que surgiriam. Um desses problemas foi o uso frequente de “casts”, que foi resolvido colocando os métodos da subclasse na superclasse, implementando nas subclasses somente os métodos pertinentes a ela. No entanto, por não entendermos a efetividade e relevância das interfaces na arquitetura do projeto, não construímos um plano de interfaces adequado ao jogo. Além disso, o uso tardio da interface gráfica, após o término e testes do jogo no terminal, e alguns erros entre a IDE e o framework (LibGDX) foram empecilhos que nos impediram de explorar mais os recursos da interface gráfica, embora todas as ações e fluxo do jogo estejam ocorrendo normalmente pela interface, faltando somente duas telas para vitória e derrota que finalizam o jogo.
 
 # Destaques de código
 ## Polimorfismo
@@ -165,7 +165,7 @@ public class Monstro extends Ator{
 ~~~
 
 # Conclusões e Trabalhos Futuros
-Ao final do projeto, podemos concluir que a sua proposta foi alcançada, como: utilizar os conceitos de polimorfismo, herança, classe abstrata e sobrecarga de métodos, plano de exceções e interface gráfica que, embora não tenhamos explorado melhor seu potencial, tornou o jogo mais interativo.
+> Ao final do projeto, podemos concluir que a sua proposta foi alcançada, como: utilizar os conceitos de polimorfismo, herança, classe abstrata e sobrecarga de métodos, plano de exceções e interface gráfica que, embora não tenhamos explorado melhor seu potencial, tornou o jogo mais interativo.
 O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão relevante para a elaboração do projeto, talvez pudesse ter contribuído para sua organização. Ademais, a falta de tempo dificultou a expansão do jogo, que poderia ter mais níveis de dificuldade, alterando a proporção entre a geração aleatória de monstros e kits médicos pelo mapa, assim como mapas maiores e de formatos diferentes. Com isso, concluímos que o planejamento da arquitetura e gerenciamento de tempo melhores, aliados à exploração de boas práticas da orientação a objetos, como já havia sido feita até então no projeto, permitiriam facilmente a sua expansão futuramente.
 
 # Diagramas
