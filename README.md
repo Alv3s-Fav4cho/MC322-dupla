@@ -94,37 +94,6 @@ public class Montador {
      
 ~~~
 
-## Design Pattern
->instanciação com factory
-~~~java
-Ator monstro = AtorFactory.getAtor("monstro", i, j, null);
-~~~
->codigo da classe ActorFactory
-~~~java
-public class AtorFactory {
-
-     public static Ator getAtor(String type, int linha, int coluna, Nether neth) {
-     …
-     if ("monstro".equalsIgnoreCase(type)){
-          return new Monstro(type, linha, coluna);
-     }     
-     …
-     return null;
-     }
-}
-~~~
-> construtor do ator monstro
-
-~~~java
-public class Monstro extends Ator{
-     public Monstro(String type, int linha, int coluna){
-          setType(type);
-          setLinha(linha);
-          setColuna(coluna);
-     }
-}
-~~~
-
 ## Sobrecarga de método
 ~~~java
 public class ControleJogo {
@@ -183,5 +152,36 @@ public class Sala {
 }     
 ~~~
 
+
+# Design Pattern
+>instanciação com factory
+~~~java
+Ator monstro = AtorFactory.getAtor("monstro", i, j, null);
+~~~
+>codigo da classe ActorFactory
+~~~java
+public class AtorFactory {
+
+     public static Ator getAtor(String type, int linha, int coluna, Nether neth) {
+     …
+     if ("monstro".equalsIgnoreCase(type)){
+          return new Monstro(type, linha, coluna);
+     }     
+     …
+     return null;
+     }
+}
+~~~
+> construtor do ator monstro
+
+~~~java
+public class Monstro extends Ator{
+     public Monstro(String type, int linha, int coluna){
+          setType(type);
+          setLinha(linha);
+          setColuna(coluna);
+     }
+}
+~~~
 
 
