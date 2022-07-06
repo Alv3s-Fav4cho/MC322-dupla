@@ -47,7 +47,7 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 ## Diagrama Geral da Arquitetura do Jogo
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
 
-*diagrama geral com divisão MVC por meio de cores
+* diagrama geral com divisão MVC por meio de cores
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
 
 ## diagrama de exceções
