@@ -40,32 +40,12 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 
 ## Slides da Apresentação Final
 [apresentação final](https://docs.google.com/presentation/d/1_Il_i4ERdoqOP_OMNCpQH4tbsKAtW0nK6Z0qSo7RvOk/edit#slide=id.p)
-# Diagramas
-## diagrama de classes
-![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20classes.drawio.png)
 
-## Diagrama Geral da Arquitetura do Jogo
-![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
+# Relatório de Evolução
+Durante o planejamento do projeto, havíamos definido que a arquitetura do jogo seria MVC (Model-View-Controller) e, com base nisso, já tínhamos ideia do seu funcionamento geral e dos possíveis problemas que surgiriam. Um desses problemas foi o uso frequente de “casts”, que foi resolvido colocando os métodos da subclasse na superclasse, implementando nas subclasses somente os métodos pertinentes a ela. No entanto, por não entendermos a efetividade e relevância das interfaces na arquitetura do projeto, não construímos um plano de interfaces adequado ao jogo. Além disso, o uso tardio da interface gráfica, após o término e testes do jogo no terminal, e alguns erros entre a IDE e o framework (LibGDX) foram empecilhos que nos impediram de explorar mais os recursos da interface gráfica, embora todas as ações e fluxo do jogo estejam ocorrendo normalmente pela interface, faltando somente duas telas para vitória e derrota que finalizam o jogo.
 
-* diagrama geral com divisão MVC por meio de cores
-![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
-
-## diagrama de exceções
-![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20excecoes.PNG)
-
-**Detalhamento do plano de exeções**
-Classe | Descrição
------ | -----
-ComandoInvalido| usuário usa um comando que não é esperado
-MovimentoParaBorda | personagem está na borda do mapa e o usuário tenta se mover para esse lado
-MovimentoSemSanidade | personagem sem sanidade e usuário tenta se mover
-tiroSemMunicao | personagem sem munição e usuário tenta usar o comando de atirar
-pegarMunicao_SemMunicao | usuario usa o comando de recolher munição sem ter munição na posição do personagem
-pegarKit_SemKit | usuario usa o comando de recolher kit médico sem ter kit médico na posição do personagem
-usarKitSemTer | personagem sem kit e usuario tenta usar o comando de usar kit médico
-
-# destaques de código
-## polimorfismo
+# Destaques de código
+## Polimorfismo
 ~~~java
 public class Sala {
      …
@@ -153,7 +133,7 @@ public class Sala {
 ~~~
 
 
-# Design Pattern
+# Destaques de Pattern
 >instanciação com factory
 ~~~java
 Ator monstro = AtorFactory.getAtor("monstro", i, j, null);
@@ -184,4 +164,30 @@ public class Monstro extends Ator{
 }
 ~~~
 
+# Conclusões e Trabalhos Futuros
+Ao final do projeto, podemos concluir que a sua proposta foi alcançada, como: utilizar os conceitos de polimorfismo, herança, classe abstrata e sobrecarga de métodos, plano de exceções e interface gráfica que, embora não tenhamos explorado melhor seu potencial, tornou o jogo mais interativo.
+O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão relevante para a elaboração do projeto, talvez pudesse ter contribuído para sua organização. Ademais, a falta de tempo dificultou a expansão do jogo, que poderia ter mais níveis de dificuldade, alterando a proporção entre a geração aleatória de monstros e kits médicos pelo mapa, assim como mapas maiores e de formatos diferentes. Com isso, concluímos que o planejamento da arquitetura e gerenciamento de tempo melhores, aliados à exploração de boas práticas da orientação a objetos, como já havia sido feita até então no projeto, permitiriam facilmente a sua expansão futuramente.
 
+# Diagramas
+## Diagrama de classes
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20classes.drawio.png)
+
+## Diagrama Geral da Arquitetura do Jogo
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
+
+* Diagrama geral com divisão MVC por meio de cores
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
+
+## Diagrama de exceções
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20excecoes.PNG)
+
+**Detalhamento do plano de exeções**
+Classe | Descrição
+----- | -----
+ComandoInvalido| usuário usa um comando que não é esperado
+MovimentoParaBorda | personagem está na borda do mapa e o usuário tenta se mover para esse lado
+MovimentoSemSanidade | personagem sem sanidade e usuário tenta se mover
+tiroSemMunicao | personagem sem munição e usuário tenta usar o comando de atirar
+pegarMunicao_SemMunicao | usuario usa o comando de recolher munição sem ter munição na posição do personagem
+pegarKit_SemKit | usuario usa o comando de recolher kit médico sem ter kit médico na posição do personagem
+usarKitSemTer | personagem sem kit e usuario tenta usar o comando de usar kit médico
