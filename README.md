@@ -178,10 +178,10 @@ public class Monstro extends Ator{
 O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão relevante para a elaboração do projeto, talvez pudesse ter contribuído para sua organização. Ademais, a falta de tempo dificultou a expansão do jogo, que poderia ter mais níveis de dificuldade, alterando a proporção entre a geração aleatória de monstros e kits médicos pelo mapa, assim como mapas maiores e de formatos diferentes. Com isso, concluímos que o planejamento da arquitetura e gerenciamento de tempo melhores, aliados à exploração de boas práticas da orientação a objetos, como já havia sido feita até então no projeto, permitiriam facilmente a sua expansão futuramente.
 
 # Diagramas
-## Diagrama de classes
+## Diagrama Geral da Arquitetura do Jogo
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20classes.drawio.png)
 
-## Diagrama Geral da Arquitetura do Jogo
+## Diagrama de Classes
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
 
 * Diagrama geral com divisão MVC por meio de cores
