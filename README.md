@@ -44,7 +44,7 @@ Porém, perde o jogo caso ele morra ou a pessoa perdida morra após sofrer sangr
 # Relatório de Evolução
 > Durante o planejamento do projeto, havíamos definido que a arquitetura do jogo seria MVC (Model-View-Controller) e, com base nisso, já tínhamos ideia do seu funcionamento geral e dos possíveis problemas que surgiriam. Um desses problemas foi o uso frequente de “casts”, que foi resolvido colocando os métodos da subclasse na superclasse, implementando nas subclasses somente os métodos pertinentes a ela. No entanto, por não entendermos a efetividade e relevância das interfaces na arquitetura do projeto, não construímos um plano de interfaces adequado ao jogo. Além disso, o uso tardio da interface gráfica, após o término e testes do jogo no terminal, e alguns erros entre a IDE e o framework (LibGDX) foram empecilhos que nos impediram de explorar mais os recursos da interface gráfica, embora todas as ações e fluxo do jogo estejam ocorrendo normalmente pela interface, faltando somente duas telas para vitória e derrota que finalizam o jogo.
 
-# Destaques de código
+# Destaques de Código
 ## Polimorfismo
 ~~~java
 public class Sala {
@@ -188,7 +188,7 @@ O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão 
 * Diagrama de Classes com divisão MVC por meio de cores
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
 
-## Diagrama de Componentes
+## Diagrama Geral de Componentes
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Componentes.drawio.png)
 > O objeto controle solicita acesso aos métodos que pertencem aos atores
 
