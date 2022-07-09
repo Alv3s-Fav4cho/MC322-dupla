@@ -187,6 +187,60 @@ O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão 
 * Diagrama de Classes com divisão MVC por meio de cores
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
 
+## Diagrama de Componentes
+![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Componentes.drawio.png)
+> O objeto controle solicita acesso aos métodos que pertencem aos atores
+
+## Componente `<Ator>`
+
+> Este componente é responsável por receber requisições do controle e repassá-las ao nether, pois este que efetivamente verificará se a ação recebida pelo controle é válida.
+
+![Componente](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/componente%20ator.drawio.png)
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `<com.mygdx.game`
+Autores | `<Daniel e Leonardo>`
+Interfaces | `<IProtPessoap>`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/interface_IProtPessoap.drawio.png)
+
+## Detalhamento de interface
+
+### Interface `<IProtPessoap>`
+
+`<Define métodos comuns as classes do protagonista e da pessoa perdida>`
+
+~~~java
+public interface IProtPessoap {
+	public String getType();
+	public void setType(String type);
+	public int getLinha();
+	public void setLinha(int linha);
+	public int getColuna();
+	public void setColuna(int coluna);
+	public void conectaNether(Nether neth);
+	public boolean atorSeMove(int linha_atual, int coluna_atual, int nova_linha,int nova_coluna, String tipo);
+}
+~~~
+
+Classe | Descrição
+----- | -----
+getType| Retorna uma String com o tipo de ator
+setType | Define o tipo de ator
+getLinha | Retorna a linha atual do ator
+setLinha | Define a linha atual do ator
+getColuna | Retorna a coluna atual do ator
+setColuna | Define a coluna atual do ator
+conectaNether | Realiza a conexão entre o ator e o nether
+atorSeMove | Verifica se o movimento do ator é válido
+
+
 ## Diagrama de exceções
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20excecoes.PNG)
 
