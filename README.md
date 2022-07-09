@@ -184,7 +184,7 @@ O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão 
 ## Diagrama de Classes
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
 
-* Diagrama geral com divisão MVC por meio de cores
+* Diagrama de Classes com divisão MVC por meio de cores
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness%20com%20divis%C3%A3o%20MVC.drawio.png)
 
 ## Diagrama de exceções
