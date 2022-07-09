@@ -200,7 +200,7 @@ O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão 
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
-Classe | `<com.mygdx.game`
+Classe | `<com.mygdx.game>`
 Autores | `<Daniel e Leonardo>`
 Interfaces | `<IProtPessoap>`
 
