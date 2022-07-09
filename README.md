@@ -180,7 +180,7 @@ O desenvolvimento de um plano de interfaces, apesar de não termos julgado tão 
 # Diagramas
 ## Diagrama Geral da Arquitetura do Jogo
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/diagrama%20de%20classes.drawio.png)
-> Para o desenvolvimento do jogo, usamos o padrão Model View Controller, em que temos um componente (Controller) que controla todo o fluxo do jogo e ações dos atores, interagindo com o Model, e outro componente (View) que apresenta todas as informações do Model ao usuário.
+> Para o desenvolvimento do jogo, usamos o padrão Model-View-Controller, em que temos um componente (Controller) que interage com o Model, controlando todo o fluxo do jogo e ações dos atores, e outro componente (View) que apresenta todas as informações do Model ao usuário.
 
 ## Diagrama de Classes
 ![alt text](https://github.com/Alv3s-Fav4cho/MC322-dupla/blob/main/Diagramas/Arquitetura_lost-in-the-darkness.drawio.png)
